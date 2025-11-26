@@ -202,8 +202,9 @@
         "properties": {
           "model": {
             "type": "string",
-            "description": "ID of the model to use",
-            "example": "webai-llm"
+            "description": "ID of the model to use (default: 'webai-llm')",
+            "example": "webai-llm",
+            "default": "webai-llm"
           },
           "messages": {
             "type": "array",
@@ -356,8 +357,9 @@
         "properties": {
           "model": {
             "type": "string",
-            "description": "ID of the model to use",
-            "example": "webai-llm"
+            "description": "ID of the model to use (default: 'webai-llm')",
+            "example": "webai-llm",
+            "default": "webai-llm"
           },
           "prompt": {
             "oneOf": [
@@ -454,8 +456,10 @@
         "properties": {
           "model": {
             "type": "string",
-            "description": "ID of the model to use",
-            "example": "webai-llm"
+            "description": "ID of the model to use (default: 'webai-llm')",
+            "example": "webai-llm",
+            "default": "webai-llm"
+
           },
           "input": {
             "oneOf": [
@@ -589,7 +593,7 @@
       "bearerAuth": {
         "type": "http",
         "scheme": "bearer",
-        "description": "API keys should be provided via HTTP Bearer authentication. Use the API key you configured in the API element settings."
+        "description": "API keys should be provided via HTTP Bearer authentication. Use the API key you configured in the API element advanced settings."
       }
     }
   }
