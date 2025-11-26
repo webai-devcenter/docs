@@ -1,0 +1,120 @@
+---
+title: "Log Viewer"
+---
+
+Within Navigator you can now monitor the logs associated with the application or Runtime layer using the Log View. In this guide we will go over how to open the Log View within Navigator and associated features with this tool.
+
+---
+
+## Accessing Log View
+
+To open the Log View - click `View` -> `View Logs` or use keyboard shortcut `Command + Option + M` to open and close the Log View.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/log_viewer_images/image_1.png" alt="Accessing Log View" />
+</Frame>
+
+---
+
+## Overview
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/log_viewer_images/image_2.png" alt="Log Viewer Overview" />
+</Frame>
+
+### 1. Current Log View
+
+This will show the name of the current logs you are viewing. Currently there are `Navigator Logs` and `Runtime Logs`.
+
+### 2. Search
+
+The `Search` bar allows you to filter results based on key words in the error messaging. You can search any of the messaging a log may produce displayed on the right side highlighted above. Currently you cannot search by the dates and times on the left side.
+
+### 3. Issues Filter
+
+Here you can see all logs displayed within a log view and also filter by `Warnings` by clicking on the warning icon or `Failures` by clicking on the failure icon. `Success` logs are also displayed in this default view. See Log Types below for more details.
+
+### 4. Open New Window
+
+Clicking the `New Window` icon will allow you to open the logs in a new window. This is useful for resizing the logs and expanding the view to display more entries in one window.
+
+### 5. Switch Log View - Three Dots ...
+
+Clicking the three dots `...` will allow you to switch between `Navigator Logs` and `Runtime Logs`.
+
+---
+
+## Logs Types
+
+All logs are displayed in ascending order and defaulted to show the most recent logs, however, you can scroll up to see previous logs that have been captured in your current instance of Navigator. Below are the different log types that will display in the Log View.
+
+### Success Logs
+
+Success logs are shown in blue and are accessible from the default filter which shows a combo of all success, warning, and error logs. The `74 Issues` displayed in the image below is the sum of warnings and failures, however, in this view you will also see the blue success logs.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/log_viewer_images/image_3.png" alt="Success Logs" />
+</Frame>
+
+### Warning Logs
+
+Warning logs are shown here in yellow and can be filtered by clicking the warning icon.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/log_viewer_images/image_4.png" alt="Warning Logs" />
+</Frame>
+
+### Error Logs
+
+Error logs are shown here in red and can be filtered by clicking the failure icon.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/log_viewer_images/image_5.png" alt="Error Logs" />
+</Frame>
+
+---
+
+## Navigator vs Runtime&nbsp;
+
+### Navigator Logs
+
+The Navigator Logs are specific to the application startup and connecting to various layers required for Navigator to run. These would include processes like but not limited to:&nbsp;
+
+- Python being installed
+- Connecting to Homeport&nbsp;
+- Connecting to the MQTT Broker&nbsp;
+- Checking Internet Connectivity&nbsp;
+- Checking webFrame status&nbsp;
+
+### Runtime Logs
+
+The Runtime Logs are more specific to Elements, Running Flows, Network Connectivity, and Deployments. If you open the Runtime Logs and click `Run` inside a Canvas you will see the Runtime Logs begin to populate processes like but not limited to:&nbsp;
+
+- Connecting to the Element Registry&nbsp;
+- Referencing the Element logic within a Flow&nbsp;
+- Model size information&nbsp;
+- Model machine distribution &nbsp;&nbsp;
+- Flow creation statuses&nbsp;
+
+---
+
+## Export Logs
+
+If you needed to export these logs you can navigate to the `Help` dropdown -> `Export Debug Data`.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/log_viewer_images/image_6.png" alt="Export Debug Data" />
+</Frame>
+
+This will provide a `.zip` file when unzipped will contain `.log` files for:&nbsp;
+
+- client and server logs&nbsp;
+- network logs
+- runtime logs
+
+---
+
+## Useful Resources
+
+- For more information on specific elements, see our [Element Registry](/fundamentals/element-registry) page
+- For more information on terms used throughout Navigator, see our [Terminology](/getting-started/terminology) page

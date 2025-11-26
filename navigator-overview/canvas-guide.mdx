@@ -1,0 +1,71 @@
+---
+title: "Projects & Canvas Overview"
+description: "Core components and terminology for building AI workflows in Navigator Canvas"
+sidebarTitle: "Projects Tab"
+---
+
+This guide introduces the core components and terminology you'll encounter when building AI workflows in Navigator's Canvas. Each section explains a key concept with practical context for how it fits into your development process along with some tools that are useful while building your Flows.
+
+---
+
+### Overview
+
+<Frame>
+  <img
+    src="/images/canvas_guide_images/image_1.png"
+    alt="main image for canvas guide"
+    style={{ borderRadius:"0.5rem" }}
+  />
+</Frame>
+
+### 1. Projects
+
+A folder system for organizing your canvases. Projects allow you to group related canvases together, making it easy to keep your work organized. For example, if you're working on both ingestion and inference flows for the same document, saving them in the same project provides an easy way to reference and manage related workflows.
+
+### 2. Canvas
+
+Canvases are the main workspace of Navigator. It is the creation area where you can train, test, and prototype AI models by visually arranging and connecting different components. If you are starting with a blank Canvas, try dragging the LLM and API Elements to your Canvas to match the above image.
+
+### 3. Drawer
+
+The Drawer is a library where you can access all the available Elements to build your projects. Simply click and drag and drop an element onto your Canvas to use an Element from the Drawer.
+
+### 4. Element
+
+Elements are the fundamental building blocks of any project in Navigator. Each Element inside Navigator is a packaged piece of code designed to perform a specific function, like training a model or visualizing data. For a complete list and description of all available Elements, check out our Element Registry. In the example above LLM and API are examples of Elements.
+
+### 5. Connectors and Flows
+
+Connectors are the guiding indicators of where an Element's inputs and outputs begin and end. When Elements are utilizing these Connectors we describe that interconnection as a Flow. A Flow is a sequence of connected Elements that work together to perform a trained function and produce an output.
+
+### 6. Run Button
+
+The button inside your canvas that starts your flow execution. The Run button also includes a dropdown menu with additional flow actions such as deploy, save, and other management options.
+
+### 7. Element Settings
+
+When you click the three dots `...` - `Settings` on a specific Element you will see the right panel populate which displays the Element Settings. These settings differ depending on the Element you have selected.
+
+### 8. Zoom In & Zoom Out
+
+Tools for zooming in and zooming out on the Flows within a Canvas.
+
+#### Keyboard Shortcuts
+
+- `CMD` + `+` for Zoom In
+- `CMD` + `-` for Zoom Out
+
+### 9. Recenter
+
+Clicking this will recenter the entirety of the Flow within the Canvas.
+
+### 10. Project Views
+
+These toggles allow you to interact with Flows that are running inside of Navigator. For example, if you are looking to interact with an LLM locally the Preview tab will open automatically after you run a Flow. For more information on these different tabs see our [Project Views](/fundamentals/project-views) article.
+
+---
+
+## Next Steps
+
+- For additional resources and step by step guides on building Flows within a Canvas check out our [**Building Workflows Guides**](/building-workflows/build-custom-llm-chatbot) here
+- For a full list of terms check out our [**Terminology**](/getting-started/terminology) page here.

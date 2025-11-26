@@ -1,0 +1,253 @@
+---
+title: "Building Your First Custom LLM Chatbot"
+description: "Build AI-powered chatbots for document question answering"
+sidebarTitle: "RAG Inference & Ingestion"
+---
+
+This comprehensive step-by-step guide teaches developers and technical professionals how to build Retrieval-Augmented Generation (RAG) systems that create AI-powered chatbots capable of answering questions about specific documents like enterprise knowledge bases, customer support materials, legal documents, or technical documentation.
+
+The guide walks users through two main steps: setting up a document ingestion pipeline to process and vectorize documents, followed by creating an inference pipeline to chat with those documents using an LLM, making it ideal for implementing secure, private AI solutions for document-based question answering without sending data to the cloud.
+
+---
+
+## Use Cases
+
+- **Enterprise Knowledge Base** → Company documentation and policy Q&A
+- **Customer Support** → Automated responses from support materials
+- **Legal Document Analysis** → Contract and compliance document search
+- **Technical Documentation** → API docs, manuals, and troubleshooting guides
+- **Research Assistant** → Academic paper and research document querying
+- **Medical Information** → Healthcare documentation and procedure guides
+- **Educational Content** → Textbook and curriculum material assistance
+- **Compliance Systems** → Regulatory and standards documentation
+- **Code Documentation** → Software documentation and codebase understanding
+- **Training Materials** → Employee handbook and training resource systems
+
+---
+
+## Document Structure
+
+Your ingestion pipeline processes various formats:
+
+```
+documents/
+├── pdfs/
+│   ├── manual1.pdf
+│   ├── guide2.pdf
+│   └── ...
+├── text_files/
+│   ├── doc1.txt
+│   ├── readme.md
+│   └── ...
+```
+
+### Supported Formats:
+
+- **PDF Files** → Text extraction with structure preservation
+- **Microsoft Word** → .docx
+- **Text Files** → .md, .csv, .json formats
+- **Web Content** → HTML and web page processing
+
+---
+
+## Quick Start in Two Steps
+
+### Step 1: RAG Document Ingestion Pipeline
+
+The Ingestion Pipeline processes your documents and transforms them into a format that AI models can understand, search, and interact with. The output is a Vector Database that you'll use when chatting with your documents in the Inference Flow (Step 2).
+
+<Note>
+  Need a text-only PDF to test with? Download the PDF below!
+
+  <a href="https://downloads.webai.com/marketing/Example_Text_Only_RAG_Doc.pdf" target="_blank" rel="noopener noreferrer">Help Docs PDF</a>
+</Note>
+
+<Steps>
+  <Step title="Download and Organize Your Documents">
+    Download the text-only files you will be using for the ingestion pipeline and put those in the same folder (you can name this folder whatever you would like).
+
+    See the **Supported Formats** along with the **Document Structure** guidelines above. Your file structure should look similar to this:
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_1.png"
+        width="913"
+        height="434"
+        alt="File structure example"
+      />
+    </Frame>
+  </Step>
+  <Step title="Open the RAG Document Ingestion Pipeline Template">
+    Open Navigator and on the Home tab → Featured Templates → Select RAG Document Ingestion Pipeline → Open
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_2.png"
+        width="939"
+        height="692"
+        alt="Navigator home screen"
+      />
+    </Frame>
+  </Step>
+  <Step title="Configure the OCR Element Data Path">
+    Click on the OCR element - (Optical Character Recognition) - to open that element's settings → click <kbd>Select Directory</kbd>
+
+     under Data Path. This is where we will select the Folder we created in Step 1.
+  </Step>
+  <Step title="Set the Output Path">
+    Next click the <kbd>Select Directory</kbd>
+
+     under Output Path. In the example below we are just using the same folder we created in Step 1. However, you could create a new folder for output data if you would like.
+
+    My settings for the OCR element now look like this:
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_3.png"
+        width="944"
+        height="696"
+        alt="OCR settings"
+      />
+    </Frame>
+  </Step>
+  <Step title="Enable Ingestion on the Embedding Element">
+    Click on the Embedding element to open that elements settings and make sure that **Is Ingestion** is enabled here:
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_4.png"
+        width="817"
+        height="697"
+        alt="Embedding settings"
+      />
+    </Frame>
+  </Step>
+  <Step title="Review Other Element Settings">
+    For now, we won't modify anything else within the **Chunking**, **Embedding**, or **Vector Indexing** element settings - but more information on what those elements control can be found in our [**Element Registry**](/fundamentals/element-registry).
+  </Step>
+  <Step title="Run the Pipeline">
+    Click <kbd>Run</kbd>
+
+     in the top right.
+  </Step>
+  <Step title="Verify the Output">
+    Once this finishes we should now see a file within the location we selected in Step 4 with the title format of `ExecutionName_[#]_[Date]` which contains the metadata and Vector Database files.
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_5.png"
+        width="1137"
+        height="471"
+        alt="Output files"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+<Note>
+  In the next stage we will create a pipeline that will reference the metadata and vector DB exported from this Document Ingestion Pipeline which should allow us to use a LLM chatbot to ask questions about the documents we provided!
+</Note>
+
+---
+
+### Step 2: RAG Inference Pipeline
+
+The Inference Pipeline allows you to chat with your documents using the Vector Database created in the Ingestion Pipeline (Step 1). It processes user queries and returns relevant information from your documents.
+
+<Steps>
+  <Step title="Create a New Inference Pipeline">
+    Click <kbd>Create</kbd>
+
+     in the top left → Featured Templates → RAG Inference Pipeline → Open
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_6.png"
+        width="948"
+        height="696"
+        alt="Create inference pipeline"
+      />
+    </Frame>
+  </Step>
+  <Step title="Configure the Embedding Element">
+    Click on the Embedding element → disable the **Is Ingestion** setting → Click <kbd>Update</kbd>
+
+     under Trained Artifact Path → Select the `Run_[#]_[Date]` folder that we created in Step 1 → Open
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_7.png"
+        width="948"
+        height="696"
+        alt="Embedding configuration"
+      />
+    </Frame>
+    <Note>
+      In simpler terms - what we are telling Navigator in this Inference Pipeline is - use the Vector Database that we created from the documents provided (this was created from the Ingestion Pipeline in Step 1) and allow me to ask an LLM inside of Navigator about those documents.
+    </Note>
+  </Step>
+  <Step title="Select Your LLM Model">
+    Click on the Large Language Model Chat element and select a Base Model Architecture - I'm going to simply use Gemma 1.1 2 Bit.
+
+    <Note>
+      Unsure what an LLM (Large Language Model) is? Check out our [**Terminology**](/getting-started/terminology) page or see our [**Supported LLM Base Models**](/fundamentals/supported-llm-base-models).
+    </Note>
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_8.png"
+        width="517"
+        height="696"
+        alt="LLM selection"
+      />
+    </Frame>
+    <Note>
+      If we needed to provide more guidance to this LLM - we can click the <kbd>Show Advanced Settings</kbd>
+
+       dropdown → provide a more detailed Model System Prompt.
+    </Note>
+  </Step>
+  <Step title="Run the Inference Pipeline">
+    Click <kbd>Run</kbd>
+
+     in the top right
+  </Step>
+  <Step title="Test Your Chatbot">
+    Once this completes you should see a chat bot open up inside of Navigator. To test if our Inference Pipeline is working - let's ask a very specific question about our document for example:
+
+    "What are the suggested percentages for organizing data for object detection?"
+  </Step>
+  <Step title="Verify the Results">
+    As we can see in the screenshot below displaying the actual document we provided and what the LLM Chat produced - this RAG Inference Pipeline is accurately referencing our documents!
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_custom_llm_chatbot_images/image_9.png"
+        width="2444"
+        height="753"
+        alt="Chat results comparison"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+<Note>
+  The bigger picture here is that these LLM's (Large Language Models) don't know anything about our documentation unless we provide that information to them. So with this RAG Inference Pipeline - we can now input our documents and easily ask questions about these documents, locally from our machine without providing any information to the cloud. Safe, secure, and private AI that you control!
+</Note>
+
+---
+
+## Next Steps
+
+- Test your RAG system by asking questions about your documents.
+- Fine-tune response quality by adjusting chunk sizes or retrieval settings. For more information on Chunking, see our [**Chunking Settings – Use Case Guide**](/fundamentals/chunking-guidelines)
+- For Image Classification, see our [**Building a Dataset: Image Classification**](/building-workflows/building-image-classification-with-custom-dataset) guide
+- For Object Detection, see our [**Building a Dataset: Object Detection**](/building-workflows/building-object-detection-with-custom-dataset) guide

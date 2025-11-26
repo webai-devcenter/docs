@@ -1,0 +1,222 @@
+---
+title: "Thunderbolt 5 Setup"
+description: "Configure a high-performance webAI cluster using Thunderbolt 5 daisy-chain connections between Mac devices"
+sidebarTitle: "Thunderbolt 5 Setup"
+---
+
+This guide explains how to configure a high-performance webAI cluster using Thunderbolt 5 daisy-chain connections between Mac devices. This setup enables ultra-fast communication between nodes in your cluster, maximizing performance for distributed AI workloads.
+
+---
+
+## Hardware Requirements
+
+<Note>
+**Prerequisites**
+
+Before beginning, ensure you have:
+- Multiple Mac devices with Thunderbolt 5 compatible ports (e.g., Mac Minis, MacBooks)
+- Thunderbolt 5-rated cables (40Gbps or higher)
+  - Keep cables under 2 meters in length for optimal performance
+- Sample Setup: This guide uses three Mac Minis and one MacBook connected sequentially
+</Note>
+
+---
+
+## Verifying Thunderbolt 5 Compatibility
+
+Before setting up your daisy chain, verify that your Mac devices have Thunderbolt 5 compatible ports:
+
+### Using macOS GUI
+
+<Steps>
+  <Step title="Click Apple menu () → About This Mac" />
+  <Step title="Click More Info..." />
+  <Step title="Scroll and click System Report" />
+  <Step title="Navigate to Thunderbolt/USB4 section" />
+  <Step title="Check the Thunderbolt Version field (should be version 5)" />
+</Steps>
+
+### Using Terminal
+
+```bash
+system_profiler SPThunderboltDataType
+```
+
+Look for `Thunderbolt Version: 5` in the output.
+
+---
+
+## Physical Connection Setup
+
+For this example, we'll use the following device identifications:
+
+- **Device A:** MacBook (initiates the chain)
+- **Device B:** Mac Mini (top)
+- **Device C:** Mac Mini (middle)
+- **Device D:** Mac Mini (bottom)
+
+### Connection Steps
+
+<Steps>
+  <Step title="Connect MacBook to First Mac Mini">
+    - Connect a Thunderbolt 5 cable from MacBook's Thunderbolt port to Port 1A on the top Mac Mini
+  </Step>
+  <Step title="Connect First Mac Mini to Second Mac Mini">
+    - Connect a Thunderbolt 5 cable from Port 1B on the top Mac Mini to Port 2B on the middle Mac Mini
+  </Step>
+  <Step title="Connect Second Mac Mini to Third Mac Mini">
+    - Connect a Thunderbolt 5 cable from Port 1C on the middle Mac Mini to Port 2C on the bottom Mac Mini
+  </Step>
+  <Step title="Power On All Devices">
+    - Turn on all Mac devices in the chain
+  </Step>
+</Steps>
+
+---
+
+## Configuring Thunderbolt Bridge Network
+
+After physically connecting your devices, you need to configure the Thunderbolt Bridge network:
+
+<Steps>
+  <Step title="Enable Thunderbolt Bridge">
+    - Open **System Settings → Network**
+    - If Thunderbolt Bridge is not listed:
+      - Click the options menu (`...`) → **Add Service** → **Thunderbolt Bridge**
+  </Step>
+  <Step title="Configure IP Settings">
+    - Select **Thunderbolt Bridge** from the left sidebar
+    - Under **Configure IPv4**, choose one of these options:
+      - `Using DHCP with manual address` (leave address field blank) OR
+      - `Using DHCP` (system will assign a 169.254.x.x link-local IP)
+  </Step>
+  <Step title="Set Network Priority">
+    - Click the options menu (`...`) → **Set Service Order**
+    - Move **Thunderbolt Bridge** to the top of the list for best performance
+    - Click **OK** to save changes
+  </Step>
+  <Step title="Verify Connectivity">
+    - Ensure each device's Thunderbolt Bridge has a `169.254.x.x` IP address
+    - Test connectivity by pinging between devices or transferring a file
+    - Check System Report → Thunderbolt to verify 40Gbps connections
+  </Step>
+</Steps>
+
+<Note>
+Thunderbolt 5 supports up to 40Gbps transfer speeds per connection, creating a high-speed network ideal for distributed AI workloads.
+</Note>
+
+---
+
+## Deploying webAI Cluster Over Thunderbolt
+
+After establishing your Thunderbolt network, you can now create a webAI cluster that utilizes this high-speed connection.
+
+<Note>
+**Prerequisites**
+
+Before beginning, ensure you have:
+- webAI Navigator installed on at least one device
+- webAI Runtime Agent installed on all nodes
+- A flow designed in Canvas that you want to deploy
+- Input devices (e.g., cameras) configured if needed by your flow
+</Note>
+
+### Step 1: Design Your Flow in Canvas
+
+- Open Navigator and create or open your AI flow in Canvas
+- Test your flow locally to ensure it works as expected
+
+### Step 2: Save Flow Version for Deployment
+
+- Click the three-dot menu on your project
+- Select **"Save for Deployment"**
+- Enter a descriptive name and optional description
+- To manage saved versions later:
+  - Click the three-dot menu → **"View Canvas Versions"**
+
+### Step 3: Create or Connect to a Cluster
+
+**To Create a New Cluster:**
+
+<Steps>
+  <Step title="Click Network button in Navigator" />
+  <Step title='Navigate to the Clusters tab' />
+  <Step title='Select "Add Cluster" → Host a new Cluster' />
+  <Step title="Follow the prompts to configure the cluster controller" />
+</Steps>
+
+**To Connect to an Existing Cluster:**
+
+- Navigator automatically detects clusters on the same network
+- You can also connect directly via IP address if needed
+
+### Step 4: Set Up Devices in the Cluster
+
+<Steps>
+  <Step title="Go to the Devices tab in your cluster" />
+  <Step title="Add compute nodes">
+    - Click **Add Node**
+    - Select or enter the IP address of each Mac in your Thunderbolt chain
+    - Configure node settings as needed
+  </Step>
+  <Step title="Add input devices (if applicable)">
+    - Click **Add Input Device**
+    - Configure cameras or other input devices
+  </Step>
+</Steps>
+
+### Step 5: Create Your Deployment
+
+<Steps>
+  <Step title="In your cluster, click New Deployment" />
+  <Step title="Configure the deployment">
+    - Enter a name and description
+    - Select your saved Canvas Version
+  </Step>
+  <Step title="Assign resources">
+    - Map cameras to appropriate Input Devices
+    - Assign AI Elements to specific Mac nodes in your Thunderbolt chain
+    - Optimize by distributing compute-intensive elements across nodes
+  </Step>
+  <Step title="Click Build to create and start your deployment" />
+</Steps>
+
+---
+
+## Performance Considerations
+
+- **Device Allocation:** Distribute compute-intensive elements across multiple nodes
+- **Network Priority:** Ensure Thunderbolt Bridge has priority over other networks
+- **Monitoring:** Check deployment status and performance metrics regularly
+- **Bandwidth Optimization:** Minimize unnecessary data transfer between nodes
+
+---
+
+## Troubleshooting
+
+<Accordion title="Connection Issues">
+  
+- Verify all Thunderbolt cables are securely connected
+- Check System Report to confirm Thunderbolt 5 connections are recognized
+- Restart devices if connections aren't detected
+
+</Accordion>
+
+<Accordion title="Network Configuration Problems">
+  
+- Ensure all devices have unique IP addresses on the Thunderbolt Bridge
+- Verify firewall settings allow communication between nodes
+- Test basic connectivity with ping before attempting cluster deployment
+
+</Accordion>
+
+<Accordion title="Deployment Failures">
+  
+- Verify all nodes are running the webAI Runtime Agent
+- Check that each node has sufficient resources for its assigned elements
+- Review logs for specific error messages
+- Test your flow in Canvas before deployment to identify issues
+
+</Accordion>
+

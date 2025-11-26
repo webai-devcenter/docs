@@ -1,0 +1,306 @@
+---
+title: "Building a Knowledge Graph RAG Flow"
+description: "Build AI-ready document repositories with Knowledge Graph RAG for multi-document querying"
+sidebarTitle: "KG RAG Ingestion & Inference"
+---
+
+KG RAG (Knowledge Graph Retrieval-Augmented Generation) allows users to build an AI-ready document repository, query multiple documents with an LLM, and visualize semantic links between text segments. It uses webAI's Navigator to convert PDFs into vector data and create a knowledge graph, with optional interactive tools for exploring relationships.
+
+The process involves two main steps: first setting up a document ingestion pipeline to process and vectorize content, then building an inference pipeline for chatting with documents using an LLM. This is perfect for creating secure, private AI systems that answer questions based on internal documents without relying on the cloud.
+
+This step-by-step guide helps developers and technical professionals build Retrieval-Augmented Generation (RAG) systems that power AI chatbots capable of answering document-specific questions, such as those found in enterprise knowledge bases, legal documents, or technical manuals. The chat modal will also provide citations to the specific pages where the LLM found this information!
+
+---
+
+## Use Cases
+
+- **Enterprise Knowledge Base** → Company documentation and policy Q&A
+- **Customer Support** → Automated responses from support materials
+- **Legal Document Analysis** → Contract and compliance document search
+- **Technical Documentation** → API docs, manuals, and troubleshooting guides
+- **Research Assistant** → Academic paper and research document querying
+- **Medical Information** → Healthcare documentation and procedure guides
+- **Educational Content** → Textbook and curriculum material assistance
+- **Compliance Systems** → Regulatory and standards documentation
+- **Code Documentation** → Software documentation and codebase understanding
+- **Training Materials** → Employee handbook and training resource systems
+
+---
+
+## Step 1: Document Ingestion → Knowledge Graph Builder
+
+<Steps>
+  <Step title="Create Folder Structure and Download PDFs">
+    Before we begin we need to download the PDFs that we are going to use as our Source Document input. The below file structure is optional, however, this will help in this step by step guide for accessing these inputs and outputs easily.
+
+    - Create a main folder - in the below example - `kg_rag_demo` is the main folder
+    - Create 3 folders inside of the main folder. `graph_output`, `input`, and `output`
+    - Place all of the PDFs we are going to use inside of the `input` folder
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_1.png" alt="Folder structure" />
+    </Frame>
+
+    <Note>
+      We only have one PDF file in this `input` folder but you can add more if needed for your specific ingestion flow.
+    </Note>
+  </Step>
+
+  <Step title="Create KG RAG Document Ingestion Template">
+    Open Navigator and on the `Projects` tab create a new KG RAG Document Ingestion template. `Create` → `Templates` → KG RAG Document Ingestion
+  </Step>
+
+  <Step title="View the Canvas">
+    You will now see the Document Ingestion element Output connected to the Input of Knowledge Graph Builder element. Your canvas should look like the below image:
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_2.png" alt="Canvas with elements" />
+    </Frame>
+  </Step>
+
+  <Step title="Open Document Ingestion Settings">
+    Click on the Document Ingestion element → `View Settings` or click the three dots on this element `...` → `Settings` to open the Element Settings panel.
+  </Step>
+
+  <Step title="Select Source Documents Directory">
+    In the Document Ingestion element settings click `Select Directory` under `Source Documents (PDFs)`
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_3.png" alt="Source documents selection" />
+    </Frame>
+  </Step>
+
+  <Step title="Choose the Input Folder">
+    From the folder structure we created in the first step above, select the folder titled `input` → `Open`
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_4.png" alt="Input folder selection" />
+    </Frame>
+  </Step>
+
+  <Step title="Select Output Directory">
+    Back on the Document Ingestion Settings panel click `Select Directory` under `Output Directory`
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_5.png" alt="Output directory selection" />
+    </Frame>
+  </Step>
+
+  <Step title="Choose the Output Folder">
+    From the folder structure we created in the first step above, select the folder titled `output` → `Open`
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_6.png" alt="Output folder selection" />
+    </Frame>
+
+    The Document Ingestion element settings should now look like the below image:
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_7.png" alt="Document Ingestion settings" />
+    </Frame>
+
+    <Note>
+      If you open the `Advanced Settings` you will see options to toggle `Use Images`, `Resolution DPI` (Dots Per Inch), `Memory Optimization`, and `Batch Size`. If your documentation doesn't have any images and is a text only document - you can disable the `Use Images` toggle.
+
+      <Frame>
+        <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_8.png" alt="Advanced settings" />
+      </Frame>
+    </Note>
+  </Step>
+
+  <Step title="Open Knowledge Graph Builder Settings">
+    We are now going to configure the inputs and outputs of our Knowledge Graph Builder element. Click on the Knowledge Graph Builder element → `View Settings` or click the three dots on this element `...` → `Settings` to open the Element Settings panel.
+  </Step>
+
+  <Step title="Select Knowledge Graph Builder Input Directory">
+    In the Knowledge Graph Builder element settings click `Select Directory` under `Input Directory`
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_9.png" alt="KG Builder input directory" />
+    </Frame>
+  </Step>
+
+  <Step title="Choose the Output Folder for Knowledge Graph Input">
+    From the folder structure we created in the first step above, select the folder titled `output` → `Open`
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_10.png" alt="Output folder selection" />
+    </Frame>
+
+    <Warning>
+      From a bigger picture, what we are saying here is the Output of the Document Ingestion element is going to be the Input of the Knowledge Graph Builder. This allows for these two elements to interact with each other. What one produces the other will use in this flow.
+    </Warning>
+  </Step>
+
+  <Step title="Select Knowledge Graph Builder Output Directory">
+    In the Knowledge Graph Builder element settings click `Select Directory` under `Output Directory`
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_11.png" alt="KG Builder output directory" />
+    </Frame>
+  </Step>
+
+  <Step title="Choose the Graph Output Folder">
+    From the folder structure we created in the first step above, select the folder titled `graph_output` → `Open`
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_13.png" alt="Graph output folder selection" />
+    </Frame>
+  </Step>
+
+  <Step title="Set Collection Name">
+    In the Knowledge Graph Builder element settings click into `Collection Name` and provide a Name for this Vector Database collection.
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_14.png" alt="Collection name" />
+    </Frame>
+
+    <Warning>
+      Remember this Collection Name! It will be used in the next step during our Knowledge Graph Retrieval process.
+    </Warning>
+  </Step>
+
+  <Step title="Configure Visualization (Optional)">
+    (Optional) You can enable the `Visualize Interactively` toggle which will create a visualization of this knowledge graph in a browser. Keep this disabled for faster processing.
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_15.png" alt="Visualize toggle" />
+    </Frame>
+
+    The Knowledge Graph Builder element settings should now look like the below image:
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_16.png" alt="KG Builder final settings" />
+    </Frame>
+  </Step>
+
+  <Step title="Run the Ingestion Pipeline">
+    Once both the Document Ingestion and Knowledge Graph Builder elements are configured → click `Run` and you will see this Flow start to process!
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_17.png" alt="Running flow" />
+    </Frame>
+
+    <Warning>
+      This process will take some time to finish depending on the amount of documentation within your PDF files. This can take about 10-15 mins for 200 pages on a MacBook Pro with an M4 chip and 16 GB RAM and about 5-10 mins for 200 pages on a Mac Studio with an M4 chip and 256 GB RAM.
+    </Warning>
+  </Step>
+
+  <Step title="View Knowledge Graph Visualization (Optional)">
+    If `Visualize Interactively` setting in the Knowledge Graph Builder element was enabled you can Click `Open` on the Knowledge Graph Builder element to see the graph once this process has completed.
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_18.png" alt="Knowledge graph visualization" />
+    </Frame>
+  </Step>
+
+  <Step title="Create Inference Pipeline">
+    Once this ingestion process completes you should see a toast message in the top right of your Canvas with an option to `Create Inference.` Click this button and choose whether you would like these canvases nested in one project folder or keep these canvases separate.
+
+    This is the next step in interacting with your documents using an LLM! See the next steps below to for more information on the inference process.
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_19.png" alt="Create inference toast" />
+    </Frame>
+  </Step>
+</Steps>
+
+<Note>
+  You should see all the individual pages from the PDFs that were in the `input` folder now in the `output` folder.
+
+  You should also see the `.txt` knowledge graph files inside of the `graph_output` folder.
+</Note>
+
+---
+
+## Step 2: Knowledge Graph Retrieval
+
+<Warning>
+  If you already completed a KG RAG Document Ingestion flow and used the preconfigured settings to create an inference canvas, you can skip to step 6 below to select an LLM.
+
+  <Frame>
+    <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_20.png" alt="Create inference toast" />
+  </Frame>
+</Warning>
+
+<Steps>
+  <Step title="Create KG RAG Inference Pipeline Template">
+    Open Navigator and on the `Projects` tab create a new KG RAG Inference Pipeline template. `Create` → `Templates` → KG RAG Inference Pipeline
+  </Step>
+
+  <Step title="View the Inference Elements">
+    We will see three Elements for this inference process.
+
+    - API Element
+    - LLM Element
+    - Knowledge Graph Retrieval
+  </Step>
+
+  <Step title="Configure Element Connections">
+    If you selected the template, these should be preconfigured, however if you needed to manually apply these connectors here are the inputs and outputs for each element.
+
+    - The API `Output` should connect to the Knowledge Graph Retrieval `Input`
+    - The Knowledge Graph Retrieval `Output` should connect to the LLM `Input`
+    - The LLM `Output` should connect to the API `Input`
+
+    The Canvas should now look like the image below
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_21.png" alt="Inference canvas" />
+    </Frame>
+  </Step>
+
+  <Step title="Open Knowledge Graph Retrieval Settings">
+    Click on the Knowledge Graph Retrieval element → `View Settings` or click the three dots on this element `...` → `Settings` to open the Element Settings panel.
+  </Step>
+
+  <Step title="Set Collection Name">
+    Input the Collection Name that you created for the vector database during the Document Ingestion process in the Knowledge Graph RAG Document Ingestion Pipeline guide.
+
+    The Knowledge Graph Retrieval element settings should look like the below image:
+
+    <Frame>
+      <img style={{ borderRadius:"0.5rem" }} src="/images/kg_rag_images/image_22.png" alt="KG Retrieval settings" />
+    </Frame>
+
+    <Note>
+      You can also go back to the ingestion canvas that you created and click on the Knowledge Graph Builder element to see what Collection Name was provided during the ingestion process.
+
+      If this inference canvas was preconfigured from the completion of the ingestion process, this Collection Name should already be auto-populated.
+    </Note>
+  </Step>
+
+  <Step title="Open LLM Settings">
+    Click on the LLM element or click the three dots on this element `...` → `Settings` to open the Element Settings panel.
+  </Step>
+
+  <Step title="Select LLM Model">
+    From the `Large Language Model` dropdown you can select the model you would like to use.
+
+    For more information on Large Language Models see our [Support LLM Base Models](/fundamentals/supported-llm-base-models) guide.
+  </Step>
+
+  <Step title="Run the Inference Pipeline">
+    You can now click `Run` to get this retrieval process started!
+
+    <Note>
+      You shouldn't need to edit any of the other element's settings. If you did want more information on what those specific elements do and their settings, see our [Element Registry](/fundamentals/element-registry).
+    </Note>
+
+    Once this completes you should see a chat preview window appear for you to begin asking questions about your specific documents.
+  </Step>
+</Steps>
+
+<Warning>
+  Knowledge Graph Retrieval takes less than 1 second per query on a MacBook Pro and Mac Studio. The first query will take about 3-5 seconds for cache warmup.
+</Warning>
+
+You have now created a KG RAG (Knowledge Graph Retrieval-Augmented Generation) inference pipeline within Navigator!
+
+---
+
+## Next Steps
+
+- For more information on deploying flows, see our [**Clusters Overview**](/navigator-overview/clusters-overview) guide and our [**Deployments Overview**](/navigator-overview/deployments-overview) guide
+- For more information on other flows, see our [Building Workflows](/building-workflows/build-custom-llm-chatbot) guides
+

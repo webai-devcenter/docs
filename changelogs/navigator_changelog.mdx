@@ -1,0 +1,1042 @@
+---
+title: "Navigator Release Notes"
+description: "Product updates and announcements regarding Navigator"
+---
+
+<Update label="Release v2.382.0" description="November 6, 2025">
+<Accordion title="Release v2.382.0">
+
+
+**Release Date:** 11/6/2025
+
+**Environment:** Production
+
+### New Features
+
+#### New Model Select for LLM Element Settings
+
+Within an LLM Element Settings there is a new display of the selected model, along with filtering and search options.
+
+**Technical Details:**
+
+- New default state for a selected model with details on model capabilities when hovering over model name
+- Filtering options for webFrame, API Keys, No API Keys, Multi-Modal, and Optimization.
+- Search functionality across all available models.
+- Icons updated for model details regarding the filter options.
+- The model select will also be disabled while a flow is running.
+
+**User Impact:**
+
+- Users will now see this new view on any flow that utilizes the LLM Element
+
+#### New Preview and Apps Toggle
+
+We've introduced a new way to interact with flows running locally in Navigator! You will now see a Preview, Canvas, and Apps toggle in the top left of the Canvas.
+
+Additionally inside of the Preview tab, you will see a panel on the right side allowing you to edit the Element Settings directly from the Preview.
+
+**Technical Details:**
+
+- After a flow has completed running locally, it will automatically open the Preview tab for you to start interacting with your flow if it contains an LLM Element.
+- You can also easily modify these Elements with the Element settings panel while in the Preview tab.
+- This will also automatically create an Application which can be viewed in the Apps tab.
+
+**User Impact:**
+
+- Creating a dedicated tab for interacting with your LLM flows locally in Navigator provides a more seamless experience for indicating when a flow has completed running as this Preview tab will automatically open.
+- Rather than navigating back to the canvas to make updates to an Element's settings, this can be achieved directly inside of the Preview tab.
+
+#### Controller Mode vs Worker Mode
+
+We've added a new article that details [Controller Mode vs Worker Mode](/fundamentals/controller-mode-vs-worker-mode) and some of the updates that were made to the views in Worker Mode and how to switch between each of these modes.
+
+### Improvements
+
+#### Removed Add Node Button From Devices Page
+
+**Technical Details:**
+
+- Functionality stays the same, users can still add different devices manually or through the network as needed using the Add Worker button.
+
+**User Impact:**
+
+- This should help avoid confusion between the terms "node" and "worker" and consolidate these two buttons into one.
+
+#### Long Device Names Overflowing On Deployment Configuration
+
+If a device had a long name, this device was overflowing off the table during a deployment configuration.
+
+**Resolution:** Reformatted the device names to not overflow from the table
+
+**User Impact:**
+
+- If using long device names, these devices should be displayed in full during the configuration steps of a deployment.
+
+#### About Navigator Window Not Fullscreenable
+
+When opening the "About Navigator" screen when Navigator was fullscreen it would take up the entire screen and not allow for this screen to be closed.
+
+**Resolution:** Now allows for the "About Navigator" window to be closed while Navigator is being in fullscreen.
+
+**User Impact:**
+
+- Users shouldn't need to quit the entire application now to get rid of this "About Navigator" screen if they have Navigator open in fullscreen.
+
+#### Replaced Device ID with Passcode Copy
+
+We updated the copy when adding a worker to align with the copy of a device in worker mode. These should each use the terminology of "Passcode" now avoiding confusion.
+
+#### New Document Hyperlink For Blank Canvas
+
+We added a new document for our Blank Canvas template. Building Flows Inside a Canvas is a good starting point for users to get information on the Projects tab in Navigator with helpful next steps in building a flow within Navigator.
+
+#### Run History Back Button
+
+The back button when viewing the run history was sending users back to the canvas when it should send users back to where they were. This update should correctly send users back to their previous state.
+
+### Bug Fixes
+
+#### Scrolling Issue - Multiple Users In Application
+
+**Resolution:** Fixed formatting in Applications tab when scrolling an application with many users.
+
+**User Impact:**
+
+- Users can now scroll more fluidly in the Application Details page when several users are present on an application.
+
+#### Previous System Prompt Set on LLM Element Settings
+
+**Resolution:** We enabled system prompting for all models where previously we didn't show the system prompt for unsupported models.
+
+**User Impact:**
+
+- Now a user should see the system prompt associated with each LLM Element regardless of the model selected.
+
+#### Dragging Canvases Into Project Folders
+
+**Resolution:** Fixed bug allowing for loose canvases to be dragged and added into specific project folders.
+
+**User Impact:**
+
+- Users should not see any issues with dragging and dropping canvases into project folders.
+
+#### Filter Out Used Deployments For Applications
+
+**Resolution:** A fix was implemented to filter out used deployments, preventing them from appearing in the deployment dropdown during reassignment.
+
+**User Impact:**
+
+- Should help avoid confusion when selecting deployments from the deployments dropdown in the Edit Application modal.
+
+
+</Accordion>
+</Update>
+
+<Update label="Release v2.373.6" description="October 9, 2025">
+<Accordion title="Release v2.373.6">
+
+**Release Date:** 10/9/2025
+
+**Environment:** Production
+
+### New Features
+
+#### Importing and Exporting a Canvas or Project
+
+In Navigator you now have the ability to import and export canvases and projects. See the Importing and Exporting a Canvas or Project guide for more information.
+
+**Technical Details:**
+
+- Exported files are in JSON format of a Canvases and Project details
+
+**User Impact:**
+
+- Users can now share and upload Canvases and Project configurations built in Navigator across their teams.
+- Allow for more collaboration and a file based version control allowing for more cross collaboration for Canvases and Projects specifically.
+
+### Improvements
+
+#### ESC Key to Close Modals
+
+**User Impact:**
+
+- Users can now use the ESC key to exit out of any pop up modals.
+
+#### Model Deployment From AI Models Tab In Navigator/Redesigned Buttons
+
+There are now redesigned buttons inside of the AI models tab within Navigator to deploy a model automatically to Companion with just one click!
+
+**User Impact:**
+
+- If a user clicks `Try With` from the AI Models tab in Navigator, they now have the option to `Deploy to Companion` which automatically:
+- 1) Creates a Canvas with the LLM + API element connected
+- 2) Saves a version of this Canvas
+- 3) Creates a Deployment
+- 4) Deploys the created version
+
+#### Controller/Worker Mode Switching
+
+There are now options to switch between Controller Mode and Worker Mode within Navigator.
+
+**User Impact:**
+
+- A user can now click their profile icon in the bottom left corner of Navigator and select switch to Worker Mode. While in Worker Mode a user could then also switch back to Controller Mode.
+
+#### UX Improvements for Filling Out Device IDs and Passcodes
+
+Implemented auto-focus and auto-select on digit input boxes to reduce manual clicks and keystrokes, enhancing UX.
+
+**User Impact:**
+
+- This should reduce the friction of adding Device IDs and Passcodes by allowing users to finish these steps with less clicks.
+
+### Bug Fixes
+
+#### Canvas Version Creation During Deployment
+
+When creating a new Deployment the option to create a new Canvas version was providing a successful toast message but no new Canvas version was created.
+
+**Resolution:** Updated logic for Deployment and Canvas version creation to work as expected aligning with the successful toast message.
+
+**User Impact:**
+
+- Stops confusion on Deployment creation without a Canvas version.
+
+#### "Add" API Key Button Cutoff After Long Name Input
+
+When adding an API key for the LLM element, if a long name was input the "Add" button would get cut off in the right panel of Navigator UI.
+
+**Resolution:** Adjusted CSS to prevent shifting of buttons
+
+**User Impact:**
+
+- Users can now add longer API key names while still having the ability to click the "Add" button within an Element's panel settings.
+
+#### Deployment Multi-Select State Persisting On New Pages
+
+When selecting multiple deployments inside of a Cluster, those selected deployments continued to be selected when taking actions in other tabs within Navigator.
+
+**Resolution:** Reset the state of the selected deployments when navigating and taking actions in other tabs.
+
+**User Impact:**
+
+- Stops confusion and incorrect action when redeploying or deleting specific deployments.
+
+#### Organization Feature Disappears After Machine Sleeps
+
+**Resolution:** Refresh expired access tokens for Organizations feature
+
+**User Impact:**
+
+- Users should now see the Organizations feature present and the org is correctly identified on the hosted cluster after machine sleeps
+
+#### LLM + API Element Displays Incorrect Status with Distributed Flows
+
+**Resolution:** Aggregated webFrame node statuses
+
+**User Impact:**
+
+- When users are utilizing multiple Nodes with an LLM + API setup they should not see the status turn green until all involved Nodes are actually ready and the flow can run.
+
+</Accordion>
+</Update>
+
+<Update label="Release v2.342.0" description="September 4, 2025">
+<Accordion title="Release v2.342.0">
+
+**Release Date:** 9/4/2025
+
+**Environment:** Production
+
+### New Features
+
+#### Qdrant Vector DB Support
+
+Build a working POC of using qdrant as an enterprise scalable Vector DB for large document repositories
+
+- See how adding the qdrant DB to Runtime works
+- Test out an Ingestion API for Navigator that would allow to provide data to that DB
+- Test out querying the DB from Elements while running a Canvas/Deployment
+- Investigate how the Sharding feature of qdrant works and how this relates to our Scaling solution
+
+**Technical Details:**
+
+- Download and install qdrant in runtime
+- Adds in the Qdrant vector db as a managed service managed by runtime, following the same pattern of how RT already manages the webframe service.
+- qdrant can be set as target for document ingestion or retrieval
+
+**User Impact:**
+
+- Available to users with the Qdrant build of Navigator
+- Support for a faster, more enterprise scale Vector DB to be used to create RAG applications with Navigator
+
+#### Offline Handling
+
+Ability to perform a limited set of actions in Navigator while offline, and communicating to the user what will and won't happen while they are not connected to the internet.
+
+**Technical Details:**
+
+- Error handling and specific notifications based on internet availability
+
+**User Impact:**
+
+- Available to all users in current RC
+- Always: A status indicator above their user icon indicating that Navigator may have reduced functionality since it does not have Internet connection
+- Warning when the user logs out letting them know they will not be able to log back in
+- If a run fails due to Internet connectivity problems, a descriptive toast is displayed
+- If the user has no models downloaded, the AI models page doesn't show up
+- If they do have models downloaded, then the downloaded models show for the user
+
+### Improvements
+
+#### Add webFrame Support for OpenAI OSS 20B and 120 Model
+
+OpenAI open source models are now supported in webframe
+
+**User Impact:**
+
+- Users can now run, distribute, and optimize OpenAI's open source models on their own hardware.
+
+#### Set computer name during onboarding and change from User settings
+
+Ability to give your computer a friendly name and change it via settings
+
+**User Impact:**
+
+- When setting up computers, you can give them a friendly name instead of the set device name
+
+#### Disk Space Requirements Error Message
+
+If a user does not have enough disk space to run a model they are presented with an error showing how much space they need to run the model. The error shows the TOTAL disk space required to run the model
+
+**User Impact:**
+
+- Easier for users to understand how much space is required to run their model and if they should add or change clusters/models
+
+#### Support file type and folder setting hints
+
+Tells users if their folders have unsupported file types, and which file types are supported.
+
+**User Impact:**
+
+- Stop users from attempting runs with unsupported files and let them know which files are supported by that element
+
+### Bug Fixes
+
+#### LLM Chat Template Documentation Link Updated
+
+Link to template documentation was out of date
+
+**Resolution:** Points to new URL
+
+**User Impact:**
+
+- Updated documentation for LLM Chat Template
+
+#### Redeploy previous deployments failing
+
+Attempting to redeploy old deployments was failing in the last Release Candidate
+
+**Resolution:** Improvements to underlying deployments logic
+
+**User Impact:**
+
+- Redeploying old deployments works as expected
+
+#### Deployment Options dropdown fix
+
+When making a new application, after you select the cluster of interest, the deployment options dropdown doesn't pick up changes to the actual deployment status.
+
+**Resolution:** New application deployment options dropdown
+
+**User Impact:**
+
+- Whenever a user changes their deployment statuses, the changes are immediately reflected in the new application form
+
+#### Canvas Run button should be disabled depending on the status
+
+Whenever a user presses the Run button, the status changes to In Progress and to Active. When it's in these states, clicking the button is still available even though clicking it doesn't do anything.
+
+**Resolution:** The button is not clickable when the state is In Progress or Active
+
+**User Impact:**
+
+- Stops user confusion or errors caused by users not knowing the state of their run, or clicking the button additional times which may cause flow errors or unintended runs.
+
+</Accordion>
+</Update>
+
+<Update label="Release v2.323.0" description="August 18, 2025">
+<Accordion title="Release v2.323.0">
+
+**Release Information**
+
+- **Version Number:** v2.323.0
+- **Release Date:** 8/18/25
+- **Environment:** Production
+
+### Summary
+
+This release continues the focus on error handling and user feedback, adding additional layers of inspection for Navigator as well as more descriptive actions for users to take.
+
+### Improvements
+
+#### More detailed webframe and canvas run errors
+
+**What Changed:**
+
+- Checks Hugging Face api key validity
+- Checks Hugging Face api key model access
+- Settings components now get mounted in the background so they can perform validation and raise errors up to new CanvasProvider, which allows checking for errors when attempting to run the flow
+
+**User Impact:**
+
+- Clearer feedback to users why their run is failing, directing users to the element and setting that is failing. This change is specifically focused on API key validation and model access.
+
+#### Add Element filepath validation
+
+**What Changed:**
+
+- If the user tries to run a flow with a dataset whose filepath no longer exists (i.e. the dataset has been deleted), they are presented with an error.
+- No run. Prior to running flow. No removing the file path but showing the error.
+- Error toast won't show unless user hits run
+- Filepath is checked
+  - When the file is set
+  - At regular intervals
+  - When Navigator is focused
+
+**User Impact:**
+
+- When users run a flow, if there is an error with the filepath they have specified they will be told that is the problem and prompted to update the filepath setting.
+
+#### User alerted when they don't have compute resources required to run a selected model
+
+**What Changed:**
+
+- User is informed via banner that their current cluster does not have enough RAM to run their current model. An alert is shown in the settings panel as well.
+
+**User Impact:**
+
+- Users know they are not capable of successfully running a flow before they run it
+
+#### User alerted when they have not accepted a license agreement required to run a model
+
+**What Changed:**
+
+- The user is provided with an error when they have not accepted the HuggingFace license agreement for gated models.
+- We provide a link to the gated model license page
+- The user is notified once the license agreement has been approved by HuggingFace
+
+**User Impact:**
+
+- Users know which models they need to accept an agreement to use. This stops them from having failing runs because they have not accepted the agreement, and keeps them in compliance with the models they are using.
+
+#### Navigator errors and debug data shows more information about element specific errors
+
+**What Changed:**
+
+- More specific errors from elements show above the element on canvas and in the debug data
+
+**User Impact:**
+
+- For this version, the errors are limited to telling the user that a dataset folder is empty. But going forward this is the basis for more element configuration user feedback.
+
+#### Remove stop canvas tooltip appears when hovering over running canvas button
+
+**What Changed:**
+
+- The tooltip shows "Stop canvas" when hovering over the run button when a canvas is in progress.
+- This tooltip should be removed completely, it's never possible to stop the flow by clicking on the button. The stop button is in the dropdown.
+
+**User Impact:**
+
+- Removing superfluous and confusing tool tip.
+
+### Bug Fixes
+
+#### Clear chat button overlapping with chats in the navigator chat modal window
+
+**Issue:** "Clear Chat" button overlapped with chats in modal
+
+**Resolution:** "Clear Chat" Button moved to the chat modal title bar
+
+**User Impact:** Clear Chat button is out of the way and in a less intrusive place
+
+#### Change Log Level stops Navigator from Loading
+
+**Issue:** If you change the log level on 2.296.2-stable it prompts you to restart the Navigator Console, on restart Navigator console will not progress past step 3 of the load.
+
+**Resolution:** Bug was caused by an encryption key mismatch - Log Level changes no longer require a restart, which was causing the key mismatch.
+
+**User Impact:** When switching log levels Navigator will stay running and not require restart, or lock users out
+
+#### Too many decimal places shown in total memory available.
+
+**Issue:** Available memory would show as many as 14 decimal places
+
+**Resolution:** Show max 2 decimal places
+
+**User Impact:** More readable and useful memory calculations
+
+#### Projects get stuck and are unable to load Buttons & dropdowns are unresponsive
+
+**Issue:** lag when clicking the "Run" button in the Projects screen. After clicking the "run" button it gives no indication it has been clicked for up to 15 seconds. This results in users clicking more times, this generates multiple notifications, such as the attached run error and multiple messages when Canvas run stops.
+
+**Resolution:** Set canvas status to busy sooner
+
+**User Impact:** Buttons respond faster, stopping users from clicking them repeatedly or thinking Navigator is stuck
+
+### Deprecations & Removals
+
+#### Github Login
+
+**What Changed:** Removing the GitHub Login option
+
+**Reason:** Removed for easier publishing to the App Store, will be brought back with other "login with" options later
+
+**Migration Path:** Login with your webAI credentials. If you need to set a password for the email used with GitHub, use Forgot Password to create a password for that email.
+
+### Known Issues
+
+#### Cannot Redeploy an existing Deployment if a node added to the cluster is offline or disconnected
+
+**Impact:** Users with clusters containing more than 1 node, especially if a node is offline.
+
+**Workaround:** Remove the worker node from the cluster, and re-add it if necessary.
+
+**Expected Resolution:** End of next sprint (Planned for end of August)
+
+</Accordion>
+</Update>
+
+<Update label="Release v2.310.0" description="July 7, 2025">
+<Accordion title="Release v2.310.0">
+
+**Release Date:** July 7, 2025
+
+### Summary
+
+This release is focused on user feedback improvements for canvas and element settings to help users better understand what components and settings work together, and what to do if the flow is not configured properly. We also introduce Fast EWQ, an 10x improvement in the speed of EWQ. Additional security improvements are also included
+
+### Improvements
+
+#### Security Improvements
+
+Additional security has been added to data and access to critical components of the webAI platform, including encryption enhancements to the data transferred between Navigator and runtime.
+
+**User Impact:**
+
+- Better app security posture
+- A fix for Navigator not having a matching API key with Runtime in certain circumstances that caused Navigator to crash.
+
+#### Loading state for elements
+
+Navigator will now show a Loading status for elements where no download progress is reported.
+
+**User Impact:**
+
+- Clearer communication to users about the state of elements as flows start.
+
+#### Fast EWQ button
+
+A Fast Optimizer for EWQ option has been added to the LLM Element's settings. Fast EWQ is a result of us developing a classifier model which checks model weight json and understands how to distribute rather than loading them and analyzing like what regular EWQ does.
+
+**User Impact:**
+
+- Enable Fast EWQ instead of Regular EWQ, which is 10x faster in analyzing the weights for quantization
+- Fast EWQ option is not ready for multimodal models. It is suggested to still use Regular EWQ with non-multimodal models.
+
+#### Additional User feedback on flows
+
+If an element requires an output to function and the user does not provide one, an error message is displayed when the user hits run:
+
+"Project has no output: Your current flow needs an output to be complete. Please add one to finish this flow. View output elements"
+
+For example, this error would be displayed if the media loader is placed on canvas with no other element.
+
+This fix also provides a link that will direct a user to the Output elements.
+
+**User Impact:**
+
+- Users will now get feedback from the Canvas when flows are missing output elements, and will be prompted to add one from the list linked in the notification banner.
+
+#### Refresh Button in Element Drawer
+
+A refresh button has been added to the element drawer to make it easier to see all sideloaded elements, as well as pull any new elements that may have been added to a registry.
+
+**User Impact:**
+
+- Pull side loaded or other elements into the drawer without restarting Navigator.
+
+#### Updated Element API key Settings
+
+- Invalidate all element tags when registry updates are received
+- Support for api key provider hints (added in latest version of dataset generator - https://gitlab.com/iris-core/systems-senior/runtime/webai-elements/-/merge_requests/319)
+
+**User Impact:**
+
+- Only compatible API keys will be selectable within elements, helping users more easily configure elements and flows
+
+#### New initial chat message shown on first chat
+
+A new message in the chat box inside Navigator has been added that covers the entirety of the chat window until the user has sent a message.
+
+**User Impact:**
+
+- Clearer first chat experience when chatting with models in Navigator
+
+#### Removal of default system prompt
+
+Navigator no longer sends a generic system prompt when no prompt is set in the LLM element.
+
+Navigator previously sent a generic system prompt by default if no prompt was set in the element's settings; now it sends no system prompt unless explicitly defined.
+
+This change does not affect the user interface; only the JSON payload to the /completions endpoint is altered.
+
+**User Impact:**
+
+- No change to the UI, but responses in companion will be better and more predictable
+
+### Bug Fixes
+
+#### Unclear error message when an org invite code has already been accepted
+
+Previously, our error codes were unclear when accepting an invite to an Organization. This was caused by a user accepting an event that they already accepted.
+
+**Resolution:** Updated error message telling the user the code has already been used
+
+**User Impact:**
+
+- Clearer understanding that a user has joined the org successfully
+
+#### Handle Memory cap settings as GB not bytes
+
+Previously, a slider for adjusting the memory for Large Language Models (LLMs) used bytes as its unit, which led to display issues.
+
+**Resolution:** The slider has been updated to use gigabytes (GB), making it much easier for users to understand and adjust the amount of available RAM for your models.
+
+**User Impact:**
+
+- The slider now properly handles cases where the total usable memory might initially be zero.
+- It automatically adjusts the value if you set it above the maximum limit, ensuring you can't accidentally assign an impossible amount of memory.
+
+#### Stop setting max value of slider to total memory available for non-memory cap related sliders
+
+In the slider setting component, we have some logic which is only relevant to when the setting is being used to set memory cap and was setting the maximum to the total available memory. This logic was being incorrectly applied to all setting types, which resulted in updating the setting value to the max, which was defaulting to 100.
+
+**Resolution:** Updated slider logic
+
+**User Impact:**
+
+- All sliders now accurately reflect the intended values for their respective setting
+
+#### Redact all known oauth tokens from logs export and console
+
+We've improved security by redacting all known OAuth tokens from logs and the console. Previously, these tokens were sometimes stored in plain text, which was a security risk.
+
+**Resolution:** Tokens are removed from log exports and the renderer-state.json file
+
+**User Impact:**
+
+- Better security and your sensitive information is better protected.
+
+</Accordion>
+</Update>
+
+<Update label="Release v2.296.0" description="July 7, 2025">
+<Accordion title="Release v2.296.0">
+
+**Release Date:** July 7, 2025
+
+### Summary
+
+A continuation of the Stability and User Experience push, this release introduces additional fall-back modes and exception handling for Navigator and Network. There are also a number of UX improvements, making it easier to create canvases in projects and customize system prompts while using webframe.
+
+### New Features
+
+#### Limited Mode
+
+Navigator currently stalls at step 7 if repeated failures occur. To improve resilience and user experience, the app now detects when step 7 has failed 5 times and automatically enters a "Limited Mode" that bypasses this step and allows the app to boot with restricted functionality.
+
+**Technical Details:**
+
+- Limited Mode Banner appears on Clusters page, Deployments page, Organization page, and Home page
+- Projects: can create flows via template and manually using Element Drawer
+- LLM element settings show remote machines as offline
+- Clusters: view local cluster only, cannot add new clusters, remote devices appear offline
+- Deployments: view local deployments only, cannot view remote or all deployments
+- AI Models: all features available
+- My Devices: local device has machine metrics, remote devices appear offline
+- Organizations: no orgs present, Add and Set Up Organization buttons inactive
+
+**User Impact:**
+
+- Instead of Navigator failing on Step 7 for any reason, users will still be able to enter the application and perform a variety of actions
+
+#### Network: TCP Preferred Protocol and Metrics Export
+
+Changing the preferred protocol to TCP with TCP/TLS fallback for failed UDP connections.
+
+**Technical Details:**
+
+- TCP promoted to preferred protocol and disable DNS
+- TCP/TLS fallback for failed UDP connections
+
+**User Impact:**
+
+- Firewalls may be actively blocking some of our UDP traffic. Adding TCP/TLS fallback increases the chances of getting a reliable connection
+
+### Improvements
+
+#### System Prompt Setting Conditionally Renders Based on Selected Model
+
+As part of the work to combine the LLM and Large Language Model Chat elements, the LLM Element now shows the ability to change the Model System Prompt when the model allows.
+
+**User Impact:**
+
+- Users can now set the system prompt for compatible models in Navigator in the LLM element
+- This makes it possible to change the system prompt while using webFrame
+
+#### Ability to Leave an Organization
+
+Users can now choose to leave an organization they have joined. Previously an Admin needed to remove a user from an organization.
+
+**User Impact:**
+
+- Users don't need to request permission to leave an org they don't want to be a part of
+
+#### Templates Created Under Projects
+
+When adding a canvas to a project folder, it opens the template modal and includes a Blank Canvas option.
+
+**User Impact:**
+
+- Now it's easier to organize your projects and add additional canvases
+- No more creating a canvas then needing to drag it to a project
+
+#### Update the Application Notifications
+
+A small Toast Notification shows at login prompting (but not requiring) users to update their version of Navigator.
+
+**User Impact:**
+
+- Users can keep running an older version of Navigator and choose to update on their own time table
+
+#### Update Navigator Elements Drawer When Elements Are Added or Changed Locally
+
+Navigator is listening to refetch elements when changes are detected.
+
+**User Impact:**
+
+- When adding custom elements or sideloading elements, users don't need to refresh or reload Navigator for the elements to show up in the element drawer
+- Elements appear as soon as they are added to the /Packages subfolder
+
+### Bug Fixes
+
+#### Model Size Calculations
+
+The model selection UI displays the model's file size (weight) as its required RAM, which is often inaccurate. This causes the memory consumption bar to incorrectly alert users that they won't be able to run a model that their systems can actually support.
+
+**Resolution:** Manually changed the model sizes to be correct until a new pipeline can be created to maintain the information
+
+**User Impact:**
+
+- The model size information in Navigator will reflect the model's true file size
+
+#### Model Fixes
+
+Gemma-3 and Llama-4 models were experiencing issues.
+
+**Resolution:** Updated the Multi-modal flag for Llama-4, and updates to how webframe handles Gemma-3
+
+**User Impact:**
+
+- Gemma-3 and Llama-4 runs and deployments will work as intended
+
+</Accordion>
+</Update>
+
+<Update label="Release v2.285.2" description="June 17, 2025">
+<Accordion title="Release v2.285.2">
+
+**Release Date:** June 17, 2025
+
+### Summary
+
+This release is a continuation of the stability push. Focus on cluster and remote model access stability, fixes and improvements to Organizations, removing incompatible models and element versions. Addition of more Cluster Hardware metrics to keep users informed of how much of their hardware resources are being used.
+
+### New Features
+
+#### Additional Cluster Metrics
+
+Users need to know how much of their hardware resources current development and deployments are consuming. By knowing what's being used and what's available, users can match the models they want to deploy to the hardware they have available or add more resources to support the models they want to run.
+
+**Technical Details:**
+
+The following metrics are available for each machine in a cluster, as well as the total for the cluster:
+
+- CPU Usage
+- Disk Usage
+- RAM Usage
+- Number of GPU Cores
+
+**User Impact:**
+
+- Users monitoring deployments will be able to see real-time loads on their hardware
+- Users creating new deployments will see what resources they have available, and will not be able to deploy if they do not have the resources available to support that specific deployment
+- Navigator will tell them if they need more CPU, Disk Space, or RAM to deploy that solution
+
+### Improvements
+
+#### Rewritten Error Logging
+
+Changed the way errors are captured in Logs and in our Error monitoring application (Sentry) to be more standardized and descriptive.
+
+**User Impact:**
+
+- This will help our team better debug specific errors and proactively improve stability in the future
+
+#### Better Error Handling When Setting Up Clusters
+
+When adding input devices and additional nodes to clusters, the system will check for edge cases and confirm everything is connected correctly before allowing the user to proceed through the modals. This allows the system to make sure it's configured correctly throughout the add device journey, resulting in less errors and failures.
+
+**User Impact:**
+
+- More seamless and stable "Add Node" and "Add Input Device" journey
+
+#### Unified Webframe Service (Element)
+
+Additional support for distributing multi-modal models, as well as fixes and performance improvements for specific models.
+
+**User Impact:**
+
+- Models near RAM bounds won't crash without feedback
+- Model specific improvements
+- Multi-machine distribution enabled for multimodal models
+- Bug-fixes for text-only distribution
+- gemma, gemma2, gemma3 model template fix
+- phi3 model `eos_token` fix
+- gemma3 - bf16 model generation speedup
+
+### Bug Fixes
+
+#### Org Invite Links Not Successfully Adding Users to the Org
+
+When inviting users to join an org, not all invites were successfully adding users to the org. Users would click the invite link and be redirected to Navigator, but they would not be added to the org or be met with a failure message.
+
+**Resolution:** Updates to the auth0 ID tokens not being passed correctly when using the auto-login
+
+**User Impact:**
+
+- Org invites and the Join Org link in the invitation email will work on the first try now
+
+#### Tool Tips Getting Cut Off in Element Headers
+
+Tool tips were getting cut off in element settings header area.
+
+**Resolution:** Adding additional padding to the element settings header to ensure tool tips don't get cut off
+
+**User Impact:**
+
+- Tool tips will display their full text in element settings header
+
+#### Offline Computer Causing an API Error for Checking Model Weights
+
+Offline computers were causing API errors when checking model weights.
+
+**Resolution:** Improved error handling for offline scenarios
+
+**User Impact:**
+
+- Better stability when working with offline machines
+
+#### Export Debug Data File Corruptions
+
+Some Debug files would be corrupted on export.
+
+**Resolution:** Wait for debug-output.zip to finish flushing
+
+**User Impact:**
+
+- debug-output.zip exports without corruption
+
+### Deprecations & Removals
+
+#### Document QnA Element Deprecation Warning
+
+We are deprecating the Document QnA Element. It has not been removed yet, but we have added warnings to any canvas using the element both in the canvas and on the left-panel showing all canvases.
+
+**Reason:** The new RAG ingestion and inference pipelines have better performance and will be the base package for improving RAG in the future. To reduce complexity and confusion we are deprecating the Document QnA Element in favor of the pipelines templates.
+
+**Migration Path:** Any flows using Document QnA will need to have the documents run through the RAG Ingestion template, then connected to an LLM via the RAG Inference template after the vector DB has been created.
+
+</Accordion>
+</Update>
+
+<Update label="Release v2.270.1" description="May 19, 2025">
+<Accordion title="Release v2.270.1">
+
+**Release Date:** May 19, 2025
+
+### Summary
+
+This is the third release of our stability push, with a focus on network, webFrame, and cluster stability. We also introduce a new onboarding flow and the AI Models tab to make getting started with Navigator and deploying your first model easier and more intuitive.
+
+### New Features
+
+#### webFrame Distribution and Metrics
+
+Better control and visibility into model deployment across your machines and clusters.
+
+**Technical Details:**
+
+- Shows memory requirements for all models
+- Displays memory availability for each machine and cluster
+- Allows selection of specific node or cluster to run the model on
+
+**User Impact:**
+
+- Users can more easily select which machine or cluster to deploy models to
+- Users can quickly see how much available memory they have in their cluster, and how much of their memory a model will use
+
+#### AI Models Tab
+
+New tab on the left hand navigation menu allowing users to select a model, learn more about it, and deploy it with one click.
+
+**Technical Details:**
+
+- Imports models from Hugging Face (many may require API key)
+- Creates a canvas and deploys it with one click
+- Shows technical specs and description of each model
+
+**User Impact:**
+
+- Easily way to find models that fit their needs, and the hardware they will be using
+- 1-click deploy - no need to create a canvas or update settings
+- New home/hub for models we add/support
+- Easy way to browse all the webAI compatible models
+- Search, filter, or sort models
+
+#### New Onboarding Screen
+
+New screen to get additional information at onboarding. This will be the base for adding additional customization options.
+
+**Technical Details:**
+
+- Captures user Name, Company Name, Role
+
+**User Impact:**
+
+- Allows users to give additional information so we can provide better CS and customize their in-product experience
+
+### Improvements
+
+#### Improved Network Discovery
+
+New network discovery node so machines can better find each other and share information.
+
+**User Impact:**
+
+- Faster and more reliable connecting machines and clusters
+
+#### Improved Remote Connectivity
+
+Updated runtime version with more secure and reliable remote connectivity to other machines in your organization.
+
+**User Impact:**
+
+- Faster and more reliable inference when chatting with models on remote machines
+
+### Additional Notes
+
+Many UI bugs have been fixed in this release, improving overall stability and user experience
+
+</Accordion>
+</Update>
+
+<Update label="Release v2.246.0" description="April 9, 2025">
+<Accordion title="Release v2.246.0">
+
+**Release Date:** April 9, 2025
+
+### Summary
+
+Performance improvements to webFrame, and support for additional Deepseek V3 and R1 quantizations. Organizations and Remote Deployments available for select customers/prospects/users. Bug fixes and additional improvements.
+
+### New Features
+
+#### webFrame Fixes and Additional Model Support
+
+Better speed performance and stability from models run on webFrame. New quantizations of Deepseek V3 and R1 available in Navigator and webFrame.
+
+**Technical Details:**
+
+Support for Deepseek quantization:
+
+- Deepseek R1 4 bit
+- Deepseek R1 Distill Llama 8B
+- Deepseek V3 4 bit
+
+**User Impact:**
+
+- Available in the Model Dropdown of the LLM Element
+- 4 bit quantization for V3 and R1 means users can now run either on a single mac studio or 3 mac minis (all high RAM specs, not base)
+- Deepseek R1 Distill Llama 8B can use our optimizer and needs less than 15GB of RAM
+
+#### Organizations and Remote Connectivity
+
+Create a team of users and share access to your clusters' resources and deployments.
+
+**Technical Details:**
+
+- Runtime has added a Homeport Database that allows for managing users and remote connectivity to users' Runtimes
+- Can be deployed to a local machine or to the cloud, depending on what the user wants
+- Current implementation is webAI's Homeport DB for testing purposes, but customers can't deploy their own yet
+- Teams who want to test this will need to be in sales process or current customers who want to test the alpha
+- Can only add users to teams within that Homeport DB, no connections across multiple organizations
+
+**User Impact:**
+
+- Users can invite anyone to their organization, and join as many organizations as they like
+- Allows users to interact with models deployed by their team regardless of what machines they are running on
+- Users can deploy flows to each other's clusters
+- Users can manage the compute resources and deployments in each other's clusters
+
+### Improvements
+
+#### Model Changes When Using Groq API Key
+
+Mixtral 8x-7b-32768 was deprecated in Groq, so we replaced it with Qwen 32B for dataset generation.
+
+**User Impact:**
+
+- More advanced model used in Dataset Generation for Groq API Key users
+
+### Bug Fixes
+
+#### MLX Driven Wired Memory Limits Are No Longer Enforced
+
+**Issue:** On Mac Sequoia v15.3.1, we were not able to run Deepseek v3 (352 GB) even though we had 512 GB RAM available
+
+**Resolution:**
+
+- This is now handled as part of MLX and does not require user intervention in the terminal
+
+Previously required manual commands:
+
+`sudo sysctl iogpu.wired_limit_mb=471040`
+
+`sudo sysctl iogpu.wired_lwm_mb=471040`
+
+**User Impact:** No user intervention required in the terminal
+
+#### Python Process Cleanup on Navigator Close
+
+**Issue:** Python processes related to stopped canvases would sometimes stay active after a user closes Navigator by clicking the red X-button
+
+**Resolution:** Process now cleans itself up and Navigator shuts down as expected
+
+**User Impact:** No more unexpected background Navigator processes running
+
+</Accordion>
+</Update>

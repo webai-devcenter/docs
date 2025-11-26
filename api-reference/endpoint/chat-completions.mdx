@@ -1,0 +1,118 @@
+---
+title: "Create Chat Completion"
+description: "Creates a completion for the chat message with support for text and image inputs"
+openapi: "POST /v1/chat/completions"
+---
+
+## Overview
+
+The chat completions endpoint creates a model response for the given chat conversation. This endpoint supports both text-only and multimodal (text + images) interactions.
+
+<Info>
+  This endpoint follows the [OpenAI Chat Completions API](https://platform.openai.com/docs/api-reference/chat) format for compatibility with existing tools and libraries.
+</Info>
+
+## Streaming
+
+Control how the model returns data using the `stream` parameter:
+
+<Warning>
+  - With `stream=false`, the model waits to finish, then sends the full response at once
+  - With `stream=true`, the model sends data as it generates it using server-sent events
+  
+  See the [OpenAI Streaming documentation](https://platform.openai.com/docs/api-reference/chat/streaming) for implementation details.
+</Warning>
+
+## Text Requests
+
+Send text-based prompts to the model:
+
+```json
+{
+  "stream": false,
+  "model": "webai-llm",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "Write three taglines for a pizza shop?"
+        }
+      ]
+    }
+  ]
+}
+```
+
+## Image Requests
+
+Send images along with text for multimodal analysis:
+
+```json
+{
+  "stream": false,
+  "model": "webai-llm",
+  "messages": [
+    {
+      "role": "user",
+      "content": [
+        {
+          "type": "text",
+          "text": "What is the location of this picture?"
+        },
+        {
+          "type": "image_url",
+          "image_url": {
+            "url": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/dd/Gfp-wisconsin-madison-the-nature-boardwalk.jpg/2560px-Gfp-wisconsin-madison-the-nature-boardwalk.jpg"
+          }
+        }
+      ]
+    }
+  ]
+}
+```
+
+<Note>
+  If the model responds that it cannot see the image, you may need to change to a model that supports multimodal inputs. Look for the image icon next to models in the LLM Element Settings to identify models with multimodal support.
+  
+  Check out the [Configuring LLM Settings](https://www.youtube.com/watch?v=Ow_A6L7JM6I) video to learn more about the LLM Element.
+</Note>
+
+## Response Format
+
+The API returns a structured response with the completion:
+
+```json
+{
+  "choices": [
+    {
+      "citations": [],
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "message": {
+        "content": "Here are three potential taglines for a pizza shop:\n\n1. \"Heating up your appetite, one pie at a time.\"\n2. \"A slice above the rest.\"\n3. \"Fresh dough, fiery passion.\"",
+        "role": "assistant"
+      }
+    }
+  ],
+  "citations": [],
+  "created": 1677664795,
+  "id": "webaichat-6ee7cdbd9fb0",
+  "metrics": {
+    "tps": 43.0,
+    "ttft": 0.204036
+  },
+  "model": "nav",
+  "object": "chat.completion",
+  "usage": {}
+}
+```
+
+## Performance Metrics
+
+The response includes performance metrics:
+- **tps** - Tokens per second generated
+- **ttft** - Time to first token in seconds
+

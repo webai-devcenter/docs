@@ -1,0 +1,88 @@
+---
+title: "Create Response"
+description: "Creates a response using the OpenAI Responses API format"
+openapi: "POST /v1/responses"
+---
+
+## Overview
+
+The responses endpoint creates a model response for the given input using the OpenAI Responses API format.
+
+<Info>
+  This endpoint follows the [OpenAI Responses API](https://platform.openai.com/docs/api-reference/responses) format for compatibility with OpenAI's latest API standards.
+</Info>
+
+## Usage
+
+Send an input to generate a response:
+
+```json
+{
+  "model": "webai-llm",
+  "input": "tell me a short story in three sentences about a wizard.",
+  "max_tokens": 150
+}
+```
+
+## Parameters
+
+- **model** (required) - The ID of the model to use (e.g., "webai-llm")
+- **input** (required) - The input to generate a response for (string or array of strings)
+- **max_tokens** - The maximum number of tokens to generate in the response
+
+## Response Format
+
+The API returns a structured response:
+
+```json
+{
+  "choices": [
+    {
+      "citations": [],
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "text": "In the mystical realm of Aethoria, a powerful wizard named Eryndor Thorne was known for his extraordinary ability to communicate with the ancient trees, which granted him wisdom and knowledge beyond the understanding of mortal men. Eryndor spent most of his days within the heart of the enchanted forest, studying the ancient lore and mastering the mystical arts that allowed him to wield the elements themselves. As the night of the summer solstice approached, Eryndor prepared to face the great challenge that lay ahead: a ritual to bring balance and harmony to the land, threatened by a growing darkness."
+    }
+  ],
+  "citations": [],
+  "created": 1677664795,
+  "id": "webaichat-6ee7cdbd9fb0",
+  "metrics": {
+    "tps": 60.0,
+    "ttft": 0.205079
+  },
+  "model": "nav",
+  "object": "response",
+  "usage": {}
+}
+```
+
+## Performance Metrics
+
+The response includes performance metrics:
+- **tps** - Tokens per second generated
+- **ttft** - Time to first token in seconds
+
+## Multiple Inputs
+
+You can send multiple inputs in a single request by providing an array:
+
+```json
+{
+  "model": "webai-llm",
+  "input": [
+    "tell me a short story about a wizard.",
+    "tell me a short story about a knight."
+  ],
+  "max_tokens": 150
+}
+```
+
+## Use Cases
+
+The Responses API format is ideal for:
+- Single-turn interactions
+- Batch processing multiple inputs
+- Applications that don't require conversational context
+

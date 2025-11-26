@@ -1,0 +1,217 @@
+---
+title: "Common Use Cases"
+description: "Comprehensive guide with detailed use case examples and implementation strategies for AI solutions across various industries"
+---
+
+This comprehensive guide provides detailed use case examples and implementation strategies for AI solutions across various industries. Each example follows a structured approach: defining specific goals, starting with broad categories, and progressively refining your solution through iterative implementation and testing.
+
+---
+
+## Planning Your AI Solution
+
+Once you've identified a use case, break it down into incremental steps:
+
+- **Define specific goals** - What exact problem are you solving?
+- **Start broad, then refine** - Begin with general categories before moving to specific details
+- **Implement, test, and iterate** - Build your solution progressively
+
+---
+
+## Choosing the Right AI Architecture
+
+Based on your use case and available data, select the appropriate AI architecture:
+
+<Tabs>
+  <Tab title="Large Language Model (LLM) Solutions">
+
+- **Choose when:** Your data is primarily text-based (PDFs, Word documents, text files)
+- **What it does:** Creates an AI subject matter expert you can chat with through text prompts
+- **Key benefit:** Provides conversational access to knowledge in your documents
+- **Best for:**
+  - Document Q&A
+  - Customer Support
+  - Knowledge Management
+
+</Tab>
+  <Tab title="Computer Vision Solutions">
+
+Computer vision solutions require image data (still images or video) and come in two main categories:
+
+**Image Classifiers**
+
+- **Choose when:** You need to categorize entire images
+- **What it does:** Labels a complete image based on its content
+- **Example:** A classifier trained to identify "Hot Dog" vs. "Not Hot Dog" will label the entire image based on whether it contains a hot dog
+- **Best for:**
+  - Quality Control
+  - Medical Imaging
+  - Product Classification
+
+**Object Detectors**
+
+- **Choose when:** You need to locate specific objects within images
+- **What it does:** Finds objects within images, draws bounding boxes around them, and applies appropriate labels
+- **Example:** An object detector trained on hot dogs will draw a bounding box around any hot dog in an image and label it specifically, rather than labeling the entire image
+- **Best for:**
+  - Security Monitoring
+  - Inventory Management
+  - Medical Analysis
+
+</Tab>
+</Tabs>
+
+---
+## Use Cases
+
+<Accordion title="Document Intelligence System">
+
+Creating an AI assistant for enterprise document management:
+
+### Define document categories:
+
+- **Document Type:** Contracts, Invoices, Reports, Policies, Procedures...
+- **Department:** HR, Finance, Legal, Operations, IT...
+- **Priority Level:** Urgent, High, Medium, Low...
+
+### Implementation Steps:
+
+1. **Start with document classification:**
+   - Use LLM Dataset Generator to process your document collection
+   - Train initial model on broad document categories
+   - Test classification accuracy with sample documents
+2. **Add intelligent search capabilities:**
+   - Implement RAG system for document Q&A functionality
+   - Create vector database from processed documents
+   - Test search accuracy with common queries
+   - Add department-specific filtering and routing
+
+</Accordion>
+
+<Accordion title="Manufacturing Quality Control">
+
+Implementing automated defect detection in a production line:
+
+### Define classification categories:
+
+- **Defect Type:** Crack, Scratch, Discoloration, Missing Component...
+- **Severity Level:** Critical, Major, Minor, Acceptable...
+- **Product Category:** Electronics, Automotive Parts, Consumer Goods...
+
+### Implementation Steps:
+
+1. **Start with basic pass/fail detection:**
+   - Train a binary classifier to distinguish "Good" vs "Defective" products
+   - Validate with production line test data
+   - Fine-tune confidence thresholds to minimize false positives
+2. **Add defect type classification:**
+   - Train additional models to identify specific defect types
+   - Integrate with existing pass/fail model
+   - Test on diverse production scenarios
+   - Add severity classification for quality grading
+
+</Accordion>
+
+<Accordion title="Retail Inventory Management">
+
+Automating product recognition and inventory tracking:
+
+### Define product categories:
+
+- **Product Category:** Clothing, Electronics, Home Goods, Food, Books...
+- **Brand:** Nike, Apple, Samsung, IKEA, Generic...
+- **Condition:** New, Used, Damaged, Returned...
+
+### Implementation Steps:
+
+1. **Start with basic product detection:**
+   - Train object detector to locate products in images
+   - Test detection accuracy across different product types
+   - Optimize bounding box accuracy and confidence thresholds
+2. **Add product classification:**
+   - Train image classifier for product category identification
+   - Combine detection and classification in sequence
+   - Add brand recognition for high-value items
+   - Implement condition assessment for used goods
+
+</Accordion>
+
+<Accordion title="Medical Image Analysis">
+
+Developing diagnostic assistance for medical imaging:
+
+### Define analysis categories:
+
+- **Image Type:** X-Ray, MRI, CT Scan, Ultrasound, Pathology...
+- **Anatomical Region:** Chest, Abdomen, Brain, Extremities...
+- **Condition Indicators:** Normal, Abnormal, Requires Review...
+
+### Implementation Steps:
+
+1. **Start with image type classification:**
+   - Train classifier to identify different medical imaging modalities
+   - Validate with diverse medical image datasets
+   - Ensure high accuracy for proper routing to specialized models
+2. **Add anatomical region detection:**
+   - Train object detector to locate anatomical structures
+   - Create region-specific analysis pipelines
+   - Add condition screening for common abnormalities
+   - Implement confidence scoring for diagnostic recommendations
+
+</Accordion>
+
+<Accordion title="Security and Surveillance">
+
+Building intelligent security monitoring systems:
+
+### Define security categories:
+
+- **Object Detection:** Person, Vehicle, Package, Weapon...
+- **Activity Classification:** Normal, Suspicious, Unauthorized Access...
+- **Time-based Analysis:** Day, Night, Business Hours, After Hours...
+
+### Implementation Steps:
+
+1. **Start with basic object detection:**
+   - Train object detector to identify people and vehicles
+   - Test across different lighting conditions and camera angles
+   - Optimize for real-time processing requirements
+2. **Add behavioral analysis:**
+   - Implement activity classification for suspicious behaviors
+   - Add time-based context for access control
+   - Create alert system for unauthorized activities
+   - Integrate with existing security infrastructure
+
+</Accordion>
+
+<Accordion title="Customer Support Automation">
+
+Creating intelligent customer service solutions:
+
+### Define support categories:
+
+- **Query Type:** Technical Support, Billing, Product Information, Complaints...
+- **Priority Level:** Critical, High, Medium, Low...
+- **Resolution Path:** Self-Service, Agent Escalation, Specialist Transfer...
+
+### Implementation Steps:
+
+1. **Start with query classification:**
+   - Use LLM Dataset Generator with support documentation
+   - Train model to categorize incoming customer queries
+   - Test accuracy with historical support tickets
+2. **Add intelligent response generation:**
+   - Implement RAG system for automated responses
+   - Add priority assessment for routing decisions
+   - Create escalation triggers for complex issues
+   - Integrate with CRM and ticketing systems
+
+</Accordion>
+
+---
+
+### Next Steps
+
+After identifying your use case and selecting the appropriate architecture:
+
+- For more information on the webAI application where these flows are built - Navigator, see our [Navigator Overview](/navigator-overview/navigator)
+- For more information on building some of these flows inside of Navigator, see our [Building Workflows](/building-workflows/build-custom-llm-chatbot) guides

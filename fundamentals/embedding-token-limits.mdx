@@ -1,0 +1,114 @@
+---
+title: "Embedding Token Limits"
+description: "Understanding token limits in embedding models and how they impact your AI applications"
+sidebarTitle: "Embedding Token Limits"
+---
+
+### What Are Tokens?
+
+Tokens are the fundamental units that AI models use to process and understand text. They represent pieces of text that can be words, parts of words, punctuation marks, or even individual characters, depending on the tokenization method used by the model.
+
+Think of tokens as the "building blocks" of language that AI models work with. When you input text into an AI model, it first breaks down your text into these tokens before processing them. This tokenization process is crucial because it determines how efficiently the model can understand and work with your content.
+
+### Token Examples
+
+Here are some practical examples of how text gets tokenized:
+
+#### Simple Word Tokenization
+
+**Input:** "Hello world"
+
+**Tokens:** ["Hello", " world"] (2 tokens)
+
+#### Punctuation and Special Characters
+
+**Input:** "AI models are powerful!"
+
+**Tokens:** ["AI", " models", " are", " powerful", "!"] (5 tokens)
+
+#### Subword Tokenization
+
+**Input:** "unbelievable"
+
+**Tokens:** ["un", "believ", "able"] (3 tokens)
+
+<Note>
+  Long words are often split into smaller, meaningful parts.
+</Note>
+
+#### Numbers and Special Cases
+
+**Input:** "The year 2024 has 365 days."
+
+**Tokens:** ["The", " year", " 2024", " has", " 365", " days", "."] (7 tokens)
+
+#### Technical Terms
+
+**Input:** "machine-learning"
+
+**Tokens:** ["machine", "-", "learning"] (3 tokens)
+
+---
+
+### What Are Token Limits?
+
+Token limits define the maximum number of tokens (words, subwords, or characters) that an embedding model can process in a single input. Exceeding these limits results in truncation, which can significantly impact the quality of your embeddings.
+
+### Impact of Exceeding Limits
+
+When input exceeds the model's maximum token limit:
+
+- The **excess tokens are truncated** at the embedding stage
+- This results in a **loss of semantic context** and information
+- **Embedding quality degrades** as important content may be cut off
+- **Search and retrieval performance suffers** due to incomplete representations
+
+### Token Counting Considerations
+
+Understanding how tokens are counted:
+
+- **Different models use different tokenization methods** (BPE, WordPiece, SentencePiece)
+- **Token count ≠ character count** - typically 1 token ≈ 0.75 words in English
+- **Special characters and punctuation** may count as separate tokens
+- **Multilingual content** may have different token-to-character ratios
+
+---
+
+## Supported Embedding Models and Token Limits
+
+| Model Name | Max Input Tokens | Notes |
+|------------|------------------|-------|
+| `mlx-community/multilingual-e5-small-mlx` | **512** | Standard multilingual embedding |
+| `mlx-community/multilingual-e5-base-mlx` | **512** | Base model in the E5 family |
+| `mlx-community/multilingual-e5-large-mlx` | **512** | Largest E5 variant, same token limit |
+| `mlx-community/tasksource-ModernBERT-*` | **512** | Based on BERT architecture |
+| `mlx-community/nomicai-modernbert-embed-*` | **512–2048** | Confirm per variant, typically 512 |
+| `mlx-community/snowflake-arctic-embed-l-v1` | **8192** | Best suited for long documents |
+
+---
+
+### Model Selection Guide
+
+| Use Case | Preferred Model | Token Limit Rationale |
+|----------|-----------------|----------------------|
+| Short Text Processing | `multilingual-e5-small/base/large-mlx` | 512 tokens sufficient for most short documents and queries |
+| Long Document Processing | `snowflake-arctic-embed-l-v1` | 8192 tokens handles entire sections or chapters without truncation |
+| Legal/Policy Documents | `snowflake-arctic-embed-l-v1` | High token limit preserves complex legal language and context |
+| Multilingual Applications | `multilingual-e5-base-mlx` | 512 tokens adequate for most multilingual content with proper chunking |
+
+---
+
+### Best Practices for Token Limits
+
+- **Always check your model's token limit** before processing large documents
+- **Test with sample content** to understand tokenization behavior for your specific use case
+- **Monitor embedding quality** when approaching token limits
+- **Consider preprocessing** to remove unnecessary whitespace or formatting
+- **Use appropriate chunking strategies** (see [Chunking Guidelines](/fundamentals/chunking-guidelines) page) to stay within limits
+
+---
+
+### Next Steps
+
+- Visit our [Understanding "Top K" in webAI](/fundamentals/top-k-element-setting) article for more information on controlling the relevant pieces of content webAI returns when you perform an embedding-based search!
+

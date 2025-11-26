@@ -1,0 +1,264 @@
+---
+title: "My Devices Overview"
+description: "Control Nodes and Input Devices in Navigator"
+sidebarTitle: "My Devices Tab"
+---
+
+The My Devices tab inside of Navigator is where you can control the Devices that your Navigator instance has access to. Navigator differentiates between two kinds of Devices, Nodes and Input Devices. Nodes are computing devices that run the webAI Runtime Agent to power your AI Flows. Input Devices are currently limited to Cameras, but will soon be extended with additional options.
+
+This article covers the components of the My Devices tab and how to add workers. After adding devices to the My Devices tab, you can access them when configuring Element Settings in your workflows. These devices are also essential for building Clusters on which your Deployments run.
+
+---
+
+## Overview
+
+### Nodes
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_1.png" width="624" height="153" alt="Nodes" />
+</Frame>
+
+### Input Devices
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_2.png" width="624" height="137" alt="Input Devices" />
+</Frame>
+
+#### 1. Nodes & Input Devices Toggle
+
+Nodes are external devices that contribute compute resources and/or host data for your AI workflows. Input Devices collect data for your model to process, such as webcams, microphones, sensors, or other data sources. Input Devices are currently limited to Cameras, but will soon be extended with additional options.
+
+#### 2. Device Name
+
+This is the name of the Device which can be edited by clicking the three dots `...` shown on the right side of the table (#7 in the image above). The device name given here is specific to the My Devices tab. When creating Clusters, you will have the ability to give these devices or nodes nicknames which can differ across Clusters.
+
+#### 3. Hostname
+
+A hostname is the name assigned to a computer on a network that allows it to be identified and located. It acts like an address for the machine, facilitating communication with other devices on a network.
+
+<Note>
+  The hostname cannot be edited within the My Devices tab. However, you can edit this name in your System Settings → General → Sharing → Local hostname → Edit.
+</Note>
+
+#### 4. IP Address
+
+An IP (Internet Protocol) address is a numerical label assigned to each device. It serves as an identifier for devices on networks, allowing them to communicate with each other through the IP protocol.
+
+#### 5. Hardware Details
+
+The hardware details allows you to see the CPU usage, Disk usage, RAM usage, and GPU cores an added device has. These details can be a quick indication if the devices you have added to the My Devices tab have enough space and compute to run the AI workflows you build and deploy.
+
+#### 6. Add Worker Button
+
+This button allows you to add new Worker Devices to the My Devices → Nodes tab. There are two ways to add a worker device, searching the network and adding a worker manually. We will go into more detail on adding a worker below.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_3.png" width="249" height="284" alt="Add Worker Button" />
+</Frame>
+
+#### 7. Edit Button `...`
+
+Click the edit button on the My Devices → Nodes tab to rename the devices you've already added as well as delete a device.
+
+<Note>
+  If you need to delete multiple devices at once you can use the checkboxes next to the device Name.
+</Note>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_4.png" width="624" height="84" alt="Edit Button" />
+</Frame>
+
+#### 8. Input Device Category
+
+This is the category of the input device which could either be a Computer Camera or a Network Camera.
+
+#### 9. Add Input Device
+
+This button allows you to add new Input Devices to the My Devices → Input Devices tab. There are two ways to add a new input device, through a computer camera or a network. We will go into more detail on adding a new input device below.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_5.png" width="246" height="297" alt="Add Input Device" />
+</Frame>
+
+---
+
+## Adding a New Worker
+
+There are two steps for adding a Worker into your Controller instance of Navigator. Getting these worker devices added are the first steps for configuring multiple machines in a Cluster for Deployments to run on.
+
+<Note>
+  Don't know the difference between a Controller and a Worker? See our [Controller Mode vs Worker Mode](/fundamentals/controller-mode-vs-worker-mode) article for more information!
+</Note>
+
+### Step 1 - Enable Worker Mode Through Navigator
+
+<Steps>
+  <Step title="Download and Install Navigator">
+    Download and Install Navigator onto the computer you would like to become a worker.
+  </Step>
+  <Step title="Select Worker Mode">
+    During the installation setup of Navigator select Worker Mode (not Controller mode)
+  </Step>
+  <Step title="Switch to Worker Mode (If Needed)">
+    If you have already selected Controller mode, you can click your profile icon in the bottom left corner of Navigator and click `Switch to Worker Mode`
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_6.png" width="996" height="664" alt="Switch to Worker Mode" />
+</Frame>
+  </Step>
+  <Step title="Verify Worker Mode">
+    Once Navigator has been installed and Worker Mode has been set you should see the following view in Navigator.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_7.png" width="350" height="271" alt="Worker Mode View" />
+</Frame>
+
+The computer that has Navigator's Worker Mode running can now be discovered by a computer that has Navigator running in Controller mode and is on the same network.
+
+<Warning>
+  You must also be logged into the same webAI account for Worker Mode devices to be discoverable and added.
+
+  Take note of the IP Address or Passcode from this instance of Navigator in Worker Mode. You will need one of those identifiers if you are going to add this device manually to your Controller instance.
+</Warning>
+  </Step>
+</Steps>
+
+### Step 2 - Add New Worker Inside of Controller
+
+<Steps>
+  <Step title="Open Controller">
+    Open the Controller instance of Navigator.
+  </Step>
+  <Step title="Navigate to My Devices">
+    Head to the My Devices → Nodes tab inside of Navigator.
+  </Step>
+  <Step title="Click Add Worker">
+    Click the `Add Worker` button in the top right.
+  </Step>
+  <Step title="Choose Adding Method">
+    You will now see two options for adding a worker:
+
+- Search the Network
+- Add Manually
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_8.png" width="915" height="1030" alt="Add Worker Options" />
+</Frame>
+
+If you click `Search the Network` → `Next` you should see the computer that is in Worker Mode if your Controller instance of Navigator and Worker instance are on the same network.
+
+If you click `Add Manually` → `Next` you will now have the option to add the computer that is in Worker Mode manually with either the Passcode or the IP Address as shown in the image above in step 4.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_9.png" width="905" height="940" alt="Add Manually" />
+</Frame>
+  </Step>
+  <Step title="Confirm Addition">
+    Once you click `Add` from either option above you should see the computer added to this `Nodes` tab inside of Navigator.
+  </Step>
+  <Step title="Verify Connection">
+    On the computer that is in Worker Mode you should now see a Controller ID appear under the `Controllers` section at the bottom of the window.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_10.png" width="1148" height="905" alt="Controller ID" />
+</Frame>
+  </Step>
+</Steps>
+
+---
+
+## Adding a New Input Device
+
+Input Devices are currently limited to cameras. There are two types of cameras that can be added into Navigator for you to utilize through various input elements.
+
+- **Computer Camera**
+  A camera that can be used through a computer. This can be either a built-in camera or one that is connected via a USB port.
+- **Network Camera**
+  A camera accessible through a URL (like an IP or RTSP camera). These cameras run on the network and will not be run through a parent computer or node.
+
+Below we will go through the steps of adding each of these types of cameras from the My Devices → Input Devices tab.
+
+### Adding a Computer Camera
+
+<Steps>
+  <Step title="Open Add Input Device">
+    In the My Devices → Input Devices tab click the `Add Input Device` button
+  </Step>
+  <Step title="Select Computer Camera">
+    Select `Computer Camera` then click `Next`
+  </Step>
+  <Step title="View Modal">
+    You should see the modal below:
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_11.png" width="247" height="304" alt="Computer Camera Modal" />
+</Frame>
+  </Step>
+  <Step title="Provide Camera Nickname">
+    Provide a Camera Nickname (this can be edited later)
+  </Step>
+  <Step title="Select Host Computer">
+    Select the Host Computer where the camera is located or attached.
+  </Step>
+  <Step title="Provide Camera ID">
+    Provide a Camera ID.
+
+- If the camera is a part of the current machine you have Navigator open on use `-1` as the ID.
+- If this is a USB connected camera - you can input the ID as `1` for example.
+</Step>
+  <Step title="Add Camera">
+    Once all of the relative information has been entered, the `Add` button should activate and you can add this new input device!
+  </Step>
+</Steps>
+
+### Adding a Network Camera
+
+<Steps>
+  <Step title="Open Add Input Device">
+    In the My Devices → Input Devices tab click the `Add Input Device` button
+  </Step>
+  <Step title="Select Network Camera">
+    Select `Network Camera` then click `Next`
+  </Step>
+  <Step title="View Modal">
+    You should see the modal below:
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_12.png" width="243" height="297" alt="Network Camera Modal" />
+</Frame>
+  </Step>
+  <Step title="Provide Camera Nickname">
+    Provide a Camera Nickname (this can be edited later)
+  </Step>
+  <Step title="Provide Camera URL">
+    Provide the Camera URL - the computer where the camera is located.
+  </Step>
+  <Step title="Select Running On">
+    Select the computer from the "Running On" dropdown. This is the computer analyzing video from your network camera.
+  </Step>
+  <Step title="Add Camera">
+    Once all of the relative information has been entered, the `Add` button should activate and you can add this new input device!
+  </Step>
+</Steps>
+
+---
+
+## Adding Devices From Element Details
+
+Within an Elements Settings you will see a "Running On" dropdown or "Camera Source" where you can select Nodes and Input Devices depending on the type of Element. When you open these dropdown menus you will see the buttons of `Add Node` or `Add Input Device`. You can also add Nodes and Input Devices directly from these Element Settings here. Once added - these newly added devices should show up in your My Devices tab.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_13.png" width="230" height="376" alt="Add Node from Element" />
+</Frame>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/my_devices_images/image_14.png" width="321" height="368" alt="Add Input Device from Element" />
+</Frame>
+
+---
+
+## Next Steps
+
+- For information on using your Devices for Deployments, check out our [Deployments Overview](/navigator-overview/deployments-overview) here
+- For information on using your Input Devices for Object Detection - check out our [Building an Object Detection Flow without a Dataset](/building-workflows/building-object-detection-flow-without-dataset) here
+

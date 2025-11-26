@@ -1,0 +1,110 @@
+---
+title: "webFrame"
+description: "A comprehensive approach for executing Large Language Models (LLMs) in resource-constrained and distributed environments"
+sidebarTitle: "webFrame"
+---
+
+webFrame provides a comprehensive approach for executing Large Language Models (LLMs) in resource-constrained and distributed environments. Our vision is for webFrame to become our de facto inference approach for LLMs on any compute platform.
+
+---
+
+## How Does it Work?
+
+webFrame parses models from Hugging Face into an intermediate representation that can be mapped to backend-specific modules. At execution time, webFrame:
+
+- Reads the compute availability of the current environment
+- Determines the appropriate compute plan (returned as a sub-flow)
+- Automatically creates the flow on canvas
+
+This compute plan may run on a single node or across several nodes from the selected compute cluster.
+
+---
+
+## Distribution and Optimization
+
+By default, webFrame evenly distributes LLM workloads across all provided nodes in a cluster.
+
+When using webFrame's optimizer settings, a novel quantization process is applied at execution time to:
+
+- Maximize model accuracy given the provided resources
+- Distribute the workload minimally
+
+---
+
+## Creating a webFrame Flow
+
+### Method 1: Element Assembly
+
+- Open the [LLM Chatbot template](/building-workflows/llm-chatbot-template) inside of Navigator
+- Or you can manually drag the API Element and LLM Element and connect them as seen in the below image.&nbsp;
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/webframe_images/image_1.png" alt="webframe-kb-image1.png" />
+</Frame>
+
+### Method 2: API Integration
+
+The API element enables scripting and programmatic interaction, including Companion app integration.
+
+- Drag the API and LLM elements onto the canvas
+- Connect the elements appropriately
+- Runtime will automatically assign a port, opening a connection at `localhost:<port>`
+- Send prompts via POST requests to `http://localhost:<port>/prompt`
+
+<Warning>
+For more information and helpful resources see our [API Reference](/api-reference/introduction) page.&nbsp;
+</Warning>
+
+---
+
+## Supported Models
+
+webFrame supports many common LLM architectures, with plans to expand to more architectures in the future. To see all our supported models, see our [Supported LLM Base Models](/fundamentals/supported-llm-base-models) page.&nbsp;
+
+Inside of the LLM Element Settings you will see the option to select a model.&nbsp;
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/webframe_images/image_2.png" alt="LLM Element Settings model selection" />
+</Frame>
+
+After clicking on this model selection you will be able to search and filter through available models.&nbsp;
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/webframe_images/image_3.png" alt="Model search and filter interface" />
+</Frame>
+
+### 1. Search By Model Name
+
+Within the search bar you can search by model name. If you do have filters enabled the search results will be limited to what filters are enabled.&nbsp;
+
+### 2. Model Filter
+
+Clicking on the filter button next to the search bar will open the filtering options for model results. Click on one or multiple of these filter options to filter the model results.&nbsp;
+
+### 3. Model Icons
+
+These model icons provide quick identifiers of what each model offers and requires to utilize.&nbsp;
+
+- Key Icon - This model requires a Hugging Face API key
+- Image & Play Button Icon - This model supports multimodal chat
+- Gear Icon - This model can be optimized&nbsp;
+
+### 4. Memory Requirements&nbsp;
+
+If the memory requirements are highlighted in red that means the currently selected devices you have this LLM Element running on do not have enough memory to support that model. If you needed to add more nodes to support larger models you can do so in the LLM Element Settings in the `Running On` dropdown.&nbsp;
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/webframe_images/image_4.png" alt="Memory requirements display" />
+</Frame>
+
+---
+
+## Configuration Settings
+
+- **Cluster** - The compute cluster where the model will run. Configure this in the Clusters page.
+- **Hugging Face API key** - Required only for accessing gated models on Hugging Face.
+- **Temperature** - Controls response randomness - higher values produce more creative outputs.
+- **Token Limit** - Restricts the length of model responses.
+- **Optimizer** - Algorithm-driven optimization to reduce model size while minimizing performance impact. Scale: 0 (no optimization) to 1 (maximum compression). Not compatible with pre-quantized models.
+- **Cluster Node Memory Cap** - Limits memory allocation per cluster node for model execution. Useful for reserving memory for other flows and controlling model distribution. Currently uses fixed values; dynamic allocation based on system memory coming soon.
+

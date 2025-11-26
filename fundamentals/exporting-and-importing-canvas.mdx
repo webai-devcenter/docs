@@ -1,0 +1,128 @@
+---
+title: "Exporting & Importing a Canvas"
+description: "Learn how to share Canvases and Project folders across Navigator instances"
+sidebarTitle: "Exporting & Importing Canvas"
+---
+
+As teams collaborate across several instances of Navigator within an Organization you may need to share a single Canvas or an entire Project folder to another team member. Using the Export and Import features within Navigator allows you to do just that!
+
+In this guide we will walk through the process of Exporting and Importing individual Canvases and entire Project folders. As mentioned in other articles all flows built within a Canvas are stored locally to your machine, so sharing Canvases and Projects with other team members before Deployment can be critical for testing and iterating over specific builds.
+
+---
+
+## Exporting
+
+### Single Canvas
+
+<Steps>
+  <Step title="Open the Projects Tab">
+    To export a single Canvas - Open the Projects tab in Navigator from the left panel
+  </Step>
+  <Step title="Locate Single Canvases">
+    All Canvases NOT a part of a Project folder will be under the "Single Canvases" header.
+  </Step>
+  <Step title="Access Canvas Options">
+    Click the three dots `...` next to the Canvas you would like to Export
+  </Step>
+  <Step title="Export as JSON">
+    Click `Export as JSON`
+  </Step>
+  <Step title="Choose Location and Name">
+    Choose the location on your machine for this file and give the file a name
+  </Step>
+  <Step title="Save the File">
+    Click `Save`
+  </Step>
+</Steps>
+
+<Note>
+  The name of the JSON file is not what will appear after the import process completes. Each Canvas and Project folder has a distinctive name given inside of Navigator which will be referenced from this JSON file on the import.
+</Note>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/export_import_canvas_images/image_1.png" alt="Export single canvas" />
+</Frame>
+
+<Note>
+  Once this file is saved you shouldn't need to update this JSON file before importing. Updates to the exported JSON code can cause the import process to fail.
+</Note>
+
+### Project Folder
+
+<Steps>
+  <Step title="Open the Projects Tab">
+    To export an entire Project folder - Open the Projects tab in Navigator from the left panel
+  </Step>
+  <Step title="Locate Projects">
+    Project folders are located under the "Projects" header.
+  </Step>
+  <Step title="Access Project Options">
+    Click the three dots `...` next to the Project folder you would like to Export
+  </Step>
+  <Step title="Export as JSON">
+    Click `Export as JSON`
+  </Step>
+  <Step title="Choose Location and Name">
+    Choose the location on your machine for this file and give the file a name.
+  </Step>
+  <Step title="Save the File">
+    Click `Save`
+  </Step>
+</Steps>
+
+<Note>
+  The name of the JSON file is not what will appear after the import process completes. Each Canvas and Project folder has a distinctive name given inside of Navigator which will be referenced from this JSON file on the import.
+</Note>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/export_import_canvas_images/image_2.png" alt="Export project folder" />
+</Frame>
+
+<Note>
+  This Project folder will be saved as a single JSON file that contains all of the configured Canvases. You shouldn't need to update this JSON code. If you need to export specific Canvases from this project, see the steps above for exporting a single Canvas.
+</Note>
+
+---
+
+## Importing
+
+Regardless if you have a Project folder or a single Canvas you need to import the process should be the same!
+
+<Steps>
+  <Step title="Open the Projects Tab">
+    Open the Projects tab in Navigator from the left panel
+  </Step>
+  <Step title="Click Create Button">
+    Click the `Create` button on top the left panel
+  </Step>
+  <Step title="Select Open">
+    Select `Open`
+  </Step>
+</Steps>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/export_import_canvas_images/image_3.png" alt="Import canvas or project" />
+</Frame>
+
+<Note>
+  Keyboard shortcut `Command + O` allows you to open a file as well.
+</Note>
+
+<Steps>
+  <Step title="Select JSON File">
+    Select the JSON file of a Canvas or Project folder exported from Navigator
+  </Step>
+  <Step title="Open the File">
+    Click `Open`
+  </Step>
+</Steps>
+
+You should now see the selected Canvas or Project folder appear inside of Navigator with the same naming conventions that were originally created in Navigator when this JSON file was exported.
+
+---
+
+## Next Steps
+
+- To learn more about Organizations, see our [Organizations and User Management](/navigator-overview/organizations-user-management) guide.
+- To learn more about Deployments, see our [Deployments Overview](/navigator-overview/deployments-overview) guide.
+

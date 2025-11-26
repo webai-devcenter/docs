@@ -1,0 +1,132 @@
+---
+title: "Sharding vs Replication"
+description: "Understanding the difference between sharding and replication for scalable and reliable AI deployments"
+sidebarTitle: "Sharding vs Replication"
+---
+
+Understanding the difference between sharding and replication is crucial for designing scalable and reliable AI deployments. These two techniques serve distinct purposes in distributed systems. This guide explains the fundamental concepts of sharding and replication, their specific applications in Large Language Model (LLM) deployments, and how to choose the right approach for your use case.
+
+---
+
+## Overview
+
+Both sharding and replication are essential techniques for scaling AI models across multiple machines, but they address different challenges:
+
+- **Sharding:** Divides large models or datasets into smaller, manageable pieces distributed across multiple nodes
+- **Replication:** Creates multiple copies of the same model or data to ensure redundancy and fault tolerance
+
+In webAI deployments, you can choose between sharding and replication when assigning LLM elements to multiple devices, but you cannot use both simultaneously for the same model.
+
+---
+
+## What is Sharding?
+
+Sharding is a technique that partitions large datasets or models into smaller, manageable pieces called shards. Each shard is stored and processed on a different node, enabling parallel processing and allowing systems to handle workloads that exceed the capacity of a single machine.
+
+### Benefits of Sharding
+
+- **Scalability:** Enables deployment of models larger than individual node capacity
+- **Resource Efficiency:** Lower per-node memory and storage requirements
+- **Parallel Processing:** Multiple shards can process different parts simultaneously
+- **Cost Optimization:** Reduces hardware requirements per node
+
+---
+
+## What is Replication?
+
+Replication involves creating multiple copies of the same data or model across different nodes. This technique ensures redundancy, fault tolerance, and improved availability by allowing multiple nodes to handle requests independently.
+
+### Benefits of Replication
+
+- **Load Distribution:** Requests can be distributed across multiple replicas
+- **High Availability:** Reduces downtime and improves service reliability
+- **Improved Latency and Performance:** Less wait time for queued requests 
+
+---
+
+## Sharding vs Replication: Key Differences
+
+| Aspect | Sharding | Replication |
+|--------|----------|-------------|
+| **Primary Purpose** | Enables scaling by partitioning data/model | Ensures redundancy and fault tolerance |
+| **Resource Usage** | Lower per-node resource requirements | Higher resource usage (full model per node) |
+| **Fault Tolerance** | Single point of failure per shard | High fault tolerance |
+| **Scalability** | Excellent for large models | Limited by individual node capacity |
+| **Complexity** | High coordination complexity | Lower implementation complexity |
+| **Use Case** | Models larger than single node capacity | High availability requirements |
+
+---
+
+## Implementation in Navigator 
+
+In Navigator, you can choose between sharding and replication when deploying LLM elements to multiple devices. This choice is made during the deployment process in the [Element Assignment](/navigator-overview/deployments-overview#element-assignment) step.
+
+<Note>
+These options will only show on [webFrame](/fundamentals/webframe) based Elements. 
+</Note>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/sharding_vs_replication_images/image_1.png" alt="Sharding and replication options" />
+</Frame>
+
+### Sharding a Deployment
+
+When you select `Sharded` deployment:
+
+- The model is split across the selected machines
+- Each machine holds a portion of the model
+- Machines cooperate to serve requests
+- Enables deployment of models larger than individual machine capacity
+
+### Replicating a Deployment
+
+When you select `Replicated` deployment:
+
+- Full copies of the model are deployed on each selected machine
+- Requests are load balanced across machines
+- Multiple requests can be served simultaneously
+- Provides high availability and fault tolerance
+
+<Warning>
+You cannot shard and replicate the same model simultaneously. If a device is not showing up in one dropdown, deselect it first using the checkmark boxes, then it will appear in the other dropdown.
+</Warning>
+
+---
+
+## Choosing the Right Approach
+
+### When to Choose Sharding
+
+Select sharding when:
+
+- Your model is too large to fit on a single machine
+- You need to maximize resource utilization across multiple nodes
+- You have limited memory per node but multiple nodes available
+- You can tolerate some coordination overhead for better scalability
+
+### When to Choose Replication
+
+Select replication when:
+
+- High availability and fault tolerance are critical
+- You need to handle multiple concurrent requests
+- Your model fits comfortably on individual nodes
+- You want simpler deployment and management
+
+---
+
+## Known Limitations
+
+- **Deployment Completion:** When deploying a model using Replication - these deployments can take a significant amount of time to complete depending on how large of a model you are deploying across each node. 
+- **Deployment Failure on Machine Shutdown:** Currently if one node fails or goes offline while a deployment is running the entire deployment will fail. We understand this is not quite up to the standards of scalability we would like to offer and are currently looking to resolve this limitation. 
+- **Deployment Failure on API Request**: If your deployment is failing after making an API request, check that your request is formatted correctly. You can copy a cURL request from the [Deployment Details](/navigator-overview/deployments-overview#deployment-details) page to easily access a properly formatted request or reference our [API Reference](/api-reference/introduction) document for formatting guidance. 
+
+---
+
+## Next Steps
+
+- For information on creating deployments, see our [Deployments Overview](/navigator-overview/deployments-overview) guide
+- For information on clusters, see our [Clusters Overview](/navigator-overview/clusters-overview) guide
+- For information on system requirements, see our [System Requirements](/getting-started/system-requirements) guide
+- For information on LLM API usage, see our [API Reference](/api-reference/introduction) guide
+

@@ -1,0 +1,72 @@
+---
+title: "List Models"
+description: "Lists the currently available models and provides basic information about each one"
+openapi: "GET /v1/models"
+---
+
+## Overview
+
+The models endpoint returns a list of available models that can be used with the API. This endpoint provides information about each model including its identifier, creation date, and owner.
+
+<Info>
+  This endpoint follows the [OpenAI Models API](https://platform.openai.com/docs/api-reference/models) format for compatibility with existing tools and libraries.
+</Info>
+
+## Usage
+
+Make a GET request to retrieve the list of available models:
+
+```bash
+curl http://localhost:10105/v1/models \
+  -H "Authorization: Bearer <WEBAI_API_KEY>"
+```
+
+## Response Format
+
+The API returns a list of available models:
+
+```json
+{
+  "data": [
+    {
+      "created": 1747937728,
+      "id": "webai/llm",
+      "object": "model",
+      "owned_by": "webai"
+    }
+  ],
+  "object": "list"
+}
+```
+
+## Response Fields
+
+- **object** - Always "list" for this endpoint
+- **data** - Array of model objects with the following fields:
+  - **id** - The model identifier used in API requests
+  - **object** - Always "model" for model objects
+  - **created** - Unix timestamp of when the model was created
+  - **owned_by** - The organization that owns the model
+
+## Using Model IDs
+
+Use the model `id` from this endpoint when making requests to other API endpoints:
+
+```json
+{
+  "model": "webai/llm",
+  "messages": [...]
+}
+```
+
+## Model Capabilities
+
+To check if a model supports specific features like multimodal inputs:
+1. Navigate to the LLM Element Settings in Navigator
+2. Look for the image icon next to model names
+3. Models with the image icon support both text and image inputs
+
+<Note>
+  The available models depend on your Navigator configuration and the models you have set up in your LLM workflows.
+</Note>
+

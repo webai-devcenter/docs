@@ -1,0 +1,271 @@
+---
+title: "System Requirements"
+description: "Essential system requirements and device compatibility for our powerful, private AI platform"
+sidebarTitle: "System Requirements"
+---
+
+This document outlines the essential system requirements and device compatibility for our powerful, private AI platform. Meeting these requirements is crucial for ensuring optimal performance and a seamless experience with our products.
+
+If you encounter any errors or unexpected behavior, please verify that your system and devices meets the specifications detailed in this guide. Adhering to these requirements will help prevent issues and ensure our product functions correctly on your devices.
+
+---
+## Device Compatibility
+webAI prioritizes delivering a seamless experience across various Apple devices. The platform is designed to ensure compatibility and optimized performance, whether you're using a cutting-edge iPhone or a high-powered Mac. Level of capabilities and performance will vary across devices.
+
+<Note>**Supported Devices:** Mac computers with Apple Silicon (M1, M2, M3, M4, M5) are required.</Note> 
+
+## Basic Requirements
+
+<Warning>**Operating System:** macOS 15+ is required</Warning>
+
+**Storage:** Available disk space for installation and AI models.
+
+<Note>A SSD is recommended for better performance</Note>
+
+### Network
+
+- Internet connection for initial setup and model downloads
+- Ongoing internet is optional after setup (webAI runs locally)
+- Wi-Fi (802.11ac/ax) and Ethernet (1Gb/10Gb) for local network discovery and communication.
+- IPv4 Protocols are required.
+- P2P traffic must be allowed on the network for nodes to communicate.
+
+### Hardware
+
+- webAI products are currently exclusively supported on Apple devices featuring Apple Silicon M-series processors (e.g., M1, M2, M3, M4, M5).
+- 256GB+ of Disk space recommended (larger AI models will require more disk space).
+- 16GB+ of RAM recommended (larger AI models will require more memory).
+
+<Warning>
+On macOS, applications can only access a portion of system memory for GPU operations. macOS limits GPU usage to approximately 60% of available RAM, which may affect performance for memory-intensive workloads.
+</Warning>
+
+**Memory:** Sufficient RAM for the AI models you plan to use.
+
+### Security Configuration
+
+- **Exceptions:** To ensure proper functionality, endpoint security software must include exceptions for the following directories:
+
+```
+.webai
+.cache
+```
+
+
+---
+
+## Understanding AI Model Requirements
+Different AI models have different resource needs. For most use cases that require training or inference on consumer hardware, we recommend using a 7B parameter model. This is the sweet spot between model performance and size for consumer devices.
+
+### Model Selection Factors
+
+- **Parameter Count:** Generally, larger models offer better performance but require more computing resources
+- **Memory Requirements:** Each model requires a specific amount of RAM
+- **Specialization:** Some models are optimized for specific tasks (code generation, instruction following)
+
+## Choosing Models for Your Hardware
+<Note>Recommended Model: 7B parameters</Note>
+
+#### Smaller Models
+
+- Good for basic conversational AI and simple tasks
+- Run well on most supported devices
+- Faster loading and response times
+
+#### Medium Models
+
+- Best balance of performance and hardware requirements
+- Suitable for most professional use cases
+- All LLM features in Navigator work well with these models
+
+#### Larger Models
+
+- Highest quality outputs and capabilities
+- Require more powerful hardware
+- Consider hardware capabilities before use
+
+---
+
+## System Definitions
+
+### Application Layer
+
+- **Navigator:** A graphical interface for creating interactive AI application workflows.
+- **Companion:** A powerful chat interface for local and private LLM interaction.
+- **SDK / API:** Python and Swift SDKs for programmatic interaction with the platform. This also includes our OpenAPI and OpenAI-compliant APIs.
+
+### Platform Layer
+
+- **Runtime:** The orchestration layer that manages clusters and executes workloads designed in Navigator
+- **Network:** The transport layer that provides peer-to-peer connectivity for distributed flows.
+
+---
+
+## Software Requirements
+
+| **Product Component** | **Operating System** |
+| --- | --- |
+| Navigator | macOS 15+ |
+| Companion | macOS 15+, iPadOS 18+, iOS 18+ |
+| SDK/API | macOS 15+ (for Python and Swift SDKs)<br/>iOS / iPadOS 15+ (for Swift SDK) |
+| Runtime | macOS 15+ |
+| Network (Node) | macOS 15+ |
+
+---
+
+## Device Compatibility
+
+webAI prioritizes delivering a seamless experience across various Apple devices. The platform is designed to ensure compatibility and optimized performance, whether you're using a cutting-edge iPhone or a high-powered Mac. Level of capabilities and performance will vary across devices.
+
+**Supported Devices:** Mac computers with Apple Silicon (M1, M2, M3, M4, M5) are required.
+
+Level of capabilities and performance will vary across devices.
+
+| **Device** | **Compatibility** |
+| --- | --- |
+| iPhone 15 Pro Max | A17 Pro |
+| iPhone 15 Pro | A17 Pro |
+| iPad Pro | M1 and later |
+| iPad Air | M1 and later |
+| MacBook Air | M1 and later |
+| MacBook Pro | M1 and later |
+| iMac | M1 and later |
+| Mac mini | M1 and later |
+| Mac Studio | M1 Max and later |
+| Mac Pro | M2 Ultra |
+| Vision Pro | All models |
+
+---
+
+## Performance Optimization
+
+### Hardware Considerations
+
+- **Apple Silicon** Apple Silicon (M1, M2, M3, M4, M5) is required.
+- **Available RAM:** More memory allows for larger models and better performance
+- **Storage Type:** SSD storage improves model loading times
+- **Free Space:** Keep adequate space available for optimal performance
+
+### Improving Performance
+
+#### System Optimization
+
+- Close unnecessary applications during AI model use
+- Ensure adequate free storage space
+- Use SSD storage when possible
+- Consider hardware upgrade for demanding use cases
+
+#### Model Selection
+
+- Start with smaller models to test performance
+- Upgrade to larger models based on your hardware's capabilities
+- Monitor system performance during use
+
+---
+
+## Network Considerations
+
+<AccordionGroup>
+<Accordion title="Known Network Issues">
+**VPN Interference:** Active VPN clients, especially those that route all traffic, can interfere with local network discovery and P2P communication between webAI components.
+
+**Corporate Networks:** Corporate firewalls that block P2P traffic can prevent the Network layer from functioning correctly. Some restrictive NAT types (Symmetric NAT) may prevent direct connections between nodes.
+</Accordion>
+<Accordion title="Solutions">
+**For VPN Users:**
+
+- Temporarily disable VPN during initial setup
+- Consider VPN configuration that allows local traffic
+
+**For Corporate Networks:**
+
+- Contact IT department about firewall settings
+- May require network configuration for webAI deployment
+</Accordion>
+</AccordionGroup>
+
+---
+
+## Quick Compatibility Check
+
+### Before Installing
+
+<Steps>
+  <Step title="Check your Mac model and year">
+    - Apple Menu -> About This Mac
+    - Note whether you have Apple Silicon (required) or Intel (not supported)
+  </Step>
+  <Step title="Verify macOS version">
+    - Ensure macOS 15+ or later
+  </Step>
+  <Step title="Check available storage">
+    - Ensure adequate space for installation and models
+  </Step>
+  <Step title="Test network connectivity">
+    - Stable internet required for setup and model downloads
+  </Step>
+</Steps>
+
+---
+
+## FAQ's
+
+<AccordionGroup>
+  <Accordion title="Does webAI support Windows or Linux?">
+    At this time webAI supports the hardware outlined in this document. Check back for updates on additional hardware support.
+  </Accordion>
+  <Accordion title="What's Not Included (Out of Scope)">
+    - **Unsupported Hardware/Software:** Any operating systems or hardware not explicitly listed in the "System Requirements" section. This includes, but is not limited to, Windows, Linux, and non-M-series Apple hardware, and jailbroken devices.
+    - **Unsupported Network Configurations:** WAN and IPv6
+    - **Third-Party Software:** Issues arising from software not provided by webAI
+    - **Custom Code:** Debugging or writing customer-specific code that interfaces with our SDKs/APIs beyond simple examples.
+    - **End-of-Life Products:** Support for versions of our products that are past their end-of-life date as defined in our support lifecycle.
+    - **Performance Tuning & Optimization:** While we will investigate performance-related bugs, we do not provide consultative performance tuning as part of our standard support.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Troubleshooting
+
+### Common Issues
+<AccordionGroup>
+  <Accordion title="Installation Problems">
+    - **Verify sufficient storage space:** Ensure enough disk space is available for both the webAI installation and model files. Larger models require more space.
+    - **Check macOS version compatibility:** Your Mac must be running macOS 15 or later to install and use webAI.
+    - **Ensure stable internet connection:** A reliable connection is needed for initial setup, activation, and model downloads.
+  </Accordion>
+  <Accordion title="Performance Issues">
+    - **Try smaller models first:** If webAI feels slow or unresponsive, switch to smaller models, which require fewer resources and load faster.
+    - **Close other applications:** Shut down unnecessary apps to free up RAM and system resources for webAI processing.
+    - **Check available system memory:** Make sure your Mac has sufficient unused RAM. 16GB+ is recommended for best results.
+    - **Consider hardware limitations:** Older or lower-spec Macs may not provide optimal performance.
+  </Accordion>
+  <Accordion title="Network Problems">
+    - **Disable VPN temporarily:** VPNs can sometimes block model downloads or connection to webAI services. Try disabling the VPN if you encounter network trouble.
+    - **Check firewall settings:** Your firewall must allow webAI directories and traffic as described in the Security Configuration section.
+    - **Verify internet connectivity:** Confirm stable internet access by testing other sites or using network diagnostics. Outages or DNS issues may cause problems.
+  </Accordion>
+</AccordionGroup>
+
+---
+
+### Next Steps
+
+#### If Your System is Compatible
+
+Continue to [Installation & Setup](/getting-started/installation-and-setup) to download and install webAI.
+
+#### If You Need to Upgrade
+
+**Priority Upgrades**
+- **macOS Update:** Ensure you're running a supported version
+- **Storage:** Add SSD storage for better performance
+- **Hardware:** Consider a newer Mac with Apple Silicon for optimal experience
+
+**Alternative Approaches**
+- Start with smaller models to test functionality
+- Use external storage for AI models if needed
+- Plan hardware upgrade for more demanding use cases
+
+

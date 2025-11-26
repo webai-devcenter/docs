@@ -1,0 +1,234 @@
+---
+title: "Terminology"
+description: "Comprehensive overview of key terms used in Navigator, Companion, and AI"
+---
+
+This article provides a comprehensive overview of key terms used in Navigator, Companion, and within the broader field of artificial intelligence. The following definitions are designed to help you understand the core concepts and components you'll encounter while building and deploying AI solutions.
+
+This page is divided into three main sections:
+
+- **webAI Terminology:** Explanations for terms specific to our Navigator and Companion platforms, including definitions for settings seen throughout the tool.
+- **General AI Terminology:** Definitions for foundational AI concepts such as LLMs, Object Detectors, Chunking, and more.
+- **Technical Implementation Terms:** Advanced concepts related to model training, deployment, and system architecture.
+
+---
+
+## Terminology
+
+The following are terms specific to our Navigator and Companion platforms, including definitions for settings seen throughout the tool.
+
+<AccordionGroup>
+  <Accordion title="Navigator and its Components">
+    **Navigator:** Navigator is the central workspace for our AI platform. It is where you'll bring your ideas and models to life!
+
+    **Canvas:** Canvas is the main workspace of Navigator. It is the creation area where you can train, test, and prototype AI models by visually arranging and connecting different components.
+
+    **Drawer:** The Drawer is a library where you can access all the available Elements to build your projects.
+
+    **Element:** Elements are the fundamental building blocks of any project in Navigator. Each Element inside Navigator is a packaged piece of code designed to perform a specific function, like training a model or visualizing data. For a complete list and description of all available Elements, check out our Element Registry.
+
+    **Connectors:** Connectors are the guiding indicators of where an Element's inputs and outputs begin and end.
+
+    **Flow:** A Flow is a sequence of connected Elements that work together to perform a trained function and produce an output. A basic Flow typically includes an Input Element to provide the model data, an Inference Element to process the data, and an Output Element to display or export the results.
+
+    **webFrame:** webFrame is a web-based interface that allows you to interact with your deployed AI models through a browser. It provides a user-friendly way to test and use your models without requiring technical knowledge.
+
+    **Featured Templates:** Pre-built, tried and true flows created by our AI experts. These are pre-packaged flows designed for different use cases, providing users with proven solutions that can be deployed quickly without needing to build flows from scratch.
+
+    **Projects:** A folder system for organizing your canvases. Projects allow you to group related canvases together, making it easy to keep your work organized. For example, if you're working on both ingestion and inference flows for the same document, saving them in the same project provides an easy way to reference and manage related workflows.
+
+    **Run Button:** The button inside your canvas that starts your flow execution. The Run button also includes a dropdown menu with additional flow actions such as deploy, save, and other management options.
+  </Accordion>
+  <Accordion title="Companion and its Components">
+    **Companion:** Companion is webAI's personal AI assistant that provides a dedicated interface for interacting with your deployed AI models from Navigator. Unlike the chatbot window that opens within Navigator, Companion is a standalone application that allows you to access your deployed flows from mobile devices or desktop.
+
+    **Avatars:** Avatars are similar to folders and can be found in Companion's left panel. They contain Chats associated with local pre-loaded models or remote Large Language Model deployments built in Navigator. Avatars are named based on deployments inside of Navigator.
+
+    **Chats:** Conversation threads in Companion's left panel that organize your chat conversations. Each chat represents a separate conversation and can be renamed, copied, or deleted. Chats automatically receive default names based on your initial question or statement.
+
+    **Generate Files:** Files automatically created by Companion when generating content. These can include text documents, code files, or other generated materials. Generated Files are accessible both in-chat and through the right-side panel.
+
+    **Chat Search:** A search functionality in Companion that allows you to search through existing chat threads and their content. Located in the top left corner, it helps you find specific conversations or topics from your chat history.
+
+    **Chat History:** Conversations threads in Companion that are stored in the left panel. Chats in your Chat History are stored are grouped by each Avatar.
+
+    **Pre-loaded Models:** AI models that come pre-loaded with Companion, available through the Conversation dropdown. These models are optimized and ready to use after installation, allowing you to easily switch between them based on your preferences or an AI provider.
+  </Accordion>
+  <Accordion title="Deploying and Managing Flows">
+    **Deployment:** A Deployment allows users to assign a Flow to a specific group of computers and input devices. The Deployment sections essentially decouple the running Flow from the Navigator canvas so it can operate on its own.
+
+    **Cluster:** A Cluster is a group of computing resources (nodes) and Input Devices where your deployments are assigned to run.
+
+    **Cluster Card:** In-app display of each Cluster on the Clusters tab. The Cluster Card can be clicked into which will display more in-depth details on that specific Cluster.
+
+    **Runtime Agent:** The execution environment where webAI elements and flows run, including local execution and cluster-based deployment options.
+
+    **Nodes/Worker:** External devices that contribute compute resources and/or host data for your AI workflows. Nodes are the individual computers or servers that make up a cluster and can be used to distribute processing load across multiple machines.
+
+    **Input Devices:** Devices that collect data for your model to process, such as webcams, microphones, sensors, or other data sources. Input devices provide the real-time data that feeds into your AI workflows for processing and analysis.
+
+    **Controller Mode:** A mode selection for Navigator, the other being Worker Mode. The controller handles the distribution of tasks across nodes and ensures proper communication between different components of your deployed workflows. Building, deploying, and managing all aspects of workflows happens within Navigators Controller Mode.
+
+    **Worker Mode:** A mode selection for Navigator, the other being Controller Mode. Worker Mode is deployment configuration where a device operates as a worker node in a distributed system. In worker mode, the device contributes its computational resources to execute tasks assigned by a controller, enabling distributed processing across multiple machines.
+
+    **Hostname:** A hostname is the name assigned to a computer on a network that allows it to be identified and located. It acts like an address for the machine, facilitating communication with other devices on a network.
+  </Accordion>
+  <Accordion title="Settings and Paths">
+    **References Folder Path/Data Path:** This Element setting lets you select a file or folder of documents to use for training or inference.
+
+    **Output Folder Path:** This Element settings specifies the location on your device where the final output, or artifact, from a Flow will be saved.
+
+    **Model Storage Path:** This is the location on your device where the files for your trained model are saved.
+
+    **Trained Artifact:** A trained artifact refers to the output generated by the model training process. Inside certain element settings, you can select different fine tunings of models. Selecting one of these will overwrite other settings such as Base Model Architecture, Quantization Rank and Temperature
+
+    **Model System Prompt:** Define the model's tone, methods of interaction, role and other instructions.
+
+    **Execution Name:** A unique identifier for each run of an element or flow, typically formatted as "execution_name\_timestamp" to help track and organize multiple executions.
+  </Accordion>
+  <Accordion title="Organization and User Management">
+    **Organization:** A workspace that groups together users, projects, and resources within webAI. Organizations provide a structured environment for teams to collaborate on AI projects while maintaining proper access controls and resource management.
+
+    **Administrator:** A user role with elevated privileges within an organization. Organization administrators have the authority to manage users, control access permissions, configure organization settings, and oversee the overall administration of the organization's webAI resources and projects.
+
+    **Member:** Users of your organization who have access to webAI resources and can create, modify, and deploy AI workflows.
+  </Accordion>
+  <Accordion title="Deployment Types">
+    **Local Deployments:** Deployments that run on your local machine or within your immediate network environment. Local deployments provide direct control over the execution environment and are ideal for development, testing, and scenarios where data needs to remain on-premises.
+
+    **Remote Deployments:** Deployments that run on external servers or cloud infrastructure, allowing your AI workflows to operate on remote computing resources. Remote deployments enable scalability and can leverage powerful cloud-based computing resources.
+  </Accordion>
+  <Accordion title="API and Integration">
+    **API Element:** The API Element facilitates external access to your AI workflows, allowing other applications to send prompts and receive responses from your deployed models through HTTP requests.
+
+    **API Key:** A security credential used to authenticate external applications when they access your deployed AI models through the API element.
+
+    **Prompt API:** A legacy element that handled input requests to AI models. Replaced by the unified API element for improved efficiency.
+
+    **Response API:** A legacy element that handled output responses from AI models. Replaced by the unified API element for improved efficiency.
+  </Accordion>
+</AccordionGroup>
+
+## General AI Terminology
+
+The following are definitions for foundational AI concepts such as LLMs, Object Detectors, Chunking, and more.
+
+<AccordionGroup>
+  <Accordion title="AI Model Types and Concepts">
+    **Machine Learning (ML):** Machine Learning is a subfield of AI that is focused on building systems that can learn from data without being explicitly programmed. ML is the core technology behind many of the models and processes described on this page.
+
+    **Algorithm:** A set of rules or instructions that a computer follows to solve a problem or perform a task. In AI, algorithms are the foundation for how a model learns and makes decisions.
+
+    **Dataset:** A collection of data that is used to train, test, and evaluate an AI model. The quality and size of the dataset are critical for a model's performance.
+
+    **Neural Network:** A type of machine learning model inspired by the human brain. It's composed of interconnected nodes, or "neurons", organized in layers. These networks are used for tasks like image recognition and natural language processing.
+
+    **LLM (Large Language Model):** A Large Language Model (LLM) is a powerful AI model trained on massive amounts of text data. LLMs are excellent for tasks involving natural language processing, as they can generate human-like and contextually relevant responses.
+
+    **Object Detector:** A computer vision model that identifies and localizes specific objects within an image or video. It does this by drawing bounding boxes around each detected object.
+
+    **Bounding Box:** A Bounding Box is a rectangular outline that visually highlights the precise location of an object in an image or video. They are a key feature of object detection models.
+
+    **Classifier:** A classifier is an AI model that organizes input data into predefined categories or classes. It works by recognizing patterns and features within the data.
+
+    **Model Confidence:** Model Confidence is a measure of how certain an AI model is about its prediction. A higher confidence score indicates the model is more sure of its result.
+
+    **Model Accuracy:** Model Accuracy measures the performance of a model as a percentage of correct predictions out of all attempts. Higher accuracy means better performance.
+
+    **Vision Model:** A type of AI model specifically designed to process and understand visual information, such as images or videos. Vision models can perform tasks like object detection, image classification, and scene understanding.
+  </Accordion>
+  <Accordion title="AI Processes">
+    **AI Model Training:** AI Model Training is the process of teaching an AI model to recognize patterns using large datasets. The model learns features and relationships to make accurate predictions or generate outputs.
+
+    **AI Model Inference:** AI Model Inference is the process of using a trained model to make predictions or recognize patterns by feeding it with large, unseen datasets. The model learns from this data to deliver accurate predictions in real-time.
+
+    **Computer Vision:** Computer Vision is a branch of AI focused on enabling machines to "see" and interpret visual data, like images and videos. It enables machines to interpret and extract meaningful insights from visual inputs.
+
+    **Fine-tuning:** Fine-tuning is the process of adapting a pre-trained model to perform better on a specific task or dataset by continuing the training process with domain-specific data.
+
+    **Quantization:** Quantization is a technique used to reduce the memory footprint and computational requirements of AI models by reducing the precision of their numerical parameters.
+  </Accordion>
+  <Accordion title="RAG Ingestion Process">
+    **Retrieval-Augmented Generation (RAG):** A technique that improves the output of an LLM by allowing it to access and use information from external, authoritative data sources—like a company's internal documents—before generating a response. This process makes the model's answers more accurate, timely, and specific to a given context without having to retrain the entire model.
+
+    **Vector Database:** A specialized type of database that stores embeddings (numerical representations of data) and is optimized for efficient searches based on the conceptual similarity of those vectors, rather than keywords. It's the central repository where the "meaning" of your documents is stored.
+
+    **Chunking:** Chunking is part of the RAG Ingestion process where a document is broken down into smaller, more manageable pieces, or chunks, that can be searched and retrieved by the model.
+
+    **Chunk Size:** The maximum size (in tokens or characters) for each chunk when breaking down documents. Smaller chunks provide better precision but may lose context, while larger chunks preserve context but may exceed model limits.
+
+    **Chunk Overlap:** The overlapping size between chunks to preserve context across boundaries. This helps maintain semantic continuity when documents are split into smaller pieces.
+
+    **Embedding:** Embedding is the process within the RAG Ingestion Process that converts chunks into "meaning" that the LLM can search and interact with.
+
+    **Vector Retrieval:** The process of searching through a vector database to find the most relevant chunks based on semantic similarity to a user's query.
+
+    **Top K:** Top K controls how many of the most relevant pieces of content webAI returns when you perform an embedding-based search. It determines the number of chunks retrieved from the vector database for use in generating responses.
+
+    **Prompt Templating:** The process of formatting retrieved vector information into a structured prompt that can be used by language models to generate coherent responses.
+  </Accordion>
+  <Accordion title="Document Processing">
+    **OCR (Optical Character Recognition):** OCR is a technology that converts images containing text into machine-readable text. It's the first step in processing documents for RAG systems, enabling the extraction of textual content from images and PDFs.
+
+    **Vector Indexing:** The process of storing processed embeddings in a fast, searchable vector database (like ChromaDB) for efficient retrieval during inference.
+  </Accordion>
+</AccordionGroup>
+
+## Technical Implementation Terms
+
+The following are advanced concepts related to model training, deployment, and system architecture.
+
+<AccordionGroup>
+  <Accordion title="Token and Text Processing">
+    **Token:** A token is the basic unit of text that AI models process. Tokens can be words, parts of words, or even individual characters, depending on the tokenization method used. Token limits determine how much text a model can process in a single request.
+
+    **Token Limit:** The maximum number of tokens that a model can process in a single input. This includes both the input prompt and the generated response. Exceeding token limits results in truncation or errors.
+
+    **Max Tokens:** A setting that limits the length of model responses by specifying the maximum number of tokens the model can generate in a single output.
+
+    **Truncation:** The process of cutting off text when it exceeds the maximum token limit of a model. This can result in loss of semantic context if not handled properly.
+  </Accordion>
+  <Accordion title="Model Architecture and Selection">
+    **Base Model Architecture:** The underlying neural network structure of an AI model, such as Transformer, ResNet, or BERT. This determines the model's capabilities and performance characteristics.
+
+    **Model Architecture:** The specific design and structure of a neural network, including the number of layers, types of connections, and overall organization of the model.
+
+    **Embedding Model:** A specialized model that converts text into numerical vector representations (embeddings) that capture semantic meaning for similarity-based search and retrieval.
+
+    **Temperature:** A parameter that controls the randomness and creativity of model outputs. Higher temperatures produce more diverse and creative responses, while lower temperatures produce more focused and deterministic outputs.
+
+    **Quantization Rank:** A parameter that determines the level of quantization applied to a model, affecting the trade-off between model size, speed, and accuracy.
+  </Accordion>
+  <Accordion title="System and Infrastructure">
+    **ChromaDB:** A vector database used by webAI to store and retrieve embeddings efficiently. It's optimized for similarity search and is commonly used in RAG systems.
+
+    **Qdrant:** An enterprise-scale vector database that provides faster and more scalable storage for large document repositories compared to ChromaDB.
+
+    **MLX:** Apple's machine learning framework optimized for Apple Silicon. Many embedding models available in webAI are MLX-compatible for efficient processing on Apple hardware.
+
+    **Hugging Face:** A platform that hosts pre-trained AI models and datasets. webAI integrates with Hugging Face to provide access to a wide variety of models, many of which may require API keys for access.
+
+    **API Key:** A security credential used to authenticate access to external services like Hugging Face, OpenAI, Claude, or other AI model providers.
+
+    **SDK (Software Development Kit):** A collection of tools and libraries that allow developers to integrate webAI functionality into their applications. webAI provides Python and Swift SDKs for programmatic interaction.
+  </Accordion>
+  <Accordion title="Model Evaluation and Quality">
+    **Faithfulness:** A metric that measures how accurately a model's generated content reflects the source information it was trained on or retrieved from.
+
+    **Evaluator API Key:** API credentials required to enable external evaluation services that assess model performance using third-party providers like Groq, OpenAI, Claude, or Gemini.
+
+    **Evaluation Scores:** Quantitative metrics that measure various aspects of model performance, such as accuracy, relevance, and faithfulness to source material.
+  </Accordion>
+  <Accordion title="Networking and Deployment">
+    **Port:** A network endpoint that allows communication between different services. webAI uses specific ports for API access, webFrame interfaces, and internal communication.
+
+    **Firewall:** A security system that controls network traffic based on predefined rules. Proper firewall configuration is essential for webAI deployment and external access.
+
+    **Thunderbolt:** A high-speed connection interface used for cluster deployment, enabling fast data transfer between computers in a webAI cluster setup.
+  </Accordion>
+  <Accordion title="Compatibility and Requirements">
+    **Device Compatibility:** The range of hardware devices and operating systems that are supported by webAI, including specific requirements for optimal performance.
+
+    **System Requirements:** The minimum hardware and software specifications needed to run webAI effectively, including CPU, memory, storage, and operating system requirements.
+  </Accordion>
+</AccordionGroup>

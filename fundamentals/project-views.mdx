@@ -1,0 +1,86 @@
+---
+title: "Project Views"
+---
+
+## Navigator Views
+
+Within your projects in Navigator, you can interact with and edit flows that are running locally using the View options located at the top of the Canvas. These views provide different ways to build, test, and manage your AI workflows.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/project_views_images/image_1.png" width="420" height="88" alt="Screenshot 2025-11-06 at 12.45.45 PM.png" />
+</Frame>
+
+---
+
+### Canvas View
+
+The Canvas view is where you design and configure your AI workflows. This is Navigator's main workspace, the creation area where you bring your AI ideas to life through visual programming.
+
+In Canvas view, you can:
+
+- Add and connect elements to create your flow from scratch using the Element Drawer
+- Modify existing flows from the Featured Templates section
+- Adjust an element's settings by selecting it directly on the Canvas. This opens the configuration panel for that specific element
+
+When your flow is ready to test, click Run to execute it locally. Navigator will automatically provision and assign your computer and local camera (when Object Detection is used) to any Element you place on Canvas, providing a complete local test environment.
+
+<Note>
+For detailed information about Canvas functionality and available configuration options, see the [Canvas Guide](/navigator-overview/canvas-guide) article.
+</Note>
+
+---
+
+### Preview View
+
+The Preview view allows you to interact directly with your chatbot when using an LLM Element. After selecting Run for your flow, and once the run completes successfully, Navigator will automatically switch to the Preview tab.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/project_views_images/image_2.png" width="1506" height="1584" alt="Screenshot 2025-11-06 at 12.53.02 PM.png" />
+</Frame>
+
+In this view, you can:
+
+- Chat with your LLM-powered chatbot in real time
+- Edit your element's settings directly within the Preview, without returning to the Canvas
+- Test different prompts and configurations immediately
+
+To make adjustments to your element's settings, first click the dropdown arrow next to the Run button and select Stop. This will stop your flow and enable the settings panel for editing. Once your changes are complete, click Run again at the top of the Preview page to restart your flow and test your updates.
+
+<Note>
+The Preview view is specifically designed for LLM Elements and provides the most efficient way to iterate on chatbot configurations without rebuilding your entire flow.
+</Note>
+
+---
+
+### Apps View
+
+When a flow runs successfully without errors, Navigator automatically creates an Application that appears under the Apps toggle. This view bridges the gap between prototyping and production.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/project_views_images/image_3.png" width="2976" height="672" alt="Screenshot 2025-11-06 at 12.58.59 PM.png" />
+</Frame>
+
+Within the Apps tab, you can:
+
+- View and manage all deployments and applications associated with your flow
+- Monitor the status and performance of running deployments
+- Create new deployments directly from this view by clicking the dropdown next to the Active button
+- Easily redeploy previous versions of your flow
+- Manage existing deployments in one centralized location
+
+<Info>
+**Deployments** allow you to decouple running flows from the Navigator UI, enabling them to operate independently. This means your AI workflows can continue running even when Navigator is closed, making them suitable for production environments.
+</Info>
+
+---
+
+### Switching Between Views
+
+You can easily switch between Canvas, Preview, and Apps views using the tabs at the top of your Navigator interface. Each view serves a specific purpose in your AI development workflow:
+
+- **Canvas:** Design and configure your flows
+- **Preview:** Test and interact with LLM-based flows
+- **Apps:** Deploy and manage production workflows
+
+This multi-view approach allows you to seamlessly transition from prototyping to testing to deployment, all within the same Navigator environment.
+

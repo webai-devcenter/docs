@@ -1,48 +1,110 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mint Starter Kit",
+  "name": "webAI Documentation",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#FFFFFF",
+    "light": "#A3A3A3",
+    "dark": "#A3A3A3"
   },
   "favicon": "/favicon.svg",
   "navigation": {
     "tabs": [
       {
-        "tab": "Guides",
+        "tab": "Home",
         "groups": [
           {
-            "group": "Getting started",
+            "group": " ",
             "pages": [
-              "index",
-              "quickstart",
-              "development"
+              "index"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Getting Started",
+        "groups": [
+          {
+            "group": "GETTING STARTED",
+            "expanded": true,
+            "pages": [
+              "getting-started/introduction",
+              "getting-started/system-requirements",
+              "getting-started/installation-and-setup",
+              "getting-started/webai-fundamentals",
+              "getting-started/use-cases",
+              "getting-started/terminology"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Navigator",
+        "groups": [
+          {
+            "group": "OVERVIEW",
+            "pages": [
+              "navigator-overview/navigator",
+              "navigator-overview/featured-templates",
+              "navigator-overview/canvas-guide",
+              "navigator-overview/clusters-overview",
+              "navigator-overview/deployments-overview",
+              "navigator-overview/ai-models-guide",
+              "navigator-overview/my-devices-overview",
+              "navigator-overview/organizations-user-management"
             ]
           },
           {
-            "group": "Customization",
+            "group": "BUILDING WORKFLOWS",
             "pages": [
-              "essentials/settings",
-              "essentials/navigation"
+              "building-workflows/llm-chatbot-template",
+              "building-workflows/build-custom-llm-chatbot",
+              "building-workflows/building-knowledge-graph-rag-flow",
+              "building-workflows/building-object-detection-flow-without-dataset",
+              "building-workflows/building-object-detection-with-custom-dataset",
+              "building-workflows/building-image-classification-with-custom-dataset",
+              "building-workflows/sample-datasets-and-models"
             ]
           },
           {
-            "group": "Writing content",
+            "group": "FUNDAMENTALS",
             "pages": [
-              "essentials/markdown",
-              "essentials/code",
-              "essentials/images",
-              "essentials/reusable-snippets"
+              "fundamentals/element-registry",
+              "fundamentals/supported-llm-base-models",
+              "fundamentals/project-views",              
+              "fundamentals/controller-mode-vs-worker-mode",
+              "fundamentals/exporting-and-importing-canvas",
+              "fundamentals/sharding-vs-replication",
+              "fundamentals/chunking-guidelines",
+              "fundamentals/embedding-token-limits",
+              "fundamentals/top-k-element-setting",
+              "fundamentals/webframe",
+              "fundamentals/log-viewer",
+              "fundamentals/networking-and-firewall-ports",
+              "fundamentals/thunderbolt-5-setup"
             ]
-          },
+          }
+        ]
+      },
+      {
+        "tab": "Companion",
+        "groups": [
           {
-            "group": "AI tools",
+            "group": "OVERVIEW",
             "pages": [
-              "ai-tools/cursor",
-              "ai-tools/claude-code",
-              "ai-tools/windsurf"
+              "companion/companion",
+              "companion/companion-basics"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Video Library",
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "video-library/video-library-home"
             ]
           }
         ]
@@ -51,47 +113,45 @@
         "tab": "API reference",
         "groups": [
           {
-            "group": "API documentation",
+            "group": "API DOCUMENTATION",
             "pages": [
               "api-reference/introduction"
             ]
           },
           {
-            "group": "Endpoint examples",
+            "group": "Endpoints",
             "pages": [
-              "api-reference/endpoint/get",
-              "api-reference/endpoint/create",
-              "api-reference/endpoint/delete",
-              "api-reference/endpoint/webhook"
+              "api-reference/endpoint/chat-completions",
+              "api-reference/endpoint/completions",
+              "api-reference/endpoint/responses",
+              "api-reference/endpoint/models"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Changelog",
+        "groups": [
+          {
+            "group": " ",
+            "pages": [
+              "changelogs/navigator_changelog",
+              "changelogs/companion_changelog"
             ]
           }
         ]
       }
-    ],
-    "global": {
-      "anchors": [
-        {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
-        },
-        {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
-        }
-      ]
-    }
+    ]
   },
   "logo": {
-    "light": "/logo/light.svg",
-    "dark": "/logo/dark.svg"
+    "light": "/logo/webai_dark.svg",
+    "dark": "/logo/webai_light.svg"
   },
   "navbar": {
     "links": [
       {
         "label": "Support",
-        "href": "mailto:hi@mintlify.com"
+        "href": "https://support.webai.com/hc/en-us/requests/new"
       }
     ],
     "primary": {
@@ -112,11 +172,18 @@
      "vscode"
    ]
   },
+  "api": {
+    "playground": {
+      "display": "interactive",
+      "proxy": false
+    }
+  },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "linkedin": "https://www.linkedin.com/company/webai-official/",
+      "x": "https://x.com/thewebai",
+      "youtube": "https://www.youtube.com/@webAI-Official",
+      "discord": "https://discord.com/invite/RfA3RstBrc"
     }
   }
 }

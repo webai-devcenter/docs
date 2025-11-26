@@ -1,33 +1,113 @@
 ---
-title: 'Introduction'
-description: 'Example section for showcasing API endpoints'
+title: "Introduction"
+description: "Welcome to the webAI LLM API documentation"
 ---
 
+## Overview
+
+The LLM API allows external applications to interact with your LLM workflows created in Navigator. This integration enables you to build applications that leverage your custom LLM flows.
+
+The API is compatible with OpenAI's standard format, making it easy to integrate with existing tools and libraries that support the OpenAI API.
+
+## Getting Started
+
+### Prerequisites
+
+Before using the API, you need to set up your LLM workflow in Navigator with the API element properly configured.
+
 <Note>
-  If you're not looking to build API reference documentation, you can delete
-  this section by removing the api-reference folder.
+  See our [Getting Started with the LLM Chatbot Template](/building-workflows/llm-chatbot-template) guide to create a basic flow.
 </Note>
 
-## Welcome
+### Setting Up the API Element
 
-There are two ways to build API documentation: [OpenAPI](https://mintlify.com/docs/api-playground/openapi/setup) and [MDX components](https://mintlify.com/docs/api-playground/mdx/configuration). For the starter kit, we are using the following OpenAPI specification.
+Add the API element to your LLM flow and connect it properly:
 
-<Card
-  title="Plant Store Endpoints"
-  icon="leaf"
-  href="https://github.com/mintlify/starter/blob/main/api-reference/openapi.json"
->
-  View the OpenAPI specification file
-</Card>
+**Required Elements:**
+- **LLM Element** - Core language model component
+- **API Element** - Enables external API access
+
+**Required Connections:**
+- **Input** - Connect LLM element input to the API element output
+- **Output** - Connect LLM element output back to your API input
+- This creates the response loop for continuous interaction
+
+### Configuring API Element Settings
+
+In the API element settings panel, configure:
+- **API Key** - Create a custom alphanumeric key for authentication
+- **Port Address** - Default is 10105 (automatically assigned after the API element is run or deployed)
+
+<Warning>
+  The canvas inside of Navigator must be running or deployed for the API Element to be discoverable.
+</Warning>
 
 ## Authentication
 
-All API endpoints are authenticated using Bearer tokens and picked up from the specification file.
+API keys should be provided via HTTP Bearer authentication:
 
-```json
-"security": [
-  {
-    "bearerAuth": []
-  }
-]
+```bash
+Authorization: Bearer <WEBAI_API_KEY>
 ```
+
+Replace `<WEBAI_API_KEY>` with the API key you configured in the API element settings.
+
+## Base URL
+
+The API is accessible at:
+
+```
+http://<host>:<port>
+```
+
+For local development, this is typically:
+
+```
+http://localhost:10501
+```
+
+## Available Endpoints
+
+The API provides the following endpoints:
+
+- **POST** `/v1/chat/completions` - Chat-based completions (supports text and images)
+- **POST** `/v1/completions` - Legacy text completions
+- **POST** `/v1/responses` - OpenAI Responses API format
+- **GET** `/v1/models` - List available models
+
+## Streaming Support
+
+The API supports streaming responses using Server-Sent Events (SSE). Control streaming behavior with the `stream` parameter:
+
+- `stream=false` - Wait for the complete response before returning (default)
+- `stream=true` - Stream data as it generates using server-sent events
+
+<Info>
+  For streaming implementation details, see the [OpenAI Streaming documentation](https://platform.openai.com/docs/api-reference/chat/streaming).
+</Info>
+
+## Multimodal Support
+
+The chat completions endpoint supports multimodal inputs, allowing you to send both text and images in your requests.
+
+<Note>
+  Ensure your selected LLM model supports multimodal inputs. Models with an image icon in the LLM Element Settings support multimodal capabilities.
+</Note>
+
+## Testing with Postman
+
+Download our Postman collection to quickly test the API endpoints:
+
+<Card title="Download Postman Collection" icon="download" href="https://downloads.webai.com/marketing/webAI_LLM_API_Postman_Collection.json.zip">
+  Import this collection into Postman to begin testing all available endpoints
+</Card>
+
+For instructions on importing collections, see [Postman's import documentation](https://learning.postman.com/docs/getting-started/importing-and-exporting/importing-and-exporting-overview/).
+
+## Need Help?
+
+If you encounter any issues or have questions:
+- Check that your canvas is running or deployed in Navigator
+- Verify your API key is correct
+- Ensure the port address matches your API element configuration
+- For multimodal requests, confirm your model supports image inputs

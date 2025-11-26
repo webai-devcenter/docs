@@ -1,0 +1,140 @@
+---
+title: "Building an Object Detection Flow without a Dataset"
+sidebarTitle: "Object Detection No Dataset"
+---
+
+This article shows you how to quickly set up an object detection workflow using pre-trained models without needing to create your own dataset. You'll learn to drag and drop an Object Detector element onto a canvas, connect it with input elements (like Camera or Media Loader) and output elements (like Output Preview), then run the flow to start detecting objects in real-time.
+
+The guide covers practical use cases across industries like security, retail, manufacturing, and healthcare, plus provides examples of more advanced workflows like object tracking and filtered detection. It's perfect for beginners who want to get started with AI-powered object detection immediately using the platform's built-in YOLOv8 models.
+
+---
+
+## Use Cases
+
+The following are industry examples on how you can utilize an object detection flow!
+
+- **Security & Surveillance** → Detect intruders, weapons, or suspicious activities
+- **Traffic Management** → Count vehicles, monitor traffic violations, parking enforcement
+- **Manufacturing** → Quality control, defect detection, assembly line monitoring
+- **Retail** → Inventory management, theft prevention, customer behavior analysis
+- **Healthcare** → Medical imaging, patient monitoring, equipment tracking
+- **Agriculture** → Crop monitoring, pest detection, livestock management
+- **Sports Analytics** → Player tracking, performance analysis, game statistics
+- **Warehouse Operations** → Package sorting, inventory tracking, safety monitoring
+- **Environmental Monitoring** → Wildlife tracking, pollution detection, conservation efforts
+- **Construction** → Safety compliance, equipment tracking, progress monitoring
+
+---
+
+## Quick Start
+
+### Step 1: Open a Blank Canvas
+
+<Steps>
+  <Step title="Create New Project">
+    Inside Navigator, from the Projects page click Create
+  </Step>
+  <Step title="Name Your Project">
+    Choose either Blank Canvas or Blank Project and name your project.
+  </Step>
+</Steps>
+
+### Step 2: Object Detector Element Configuration
+
+<Steps>
+  <Step title="Add Object Detector Element">
+    Drag and drop the Object Detector element onto your canvas.
+  </Step>
+  <Step title="Open Element Settings">
+    Click on the element to open its settings
+  </Step>
+  <Step title="Configure Settings">
+    You can use the default settings for the remaining options or adjust them as needed.
+
+    The Model Size setting controls the size and complexity of the YOLOv8 model used. Larger models are more accurate but require more computing resources.
+
+    - **n – Nano:** Fastest, lowest accuracy
+    - **s – Small:** Lightweight, slightly better accuracy
+    - **m – Medium:** Balanced in speed and performance
+    - **l – Large:** Slower, more accurate
+    - **x – Extra Large:** Most accurate, highest resource use
+
+    You can use the default settings for the remaining options or adjust them as needed.
+
+    For additional information on the different settings for the element, visit the Object Detector in the [Element Registry](/fundamentals/element-registry).
+  </Step>
+</Steps>
+
+### Step 3: Detect Objects
+
+Now that we have our Object Detector added to our canvas, you need to connect an Input and Output element to create a complete workflow to begin detecting objects.
+
+<Steps>
+  <Step title="Add Input Element">
+    **Input Elements** - this element will provide the media for the detector to analyze. For the most basic setup, we recommend one of the following:
+
+    - **Camera:** live webcam or video feed
+    - **Media Loader:** Upload static images or video files
+  </Step>
+  <Step title="Add Output Element">
+    **Output Elements** - This element will display or save the results of the detection. For the most basic setup, we recommend one of the following:
+
+    - **Output Preview:** View live detections with bounding boxes directly inside Navigator
+    - **Image Inference Saver:** Save the processed images or video frames to your computer
+
+    For a comprehensive list of all compatible elements, as well as additional information on the different types of elements, see our [Element Registry](/fundamentals/element-registry).
+  </Step>
+  <Step title="Connect and Run">
+    Attach the three elements to create a flow and then click on the <kbd>Run</kbd>
+
+     button!
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_object_detection_without_dataset_images/image_1.png"
+        width="2444"
+        height="753"
+        alt="Flow example"
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+---
+
+## Example Object Workflows without a Dataset
+
+### Basic Setup - what we did here!
+
+Camera → Object Detector → Output Preview
+
+### Advanced Tracking
+
+Camera → Object Detector → Object Tracker → Detection Counter
+
+Can be used to count how many times an object appears within a camera.
+
+### Filtered Detection
+
+Camera → Object Detector → Class Filter → Output Preview
+
+This flow can be created to filter out images defined by certain classes such as cars, bicycles, etc.
+
+### Different Object Elements
+
+- **Object Detection Inference** - Leverages a trained image dataset to analyze new images or video streams and generate predictions
+- **Object Detector** - Leverages a pre-trained model (YOLOv8) to identify objects within new images or video streams
+- **Object Detection Trainer** - Trains an object detection model by utilizing a packaged image dataset to detect specific objects in a set of images or video streams.
+- **Object Tracker** - Tracks an object (or multiple objects) through a video stream
+
+---
+
+## Quick Tips
+
+- If you'd like to add tracking to your flow, use the Object Tracker element after detection.
+- If you are wanting to detect only specific objects, add the Class Filter element to your flow.
+- If you need to save your results, add in the Image Inference Saver to your flow.
+- If you want to see a live view, use the Output Preview element in your flow.
+- If you need to count the number of times an object appears, use the Object Detection Counter element in your flow.
+- For more information on the different elements discussed in this document, visit our [Element Registry!](/fundamentals/element-registry)

@@ -1,0 +1,318 @@
+---
+title: "webAI Fundamentals"
+---
+
+## Understanding How webAI Works
+
+Now that you've installed webAI and built your first AI application, let's explore the core concepts that make webAI unique. Understanding these fundamentals will help you build more effective AI solutions and make the most of the platform.
+
+---
+
+## The webAI Philosophy
+
+### Local-First AI
+
+webAI runs entirely within your environment—no data leaves your premises. Your data, your models, your rules. No vendor lock-in, no cloud surveillance.
+
+**What This Means:**
+
+- **Complete Privacy:** Your conversations and data never leave your device
+
+- **No Internet Required:** AI applications work offline after initial setup
+
+- **Full Control:** You own and control every aspect of your AI stack
+
+- **Predictable Costs:** No usage-based fees or surprise cloud bills
+
+**Why It Matters:**
+
+- **Data Security:** Sensitive information stays completely private
+
+- **Compliance:** Easier to meet regulatory requirements
+
+- **Reliability:** No dependence on external services or internet connectivity
+
+- **Performance:** No network latency for AI responses
+
+### Specialized Intelligence
+
+Build AI that genuinely understands your business. Models are trained on your data, aligned with your needs, and embedded directly into workflows.
+
+**Traditional AI vs webAI:**
+
+- **Generic Cloud AI:** One-size-fits-all models that know everything but excel at nothing specific
+
+- **webAI Approach:** Specialized models trained on your data for your specific use cases
+
+---
+
+## Core Components
+
+### Navigator: Your AI Development Environment
+
+Navigator is where you design, build, and customize AI applications using a visual workflow builder.
+
+**Key Concepts:**
+
+**Visual Workflows:**
+
+- **Elements:** Individual components that perform specific functions (AI models, data processing, APIs)
+
+- **Connections:** Lines that show how data flows between elements
+
+- **Canvas:** The workspace where you design your AI application logic
+
+**Templates:**
+
+- **Featured Templates:** Pre-built workflows created by webAI experts
+
+- **Customizable:** Modify templates to fit your specific needs
+
+- **Starting Points:** Ready-to-use solutions for common AI applications
+
+**Development Process:**
+
+- **Design:** Create or modify workflows using visual elements
+
+- **Configure:** Set parameters and options for each element
+
+- **Deploy:** Run your workflow to make it available for use
+
+- **Iterate:** Modify and improve based on results
+
+### Companion: Your AI Delivery Interface
+
+Companion is your private and personal AI chat that lives on your desktop, connecting you to your Navigator-built applications.
+
+**Key Features:**
+
+**Model Management:**
+
+- **Multiple Models:** Switch between different AI models and deployments
+
+- **Conversation Threads:** Maintain separate conversations with each model
+
+- **Status Monitoring:** See which models are active and ready to use
+
+**Private Chat Interface:**
+
+- **Desktop Application:** Dedicated chat interface for your AI models
+
+- **Local Conversations:** All interactions happen on your device
+
+- **Attachment Support:** Share files and documents with your AI models
+
+**Connection to Navigator:**
+
+- **Automatic Detection:** Deployed models appear automatically in Companion
+
+- **Real-time Updates:** Changes in Navigator reflect immediately in Companion
+
+- **Seamless Integration:** Single sign-on between Navigator and Companion
+
+---
+
+## Understanding Deployments and Clusters
+
+### What is a Deployment?
+
+A deployment assigns a flow to a cluster or group of devices, so that it is decoupled from running in Navigator, on your local machine.
+
+**Development vs Deployment:**
+
+- **Development:** Building and testing workflows inside Navigator
+
+- **Deployment:** Running workflows on designated devices for actual use
+
+- **Production:** Scaled deployments serving multiple users or applications
+
+### Clusters Explained
+
+**What is a Cluster:** A cluster is a group of devices that can run your AI models. When models are deployed to your cluster they will automatically appear in the left sidebar of Companion.
+
+**Why Use Clusters:**
+
+- **Resource Distribution:** Spread AI workload across multiple devices
+
+- **Scalability:** Add more devices as your needs grow
+
+- **Reliability:** Redundancy across multiple machines
+
+- **Performance:** Dedicated hardware for AI processing
+
+**Cluster Types:**
+
+- **Single Device:** Your local machine (good for development and personal use)
+
+- **Multiple Devices:** Several machines working together (team or production use)
+
+- **Specialized Hardware:** Dedicated AI processing devices
+
+---
+
+## AI Models and Training
+
+### Model Selection
+
+For most use cases that require training or inference on consumer hardware, we recommend using a 7B parameter model. This is the sweet spot between model performance and size for consumer devices.
+
+**Understanding Model Types:**
+
+- **Parameter Count:** Generally, larger models offer better performance but require more computing resources.
+
+- **Memory Requirements:** Each model requires a specific amount of RAM. Choose models that fit your hardware capabilities.
+
+- **Specialization:** Some models are optimized for specific tasks (code generation, instruction following, document analysis).
+
+### Custom Training
+
+webAI supports training custom language models on your own data:
+
+**Training Process:**
+
+1. **Dataset Preparation:** Organize your training data
+2. **Model Selection:** Choose appropriate base model for fine-tuning
+3. **Training Configuration:** Set parameters and training options
+4. **Training Execution:** Run the training process on your hardware
+5. **Evaluation:** Test and validate your custom model
+
+**Benefits of Custom Training:**
+
+- **Domain Expertise:** Models that understand your specific field
+
+- **Company Knowledge:** AI trained on your internal documentation and processes
+
+- **Terminology:** Models that use your industry-specific language
+
+- **Behavior:** AI that responds in your preferred style and tone
+
+---
+
+## Data Flow and Processing
+
+### How Data Moves Through webAI
+
+**Input Processing:**
+
+1. **User Input:** Text, files, or data entered into the system
+
+2. **Element Processing:** Each workflow element processes data according to its function
+
+3. **Model Inference:** AI models generate responses or analyze data
+
+4. **Output Formatting:** Results are formatted for display or further processing
+
+**Key Processing Elements:**
+
+**Document Processing:**
+
+- **OCR Elements:** Convert images and PDFs to text
+
+- **Chunking:** Break large documents into manageable pieces
+
+- **Embedding:** Create mathematical representations of text for search and analysis
+
+**AI Model Elements:**
+
+- **LLM Chat:** Conversational AI for questions and responses
+
+- **Document QnA:** AI that can answer questions about uploaded documents
+
+- **Custom Models:** Your trained models for specific tasks
+
+**Data Management:**
+
+- **Vector Indexing:** Store and search document embeddings
+
+- **Database Integration:** Connect to existing data sources
+
+- **API Connections:** Integrate with external services and systems
+
+---
+
+## Security and Privacy
+
+### How webAI Protects Your Data
+
+**Local Processing:**
+
+- All AI inference happens on your devices
+
+- No data transmission to external servers
+
+- Complete control over data access and storage
+
+**Network Architecture:**
+
+- **Peer-to-Peer Communication:** Direct device-to-device connections when needed
+
+- **Local Network Only:** No external network requirements for AI processing
+
+- **Encrypted Connections:** Secure communication between webAI components
+
+**Data Ownership:**
+
+- **Your Models:** All trained models belong to you
+
+- **Your Data:** Training data and conversations remain under your control
+
+- **Your Infrastructure:** Run on hardware you own and manage
+
+### Potential Network Considerations
+
+**VPN Interference:** Active VPN clients, especially those that route all traffic, can interfere with local network discovery and P2P communication.
+
+**Corporate Networks:** Corporate firewalls that block P2P traffic can prevent the Network layer from functioning correctly. Some restrictive NAT types may prevent direct connections between nodes.
+
+---
+
+## Best Practices
+
+### Getting Started
+
+**Start Small:**
+
+- Begin with Featured Templates to understand workflows
+
+- Use recommended model sizes for your hardware
+
+- Focus on one use case before expanding
+
+**Learn Incrementally:**
+
+- Master basic workflows before attempting custom training
+
+- Understand each element's purpose before building complex flows
+
+- Test frequently during development
+
+### Scaling Up
+
+**Hardware Planning:**
+
+- Monitor performance and resource usage
+
+- Plan hardware upgrades based on actual needs
+
+- Consider dedicated devices for production deployments
+
+**Workflow Design:**
+
+- Keep workflows simple and focused
+
+- Design for maintainability and modification
+
+- Document your custom workflows and configurations
+
+**Team Collaboration:**
+
+- Establish consistent naming conventions
+
+- Share successful workflow patterns
+
+- Plan cluster architecture for team access
+
+---
+
+Ready to dive deeper? Start with Navigator Basics to master workflow building, or explore our Use Cases to see what others are building with webAI.
+

@@ -1,0 +1,57 @@
+---
+title: "Networking & Firewall Ports"
+sidebarTitle: "Networking & Firewall Ports"
+mode: wide
+---
+
+This article provides an overview of how webAI handles networking and port configuration to ensure a performant and secure communication between services and applications.
+
+<Note>
+  **Homeport** in the following chart refers to the currently deployed homeport that WebAI manages. This document does not cover any homeport usage that is custom.
+</Note>
+
+<Note>
+  **Destination Port** in the following chart is used as both source or destination, where inbound requests are bound to that port, and outbound requests use that port as destination port.
+</Note>
+
+### Networking & Ports
+
+| **Source** | **Destination Port** | **Assignment** | **Direction** | **Destination** | **Destination IP** | **External/Internal** | **Protocol** |
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+| Navigator | 443 | HTTPS | Outbound | PyPi, Python Package | N/A | External | TCP |
+| Navigator | 443 | HTTPS | Inbound/Outbound | gitlab | N/A | External | TCP |
+| Network | 443 | HTTPS | Outbound | DNS TXT Relays | _dnsaddr.relays.webai.com<br/>DigitalOcean CIDR | External | TCP |
+| Network | 443 | HTTPS | Outbound | bootstrap.webai.com | N/A | External | TCP |
+| Navigator | 443 | HTTPS | Outbound | Auth0 | https://auth0.com/docs/secure/security-guidance/data-security/allowlist#public-cloud | External | TCP |
+| Navigator / Runtime | 443 | HTTPS | Outbound | Element Registry | 135.237.109.153 | External | TCP |
+| Navigator | 443 or 22 | HTTPS or SSH | Outbound | Github | https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-githubs-ip-addresses | External | TCP |
+| Navigator  | 443 | HTTPS | Inbound/Outbound | Hugging Face | https://huggingface.co/api/* | External | TCP |
+| Runtime | 3001 | HTTP | Inbound/Outbound | Navigator Controller | N/A | Internal | TCP |
+| Network | 4972 | TLS / QUIC | Inbound/Outbound | Homeport, Navigator workers and Controllers | 35.153.89.233/32 | External | UDP |
+| Network | 4972 | TLS / QUIC | Outbound | Navigator Workers | N/A | Internal | UDP |
+| Network | 4972 | TLS / QUIC | Inbound | Navigator | N/A | Internal | UDP |
+| Network | 4972 | TLS / QUIC  | Inbound | Remote Worker | N/A | Internal (could be external as well) | UDP |
+| Navigator | 1882 | MQTT-WS | Inbound/Outbound | Runtime | N/A | Internal | TCP |
+| Runtime | 1882 and 1883 | MQTT | Inbound/Outbound | Runtime | N/A | Internal | TCP |
+| Runtime | 10105 | HTTPS | Inbound | Runtime | N/A | Internal | TCP |
+| Network | 9090  | HTTP | Outbound | Prometheus (configurable) | N/A | Internal | TCP |
+| Deployments| Ports starting at 10501+ | &lt;Customer&gt; | Inbound | &lt;Any&gt; | N/A | Internal | TCP |
+| Homeport | 443 | HTTPS | Outbound | Auth0 (https://webai.us.auth0.com/.well-known/jwks.json) |   | External | TCP |
+| Navigator / Runtime / Network | 443 | HTTPS | Outbound | Statsig |   | External | TCP |
+| Navigator / Runtime / Network | 443 | HTTPS | Outbound | Datadog |   | External | TCP |
+| Navigator / Runtime / Network | 443 | HTTPS | Outbound | Sentry |   | External | TCP |
+| Navigator | 443 | HTTPS | Inbound / Outbound | WebAI Onboarding Service | tbc | External | TCP |
+| Navigator | 443 | HTTPS | Inbound / Outbound | WebAI Onboarding Service | tbc | External | TCP |
+| Runtime | 443 | WSS | Inbound / Outbound | Homeport | https://homeport.webai.com/ | External | TCP |
+| Runtime | 443 | HTTPS | Inbound / Outbound | Homeport | https://homeport.webai.com/ | External | TCP |
+
+### Known Issues & Limitations
+
+We believe in transparency and want to ensure our customers are aware of any known limitations in our platform. 
+
+- **VPN Interference:** Active VPN clients, especially those that route all traffic, can interfere with local network discovery and P2P communication
+- **NAT Traversal:** While we have robust NAT traversal capabilities, some restrictive NAT types (Symmetric NAT) may prevent direct P2P connections between nodes.
+- **Firewall Restrictions:** Corporate firewalls that block P2P traffic can prevent the Network layer from functioning correctly. 
+
+For more information on system requirements, please visit our [System Requirements page](/getting-started/system-requirements). 
+

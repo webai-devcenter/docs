@@ -1,0 +1,321 @@
+---
+title: "Deployments Overview"
+description: "Deploy AI Flows to run persistently on Clusters"
+sidebarTitle: "Deployments Tab"
+---
+
+Navigator's Canvas is a great tool to test out your AI Flows and quickly iterate on them. Running a Flow is coupled to the Navigator application though, which means that the moment you close Navigator or shut down your machine, any flow that might still be running will be stopped.
+
+In an actual production setup you will probably want to decouple running a flow from Navigator. This can be achieved via "Deployments", a feature that allows you to assign flows to a Cluster. In this article we will cover the components of the Deployments tab as well go through creating a deployment.
+
+---
+
+## Overview
+
+### Deployments Tab
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_1.png" alt="Deployments Tab" />
+</Frame>
+
+### Deployment Details
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_2.png" alt="Deployment Details" />
+</Frame>
+
+#### 1. Deployment Type Filter
+
+This filter allows you to see all your deployments or filter between Local versus Remote deployments.
+
+#### 2. Deployment Name and Description
+
+When creating a deployment you will provide a Name (required) and a Description (optional). By clicking on the Deployment Name you will see the Deployment Details page. Naming Deployments is important as Members in your Organization can see these Deployments.
+
+#### 3. Status
+
+The status of the Deployment. There are three statuses that you will see from these Deployments.
+
+- `Active`
+- `Stopped`
+- `Deploying`
+
+#### 4. Organization
+
+The Organization of the Cluster that the Deployment has been assigned to. For more information on Organizations see our [Organizations and User Management](/navigator-overview/organizations-user-management) guide.
+
+#### 5. Cluster
+
+The Cluster that the Deployment has been assigned to. Clicking on this Cluster will take you to the Cluster Details page. For more information on Clusters see our [Clusters Overview](/navigator-overview/clusters-overview) guide.
+
+#### 6. Version
+
+The version of the Flow that is assigned to this Deployment. We will go into more detail regarding saving and creating versions of Flow in this article.
+
+#### 7. Elements
+
+The number of Elements in the saved version of a Flow.. On the Deployment Details page you will see the specific Elements attached to this Deployment and which Device(s) each Element is assigned to.
+
+#### 8. Edit Button `...`
+
+The edit button next to a Deployment allows you to Edit/Rename a Deployment. Stop a Deployment. Delete a Deployment. You also have these same options inside of the Deployment Details page along with Exporting Logs for the Deployment. 
+
+#### 9. Add Deployment Button
+
+Clicking the Add Deployment button will begin the process of creating a new Deployment. There are several places where you can create a new Deployment. We will discuss each of those options in this article.
+
+#### 10. View Filter
+
+The view filter allows you to filter by certain Organizations these Deployments belong to. If you are a Member of several Organizations you should see all of those displayed in this dropdown and can select one to quickly filter to the Cluster Cards associated with that specific Organization.
+
+#### 11. API Configuration
+
+If your Deployment includes an API Element, this section in the Deployment Details page will display the information regarding that element including the API key, timeout, max requests, and max queued requests. You also have the option to `copy` a curl request. See our [API Reference](/api-reference/introduction) for more information. 
+
+---
+
+## Where do my Deployments run?
+
+Navigator is the interactive UI that allows you to create and manage your AI Flows, as well as deploy them to a given Hardware-setup. The execution of these Flows is handled by the webAI Runtime Agent. Within your local network, one of these Agents takes the role of the Controller. For as long as this Controller is running, the Flows are being executed.
+
+Currently, your Navigator installation will start Runtime for you in the background and default to Controller, which in turn means that Deployments are coupled to the lifetime of Navigator. We will soon give you the tools to set this up specifically to your needs.
+
+See our [Clusters Overview](/navigator-overview/clusters-overview) guide to learn more about Controller and Worker Modes of Navigator.
+
+---
+
+## Prerequisites Before Deployment
+
+Creating a Deployment inside of Navigator requires the following:
+ 
+- [Navigator installed](https://www.webai.com/contact-sales)
+- A saved Version of a Completed Flow
+- A [Cluster](/navigator-overview/clusters-overview) created
+- Nodes and Input devices readily available 
+
+---
+
+## Designing your Flow
+
+In order to create a Deployment, you start by designing your AI Flow on Canvas. Canvas will automatically provision and assign your computer and your local camera to any Element you pull onto Canvas, to provide a local test environment.
+
+See our Building Workflows guides like [Build Custom LLM Chatbot](/building-workflows/build-custom-llm-chatbot) for building a Flow and testing these Flows locally before Deployment.
+
+---
+
+## Saving a Version of your Flow
+
+Once you are happy with your Flow and it is ready to be deployed, you need to save a Version of it. A Flow Version is a snapshot of the Flow in its current configuration that you can refer to later on when creating Deployments.
+
+<Steps>
+  <Step title="Open the dropdown">
+    Click on the dropdown arrow next to the `Run` button in the top right of your Canvas.
+  </Step>
+  <Step title="Select Save For Deployment">
+    Click `Save For Deployment`
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_3.png" alt="Save For Deployment" />
+</Frame>
+
+<Note>
+  The keyboard shortcut for this action is `Command` + `Shift` + `V`
+</Note>
+  </Step>
+  <Step title="Insert Version Name">
+    Insert a Version Name and click `Save`.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_4.png" alt="Insert Version Name" />
+</Frame>
+  </Step>
+  <Step title="View Canvas Versions">
+    To view the Versions of this Canvas that have been previously saved - Click the dropdown next to the `Run` button → `View Canvas Versions`
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_5.png" alt="View Canvas Versions" />
+</Frame>
+
+<Note>
+  The keyboard shortcut for this action is `Command` + `Option` + `V`
+</Note>
+  </Step>
+  <Step title="View All Versions">
+    You will now see all the Versions associated with this specific Canvas.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_6.png" alt="All Versions" />
+</Frame>
+
+<Note>
+  The `Add` button here also allows you to add a version of this Canvas. This can be useful for referencing the naming conventions used on previous versions.
+</Note>
+  </Step>
+  <Step title="Rename or Delete Versions">
+    Click the three dots `...` next to a version to Rename or Delete that specific version of a Canvas.
+
+<Warning>
+  These versions do not repopulate the Elements and their configurations back on to a Canvas. If you need to save specific configured Flows for later reference see our [Exporting and Importing a Canvas or Project](/fundamentals/exporting-and-importing-canvas) guide.
+</Warning>
+  </Step>
+</Steps>
+
+---
+
+## Setting up your Devices
+
+As mentioned above, Navigator will auto-assign your computer and your camera to all Elements pulled onto it with respect to the type of Element. For a Deployment, you will likely want to use different Devices to deploy your AI Flow to. In order to make the Devices available for Deployments, as well as for a Canvas, you need to provision them on the My Devices page.
+
+Review the [My Devices Overview](/navigator-overview/my-devices-overview) for more information on configuring devices.
+
+---
+
+## Creating a Deployment
+
+Once you have met all prerequisites above you are ready to Deploy!
+
+<Steps>
+  <Step title="Open the dropdown">
+    Click on the dropdown arrow next to the `Run` button in the top right of your Canvas.
+  </Step>
+  <Step title="Select Deploy This Canvas">
+    Click `Deploy This Canvas`
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_7.png" alt="Deploy This Canvas" />
+</Frame>
+
+<Note>
+  The keyboard shortcut for this action is `Command` + `Option` + `L`
+</Note>
+  </Step>
+  <Step title="Provide Name and Description">
+    Provide a Name and Description for this Deployment → Click `Next`
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_8.png" alt="Name and Description" />
+</Frame>
+  </Step>
+  <Step title="Select Version">
+    Select the Version of the Canvas you would like to Deploy → Click `Next`
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_9.png" alt="Select Version" />
+</Frame>
+
+<Note>
+  If you didn't save a version of a canvas previously or you need to create a new version you will be able to create a new version from the Version dropdown on this page. 
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_10.png" alt="Create New Version" />
+</Frame>
+</Note>
+  </Step>
+  <Step title="Select Cluster">
+    Select the Cluster you would like this Deployment to be assigned to → Click `Next`
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_11.png" alt="Select Cluster" />
+</Frame>
+
+<Note>
+  You can also add a new Cluster during this deployment process by clicking the `Add Cluster` button.
+</Note>
+  </Step>
+  <Step title="Assign Elements to Devices">
+    In the Element Assignment step you can assign specific Elements to specific devices within a Cluster.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_12.png" alt="Element Assignment" />
+</Frame>
+
+<Warning>
+  If this is a webFrame based Element - like the `LLM` Element in the image above for example - there are two options. 
+  
+  1) **Sharded** - split one model across several selected machines. Each machine holds a portion of the model, and they cooperate to serve the requests. 
+  
+  2) **Replicated** - deploy full copies of the model on each selected machine. Requests are load balanced and processed in parallel across machines, so multiple requests can be served simultaneously. 
+  
+  For more information on see our [Sharding vs Replication](/fundamentals/sharding-vs-replication) guide. 
+  
+</Warning>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_13.png" alt="Sharding vs Replication" />
+</Frame>
+
+<Note>
+  You cannot Shard and Replicate a model. If a device is not showing up in the Sharded or Replicated dropdown, it must first be selectable. To make a device selectable in each dropdown you need to deselect it first using the checkmark boxes next to the device. Once deselected the device should populate in the other dropdown. 
+</Note>
+  </Step>
+  <Step title="Review Deployment Summary">
+    After you have assigned your Elements to each Cluster Device click `Next` and you will see a Deployment Summary where you can Edit of these previous steps.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_14.png" alt="Deployment Summary" />
+</Frame>
+  </Step>
+  <Step title="Create the Deployment">
+    Once you are ready to Deploy this Canvas click `Create`. You should see a toast notification that your deployment has been created. This may take some time depending on the size of the deployment.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/deployments_overview_images/image_15.png" alt="Deployment Created" />
+</Frame>
+  </Step>
+  <Step title="View Your Deployment">
+    You should now see your newly created deployment on the Deployments tab!
+  </Step>
+</Steps>
+
+---
+
+## Managing Deployments
+
+### Monitoring Deployments
+
+- Click into your deployment from the Deployments tab to see the Deployment Details
+
+  OR
+
+- Navigate to your Cluster and Select the Deployments tab
+- View the status and performance metrics of all active deployments
+
+### Stopping or Restarting Deployments
+
+- From the Deployments tab, locate your deployment and click on the Deployment name
+- Use the control buttons to stop, restart, or delete the deployment
+- You can also edit deployment settings by selecting the deployment and clicking Edit as well as Export Logs associated with that specific deployment.
+
+---
+
+## Best Practices
+
+- **Resource Allocation:** Distribute compute-intensive elements across multiple nodes for better performance
+- **Redundancy:** For critical applications, consider deploying to multiple nodes for failover capability
+- **Monitoring:** Regularly check deployment status and performance metrics
+- **Updates:** When updating a Flow, save a new version and create a new deployment rather than modifying existing ones
+
+---
+
+## Troubleshooting
+
+If your deployment isn't working as expected:
+
+- Check that all nodes are online and connected to the Cluster
+- Verify that input devices are properly configured and accessible
+- Review the logs for any error messages
+- Ensure the Flow runs correctly in Canvas before deployment
+- Confirm that nodes have sufficient resources (RAM, CPU) for their assigned elements
+
+By following these steps, you can successfully deploy your AI Flows to production using Clusters, enabling persistent operation without requiring Navigator to remain open.
+
+---
+
+## Next Steps
+
+- For information on Clusters, see our [Clusters Overview](/navigator-overview/clusters-overview) 
+- For some guidance on creating Flows, see our Quick Start guides in [Building Workflows](/building-workflows/build-custom-llm-chatbot)
+- For information on managing your devices, see the [My Devices Overview](/navigator-overview/my-devices-overview) 
+- For information on exporting and importing flows, see our [Exporting and Importing](/fundamentals/exporting-and-importing-canvas) guide 
+- For information on interacting with your deployments via the API, see our [API Reference](/api-reference/introduction) guide
+

@@ -1,0 +1,152 @@
+---
+title: "AI Models Guide"
+description: "Discover, test, and deploy Large Language Models from the AI Models tab in Navigator"
+sidebarTitle: "AI Models Tab"
+---
+
+The AI Models tab in Navigator provides access to a repository of available Large Language Models (LLMs) that can be leveraged to develop custom AI solutions. This tab enables users to search, filter, and sort model metadata, facilitating efficient discovery and selection of suitable models. Additionally, users can test and deploy models directly to Companion from within this tab.
+
+This article provides an overview of the AI Models tab's components and functionality. The following sections will delve into the filtering and sorting options, model metadata, and the process for testing and deploying individual models, providing an easy and quick way to get started chatting with LLM's locally!
+
+---
+
+## Overview
+
+<Frame>
+  <img
+    src="/images/ai_models_guide_images/image_1.png"
+    alt="AI Models Overview"
+    style={{ borderRadius:"0.5rem" }}
+  />
+</Frame>
+
+### 1. Search Bar
+
+The search bar on the AI models tab allows you to search by a variety of details and metadata to find a model you are looking for. You can search by most of the details that show up on the model details panel on the left hand side after clicking on the Model Card.
+
+### 2. Provider Filter
+
+The provider filter allows you to filter and search for a provider to filter by regarding each model. You can filter by one or many providers and each associated model card will show up.
+
+### 3. Sorting Options
+
+Clicking the sorting options will allow you to sort by:
+
+- Downloads
+- Ratings
+- Size
+- Name
+- Updated
+- Created
+
+By toggling between the up and down arrows you will be able to sort the models in ascending or descending order based on the selected sorting option.
+
+### 4. Model Card
+
+Each available model will display a model card providing quick insights and details about each model. Click into the model card to open the Model Details panel.
+
+### 5. Model Details Panel
+
+After clicking a model card you will see the model details panel appear. The model details panel provides key information about each model, including its size, total parameter count, creation date, estimated RAM requirements and other relative information/metadata. Reviewing this information is essential for selecting a model that meets your system's capabilities and performance needs.
+
+### 6. <kbd>Try with …</kbd>
+
+ Button
+
+The <kbd>Try with …</kbd>
+
+ button allows you to test and chat with each of these models by utilizing the model Navigators Canvas or deploying to Companion. We will go over each of these options in more detail below!
+
+---
+
+## Interacting with Models
+
+After clicking the <kbd>Try with …</kbd>
+
+ button there are two options, <kbd>Navigators Canvas</kbd>
+
+ and <kbd>Deploy to Companion</kbd>
+
+. Each option provides a different experience for interacting with the selected model. We will detail what both of these options do below.
+
+### Navigator Canvas
+
+<Steps>
+  <Step title="Select Navigator Canvas">
+    Once you have found a model you would like to interact with, click <kbd>Try with …</kbd> and then select <kbd>Navigator Canvas</kbd> from the menu.
+
+    <Warning>
+      If you choose a model that is too large for your machine you may receive an error stating that there are not enough resources in your cluster to support this model. Be sure to check your machine's available RAM before selecting a model or see our [System Requirements & Device Compatibility](/getting-started/system-requirements) page.
+    </Warning>
+  </Step>
+  <Step title="Canvas creation">
+    This will create a Canvas on the <kbd>Projects</kbd> tab that includes two Elements:
+
+    - API Element
+    - LLM Element
+
+    <Frame>
+      <img
+        src="/images/ai_models_guide_images/image_2.png"
+        alt="Canvas with API and LLM Elements"
+        style={{ borderRadius:"0.5rem" }}
+      />
+    </Frame>
+  </Step>
+  <Step title="Start interacting">
+    The <kbd>Run</kbd> process associated with this Canvas will start automatically. Once the run process completes, you should see the Preview tab open and you can begin interacting with this model!
+
+    <Frame>
+      <img
+        src="/images/ai_models_guide_images/image_3.png"
+        alt="Preview tab with running model"
+        style={{ borderRadius:"0.5rem" }}
+      />
+    </Frame>
+  </Step>
+</Steps>
+
+<Note>
+  For more information on building flows and interacting with elements inside of a Canvas see our [Use Cases and AI Architecture](/getting-started/use-cases) guide along with our Quick Start guides in [Building Workflows](/building-workflows/build-custom-llm-chatbot).
+</Note>
+
+### Deploy to Companion
+
+<Warning>
+  Companion is a separate application that needs to be downloaded to interact with these models on mobile devices. For more information see our [Getting Started with Companion](/companion/companion) guide.
+</Warning>
+
+<Steps>
+  <Step title="Select Deploy to Companion">
+    Once you have found a model you would like to interact with you can click <kbd>Try with …</kbd> and then select <kbd>Deploy to Companion</kbd> from the menu.
+
+  </Step>
+  <Step title="Automatic deployment process">
+    Along with creating a Canvas inside of your <kbd>Projects</kbd> tab this process will automatically:
+
+    - Create a version of that Canvas
+    - Create a Deployment associated with the auto-created Canvas version.
+  </Step>
+  <Step title="Verify active deployment">
+    Once this process has completed you should see a Deployment created in the Deployments tab that has an <kbd>Active</kbd> status.
+
+    <Frame>
+      <img
+        src="/images/ai_models_guide_images/image_4.png"
+        alt="Active deployment in Deployments tab"
+        style={{ borderRadius:"0.5rem" }}
+      />
+    </Frame>
+  </Step>
+  <Step title="Open Companion">
+    All you would need to do now is open up Companion and begin interacting with the deployed model you selected.
+  </Step>
+</Steps>
+
+---
+
+## Next Steps
+
+- To review use cases and various AI architectures see our [Use Cases and AI Architecture](/getting-started/use-cases) guide.
+- For more information on creating a custom LLM chatbot, see our [Building Your First Custom LLM Chatbot](/building-workflows/build-custom-llm-chatbot) guide
+- For more information on Deployments and Clusters see our [Deployments Overview](/navigator-overview/deployments-overview) and [Clusters Overview](/navigator-overview/clusters-overview)

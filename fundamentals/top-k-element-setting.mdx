@@ -1,0 +1,103 @@
+---
+title: "Understanding the Top K Element Setting"
+description: "Learn how to configure the Top K setting for optimal embedding-based search results in webAI"
+sidebarTitle: "Top K Element Setting"
+---
+
+---
+## What Is "Top K"?
+
+**Top K** controls how many of the most relevant pieces of content webAI returns when you perform an embedding-based search.
+
+When you ask a question or enter a query, WebAI searches your knowledge base and finds the **Top K most similar results,** based on meaning, not just keywords.
+
+<Note>
+Think of it as:
+
+"Show me the **top 5, 10, or 15** chunks that are most relevant to what I just typed."
+</Note>
+
+### How It Works (No Code Needed)
+
+Here's what happens behind the scenes when you search:
+
+<Steps>
+  <Step title="You ask a question">
+    **You ask a question** in webAI.
+  </Step>
+  <Step title="Question converted to embedding">
+    webAI converts your question into a special format called an **embedding** (a vector that represents meaning).
+  </Step>
+  <Step title="Compare vectors">
+    It compares this vector to all your content (which has also been embedded).
+  </Step>
+  <Step title="Return closest matches">
+    Based on your **Top K setting**, it returns the closest matches.
+  </Step>
+</Steps>
+
+### Where to Set Top K
+
+You'll find the **Top K** setting in the webAI user interface:
+
+- Go to your Vector Retrieval Element Settings.
+- Look for a setting labeled **Top K**
+- Select how many results you want returned for each search.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/understanding_top_k_images/image_1.png" alt="Top K setting interface" />
+</Frame>
+
+### Choosing the Right Top K
+
+| Goal | Suggested Top K |
+|------|-----------------|
+| Focused answers | 3–5 |
+| Broader overviews | 8–12 |
+| Large topic exploration | 15–20 |
+
+<Tip>
+Larger values return more content, but may also include irrelevant chunks. **Start small, then increase if needed!**
+</Tip>
+
+### Example Scenario
+
+Imagine you search:
+
+> "How do I implement Zero Trust in enterprise networks?"
+
+- **Top K = 3** → You get the 3 best matches.
+- **Top K = 10** → You also get related topics like identity access, network segmentation, and compliance frameworks.
+
+### How It Works with Your Embedding Model
+
+Top K works **with any embedding model** you select in WebAI.
+
+For example:
+
+- `mlx-community/multilingual-e5-small-mlx`
+- `tasksource/ModernBERT-base`
+- `snowflake-arctic-embed-l-v1`
+
+No matter which model you choose, WebAI will:
+
+- Convert your query into an embedding.
+- Compare it to your indexed content.
+- Return the **Top K closest matches**.
+
+### Best Practices
+
+- Use **smaller Top K** values for fast and precise queries.
+- Use **larger Top K** values if you're summarizing long documents or exploring broadly.
+- Keep in mind: Larger Top K values can increase response time and reduce model context precision.
+
+### Summary
+
+**Top K** helps WebAI decide **how many pieces of content** to pull when searching by meaning. It's a key setting that affects:
+
+- Answer accuracy
+- Retrieval depth
+- LLM context quality
+
+Choose your Top K value based on how broad or focused you want your search results to be.
+

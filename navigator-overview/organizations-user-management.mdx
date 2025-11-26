@@ -1,0 +1,141 @@
+---
+title: "Organizations & User Management"
+sidebarTitle: "Organizations"
+---
+
+Organizations are a workspace that groups together users, deployments, clusters and resources within webAI. Organizations provide a structured environment for teams to collaborate on AI projects while maintaining proper access controls and resource management.
+
+In this article we will discuss where Organizations are managed inside of Navigator along with the structures in place from this setting to begin collaborating with other team members.
+
+---
+
+## Permission Structure
+
+When you download Navigator and create a webAI profile you are creating an Organization that is associated with that profile in which you will be the Administrator. If you are a Member within an organization, you do not have the permissions to add new users to that Organization.
+
+Organizations have two main role types:
+
+### Administrator:
+
+A user role with elevated privileges within an organization. Organization administrators have the authority to manage users, control access permissions, configure organization settings, and oversee the overall administration of the organization's Navigator resources and projects.
+
+### Member:
+
+Users of your organization who have access to resources in Navigator and can create, modify, and deploy AI workflows utilizing your Clusters and create new Applications.
+
+<Note>
+Regardless of your role type, you will not be able to see the Projects or Canvases built by another user. The configuration of these flows in the Projects tab are stored locally to a machine.
+
+See the [**Exporting and Importing a Canvas or Project**](/fundamentals/exporting-and-importing-canvas) guide to learn more on sharing Projects and Canvases.
+</Note>
+
+---
+
+## Organization Settings
+
+To access the Organization settings:
+
+<Steps>
+  <Step title="Open Navigator">
+    Open Navigator application
+  </Step>
+  <Step title="Click on User Initials">
+    Click on the user initials icon in the bottom left of Navigator
+  </Step>
+  <Step title="Click on Settings">
+    Click on `Settings` as shown in the image below:
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/organizations_images/image_1.png" alt="Settings menu" />
+</Frame>
+  </Step>
+  <Step title="View Organization Tab">
+    Inside of Settings you will see the Organization tab. This is where you will be able to control the users who are currently a part of your Organization as well as invite new members.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/organizations_images/image_2.png" alt="Organization settings tab" />
+</Frame>
+  </Step>
+  <Step title="Switch Organizations">
+    Click the arrow next to your Organization icon to see other Organizations that you have been added to.
+  </Step>
+</Steps>
+
+---
+
+## Inviting and Managing Members
+
+As an Administrator you have the ability to manage Members within your Organization. Once a user accepts your invitation and becomes a Member of your Organization, this will allow them to view Deployments to your Organization as well as utilize the Clusters that are hosted from your Organization.
+
+### Inviting New Users
+
+<Steps>
+  <Step title="Click Invite User(s)">
+    Click `Invite User(s)` from your Organization settings
+  </Step>
+  <Step title="Add Multiple Users">
+    Within the pop up modal - you will have the ability to add multiple users at once:
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/organizations_images/image_3.png" alt="Invite users modal" />
+</Frame>
+  </Step>
+  <Step title="Send Invitations">
+    Once you click `Send` - an email will be sent to these invited users that will allow them to:
+    - Accept the invite to become a Member of your Organization
+    - Download Navigator
+    - Gain Access to the Invite Code
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/organizations_images/image_4.png" alt="Invitation email" />
+</Frame>
+  </Step>
+  <Step title="Accept Invite">
+    An invited user can click the `Accept Invite` button in that email or copy the "Invite Code"
+  </Step>
+  <Step title="Alternative Invite Acceptance">
+    If a user does not click the `Accept Invite` button - they can copy the "Invite Code" and alternatively accept this invite by clicking the `Add` button on their Organization settings tab.
+  </Step>
+  <Step title="Input Invite Code">
+    This will allow them to input that code, click `Add` and be added to your Organization:
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/organizations_images/image_5.png" alt="Add organization with invite code" />
+</Frame>
+  </Step>
+</Steps>
+
+### Removing Members
+
+#### Administrator
+
+As long as you are the Administrator of an Organization you will be able to remove any Members from your Organization. Within the Organization settings all Members will be listed under the "Members" section. Click the `Remove` button next to each Member's email you would like to remove from your Organization.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/organizations_images/image_6.png" alt="Remove member as administrator" />
+</Frame>
+
+#### Member
+
+As a Member of an Organization, you have the ability to leave any Organization you have been added to. In the Organization settings toggle over to the Organization you would like to leave and click the `Leave` button next to your user email address.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/organizations_images/image_7.png" alt="Leave organization as member" />
+</Frame>
+
+---
+
+## Filtering By Organization
+
+Inside of the Deployments tab and Clusters tab you have the ability to filter the Deployments and Clusters by Organization. In the top right of each tab is a `View` dropdown. Within that dropdown you can filter which Organization is hosting each Deployment or Cluster.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/organizations_images/image_8.png" alt="Filter by organization" />
+</Frame>
+
+---
+
+## Next Steps
+
+- To learn more about Deployments, see our [Deployments Overview](/navigator-overview/deployments-overview) guide
+

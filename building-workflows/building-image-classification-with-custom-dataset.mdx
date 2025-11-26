@@ -1,0 +1,257 @@
+---
+title: "Building an Image Classification Flow with your Custom Dataset"
+sidebarTitle: "Image Classification"
+---
+
+This article shows you how to quickly set up an image classification workflow using your own custom dataset to train a specialized classifier. You'll learn to organize your training images in the proper folder structure, use the Image Classification Trainer element to fine-tune a model on your data, then deploy it with the Image Classification Inference element for real-time classification.
+
+The guide covers practical use cases across industries like quality control, medical imaging, retail, and agriculture, plus provides examples of both live classification and batch processing workflows. It's perfect for users who have their own labeled image data and want to create a custom AI classifier tailored to their specific needs.
+
+<Warning>
+  **Distribution Notice**
+
+  The Image Classification Inference element cannot be distributed across devices. Use only within the same environment.
+</Warning>
+
+---
+
+## Use Cases for Image Classification
+
+- **Quality Control** → Classify defective vs. good products
+- **Medical Imaging** → Classify conditions from scans
+- **Food Industry** → Identify food types or quality grades
+- **Retail** → Product categorization and inventory
+- **Security** → Classify objects or activities in footage
+- **Agriculture** → Crop disease identification
+- **Documents** → Document type classification
+
+---
+
+## Training Data Structure
+
+<Note>
+  In order to use create a custom classifier, your training images must follow this specific folder structure. Failure to do so will result in errors and your Object Detection Flow will not work as expected.
+</Note>
+
+<Warning>
+  The Image Classification Trainer element will only accept images that are in `.bmp` `.gif` `.jpeg` `.jpg` `.png` formats. Providing images in other formats may cause the training to fail.
+</Warning>
+
+### Folder Structure
+
+```
+train/ (ex: 'train-cat-rabbit') - this folder can be named anything
+├── class1 (ex: 'cat') - folder with images related to a specific category
+├── class2 (ex: 'rabbit') - (optional) folder with images related to a specific category
+.....
+└── classN - you can add as many folders with different classes as you'd like!
+```
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_image_classification_custom_dataset_images/image_1.png"
+    width="542"
+    height="261"
+    alt="Folder structure"
+  />
+</Frame>
+
+Your subfolder names become your class labels automatically. A class in AI is defined as a category used in classification tasks to organize and categorize data points, in the above example, the classes would be 'cat' and 'rabbit'.
+
+Now that your training images are in the correct folder layout, we can begin!
+
+---
+
+## Quick Start
+
+### Step 1: Open a Blank Canvas
+
+<Steps>
+  <Step title="Create New Project">
+    Inside Navigator, from the Projects page click <kbd>Create</kbd>
+  </Step>
+  <Step title="Name Your Project">
+    Choose either Blank Canvas or Blank Project and name your project.
+  </Step>
+</Steps>
+
+### Step 2: Fine Tune Your Custom Model with the Image Classification Trainer Element
+
+<Steps>
+  <Step title="Add Image Classification Trainer Element">
+    Drag and drop the Image Classification Trainer element into your blank canvas.
+  </Step>
+  <Step title="Open Element Settings">
+    Click on the element to open its settings.
+  </Step>
+  <Step title="Select Training Data Path">
+    In the Training Data Path section, click <kbd>Select Directory</kbd>
+
+     to upload your dataset.
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_image_classification_custom_dataset_images/image_2.png"
+        width="704"
+        height="730"
+        alt="Training data path"
+      />
+    </Frame>
+  </Step>
+  <Step title="Review Default Settings">
+    You can use the default settings for the remaining options or adjust them as needed.
+  </Step>
+  <Step title="Set Training Run Name (Optional)">
+    **(Optional)** Use the Training Run Name setting to give your training run a custom name. This will be the name of the Artifact you select in the next step.
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_image_classification_custom_dataset_images/image_3.png"
+        width="704"
+        height="730"
+        alt="Training run name"
+      />
+    </Frame>
+  </Step>
+  <Step title="Select Model Backbone (Optional)">
+    **(Optional)** The Model Backbone setting is the core structure of a model that extracts features from your data. By default, the element uses webAIResNet50 which is the fastest.
+  </Step>
+  <Step title="Learn About Additional Settings">
+    For more information on the additional settings, visit the Image Classification Trainer section in our [**Element Registry**](/fundamentals/element-registry).
+  </Step>
+  <Step title="Run Training">
+    Click <kbd>Run</kbd>
+
+     in the upper right hand corner, and the system will fine tune a model for your objects, which you will use for inference (next step) once complete! It will be saved as the name you have in the Training Execution Name setting.
+  </Step>
+</Steps>
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_image_classification_custom_dataset_images/image_4.png"
+    width="383"
+    height="323"
+    alt="Training progress"
+  />
+</Frame>
+
+<Note>
+  If this is your first time training an element, the process might take a while to finish. You can view your progress by clicking on the arrow by the View Progress button and clicking on Run History.
+</Note>
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_image_classification_custom_dataset_images/image_5.png"
+    width="1866"
+    height="1184"
+    alt="Run history"
+  />
+</Frame>
+
+### Step 3: Setup your Image Classification Inference Element
+
+<Steps>
+  <Step title="Start Setup">
+    Once you have a fine tuned model/artifact from the Image Classification Trainer, we can start setting up our image classification flow by configuring the Image Classification Inference element.
+  </Step>
+  <Step title="Open New Canvas">
+    Open up a new blank canvas.
+  </Step>
+  <Step title="Add Image Classification Inference Element">
+    Drag and Drop the Image Classification Inference element into the Canvas
+  </Step>
+  <Step title="Open Element Settings">
+    Click on the Image Classification Inference element to view the element's settings.
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_image_classification_custom_dataset_images/image_6.png"
+        width="949"
+        height="730"
+        alt="Element settings"
+      />
+    </Frame>
+  </Step>
+  <Step title="Upload Trained Artifact">
+    Use the Trained Artifact setting to upload your Trained Artifact from the previous step. It will have the name from the Training Run Name setting.
+  </Step>
+</Steps>
+
+### Step 4: Create your Image Classification flow
+
+Now that we have our Image Classification Inference Element setup, you need to connect an Input and Output element to create a complete workflow to begin classifying images.
+
+#### Input Elements
+
+This element will provide the media for the detector to analyze. For the most basic setup, we recommend one of the following:
+
+- **Camera:** live webcam or video feed
+- **Media Loader:** Upload static images or video files
+
+#### Output Elements
+
+This element will display or save the results of the detection. For the most basic setup, we recommend one of the following:
+
+- **Output Preview:** View live classifications with bounding boxes directly inside Navigator
+- **Image Inference Saver:** Save the processed images or video frames to your computer
+
+Attach the three elements to create a flow and then click on the <kbd>Run</kbd>
+
+ button!
+
+---
+
+## Different Classification Elements
+
+- **Image Classification Trainer** - This element trains custom models from your images for your images categories.
+- **Image Classification Inference** - This element uses your trained models from the Image Classification Trainer to classify images.
+
+---
+
+## Example Image Classification Workflows
+
+### Live Classification
+
+**Camera → Image Classification Inference → Output Preview**
+
+With this flow, you can watch a video from a camera and see image classification in live time!
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_image_classification_custom_dataset_images/image_7.png"
+    width="1314"
+    height="400"
+    alt="Live classification workflow"
+  />
+</Frame>
+
+### Batch Processing
+
+**Media Loader → Image Classification Inference → Image Inference Saver**
+
+With this flow, you can group multiple images into a single batch to get predictions.
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_image_classification_custom_dataset_images/image_8.png"
+    width="1340"
+    height="404"
+    alt="Batch processing workflow"
+  />
+</Frame>
+
+---
+
+## Quick Tips
+
+- If you don't have a dataset, use the Image Classification Inference with pre-trained models.
+- If you have a small dataset, enable the Freeze Backbone setting in your Image Classification Trainer element for faster, stable training.
+- If you are receiving low confidence predictions, adjust the Confidence Threshold in the Image Classification Inference element.

@@ -1,0 +1,144 @@
+---
+title: "Controller Mode vs Worker Mode"
+description: "Understanding Navigator's operational modes for distributed AI infrastructure"
+sidebarTitle: "Controller vs Worker Mode"
+---
+
+Navigator offers two distinct operational modes that determine how your instance functions within your AI infrastructure: Controller Mode and Worker Mode. Understanding the difference between these modes is essential for setting up distributed computing environments and managing multiple devices across your network.
+
+When building Clusters and deploying AI workflows across multiple machines, you'll typically use a Navigator instance as the Controller to manage and orchestrate deployments, while other Navigator instances run in Worker Mode to contribute computational resources. This article explains what each mode does and when to use them.
+
+---
+
+## What's the Difference?
+
+### Controller Mode
+
+**Controller Mode** is an operational mode for Navigator. When Navigator runs in Controller Mode, it acts as the central command center for your AI infrastructure. The Controller instance is responsible for:
+
+- **Orchestrating Deployments:** Managing and coordinating AI Flows across your network of devices
+- **Discovering Workers:** Finding and connecting to Navigator instances running in Worker Mode on your local network
+- **Managing Resources:** Assigning tasks and distributing workload across available worker nodes
+- **Creating Clusters:** Building and managing Clusters that group multiple devices together for deployment purposes
+- **Device Management:** Viewing and controlling devices in the My Devices tab, including both Nodes and Input Devices
+
+This is the mode you'll use for most day-to-day operations, including designing Flows on Canvas, creating Deployments, and managing your AI infrastructure.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/controller_worker_images/image_1.png" width="1804" height="1126" alt="Controller Mode Interface" />
+</Frame>
+
+### Worker Mode
+
+**Worker Mode** is a specialized operational mode where Navigator functions as a computational resource node within a distributed system. When Navigator runs in Worker Mode, it operates as a worker node that:
+
+- **Contributes Compute Resources:** Provides CPU, GPU, memory, and other computational resources to execute tasks assigned by a Controller
+- **Runs the webAI Runtime Agent:** Executes AI workflows and processes assigned by the Controller instance
+- **Accepts Controller Connections:** Makes itself discoverable on the network so Controller instances can find and add it as a worker device
+- **Executes Deployed Flows:** Runs AI Flows assigned to it through Clusters and Deployments
+
+Worker Mode is essential when you want to expand your computing capacity beyond a single machine. By running Navigator in Worker Mode on additional computers, you can distribute AI processing across multiple devices, enabling better performance and scalability for your deployments.
+
+<Note>
+  When Navigator is running in Worker Mode, it displays a simplified interface showing the IP Address and Passcode needed for a Controller to connect to it. You'll also see a list of Controllers that have connected to this worker instance.
+</Note>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/controller_worker_images/image_2.png" width="1148" height="905" alt="Worker Mode Interface" />
+</Frame>
+
+---
+
+## When to Use Each Mode
+
+### Use Controller Mode When:
+
+- You're designing and testing AI Flows on Canvas
+- You need to create and manage Deployments
+- You want to discover and add worker devices to your infrastructure
+- You're building Clusters to organize your compute resources
+- You're working with a single machine setup
+
+### Use Worker Mode When:
+
+- You want to add additional computing devices to expand your cluster's capacity
+- You need to distribute processing across multiple machines for better performance
+- You're setting up a multi-device deployment environment
+- You want to dedicate a machine solely to executing AI workloads
+
+---
+
+## Switching Between Modes
+
+Navigator allows you to switch between Controller Mode and Worker Mode at any time. This flexibility enables you to reconfigure your setup as your needs change.
+
+### Switching to Worker Mode
+
+<Steps>
+  <Step title="Click Your Profile Icon">
+    Click your profile icon in the bottom left corner of Navigator
+  </Step>
+  <Step title="Select Switch to Worker Mode">
+    Select `Switch to Worker Mode` from the menu
+  </Step>
+  <Step title="Navigator Restarts">
+    Navigator will restart and display the Worker Mode interface
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/controller_worker_images/image_3.png" width="996" height="664" alt="Switch to Worker Mode" />
+</Frame>
+  </Step>
+</Steps>
+
+<Warning>
+  When switching to Worker Mode, make sure you have saved any work in progress. The switch will restart Navigator and you'll lose access to the Canvas and deployment management features until you switch back to Controller Mode.
+</Warning>
+
+### Switching to Controller Mode
+
+<Steps>
+  <Step title="Click Mode Select">
+    While in Worker Mode, click `Mode Select`
+  </Step>
+  <Step title="Select Controller">
+    Select `Controller` from the menu, click `Next`
+  </Step>
+  <Step title="Navigator Restarts">
+    Navigator will restart and return to the full Controller Mode interface
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/controller_worker_images/image_4.png" width="2072" height="1576" alt="Switch to Controller Mode" />
+</Frame>
+  </Step>
+</Steps>
+
+<Note>
+  You can also select Worker Mode during the initial Navigator installation setup. If you've already installed Navigator in Controller Mode, you can switch to Worker Mode at any time using the method described above.
+</Note>
+
+---
+
+## Network Requirements
+
+For Controller and Worker instances to communicate effectively, they must meet certain network requirements:
+
+- **Same Network:** Controller and Worker instances must be on the same local network for automatic discovery to work. You must also be logged into the same webAI account.
+- **Network Discovery:** Workers can be automatically discovered when searching the network, or added manually using their IP Address or Passcode. See our [My Devices Overview](/navigator-overview/my-devices-overview) for a step by step guide on how to add workers to your Controller.
+- **Firewall Configuration:** Ensure firewall settings allow communication between Controller and Worker instances. See our [Networking and Firewall Ports](/fundamentals/networking-and-firewall-ports) guide for specific port requirements
+
+---
+
+## Best Practices
+
+- **Stable Worker Connections:** Keep Worker Mode instances running consistently to maintain stable deployments across your cluster
+- **Resource Planning:** Consider the computational requirements of your deployments when deciding how many worker devices you need
+- **Monitoring:** Regularly check the status of worker devices in the My Devices tab to ensure all nodes are connected and functioning properly
+
+---
+
+## Next Steps
+
+- To learn how to add worker devices to your Controller, see our [My Devices Overview](/navigator-overview/my-devices-overview) guide
+- For information on creating Clusters with multiple devices, see our [Clusters Overview](/navigator-overview/clusters-overview) guide
+- To learn about deploying AI workflows to your cluster, see our [Deployments Overview](/navigator-overview/deployments-overview) guide
+

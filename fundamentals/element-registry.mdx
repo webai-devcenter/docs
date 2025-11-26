@@ -1,0 +1,1127 @@
+---
+title: "Element Registry"
+description: "Comprehensive guide to all available elements in Navigator"
+---
+
+## Intro to Elements
+
+Elements are the fundamental building blocks within Navigator. Each Element is a self-contained package of code designed to perform a specific function, such as training an AI model or visualizing a running workflow.
+
+Inside Navigator, Element blocks are organized by; All, Inputs, Outputs, Inference, Training, and Other.
+
+This registry will detail all our available elements, organized by its respective category (Input, Output, Inference, Training, Other). Within each Element's dropdown, you'll find a comprehensive overview that includes the following:
+
+- **Element Description** - A high-level summary of what the element does
+- **Element Functionality** - Details on how the element operates within a flow.
+- **Element Purpose** - When and why you should use this element.
+- **Requirements** - Any required settings or data inputs needed for the element to function properly
+- **Approved Connections** - Other elements that can be successfully connected within a flow
+- **Element Specific Settings** - Information on customizable settings unique to the particular element
+
+<Note>
+To help you get started, our team of experts has created Featured Templates. These are pre-built workflows constructed from our Elements, and we highly recommend them for quickly getting your flow deployed.
+</Note>
+
+### Element Connections
+
+Most elements are designed for connected flows, where they receive input from and pass output to other elements, forming modular pipelines for deep learning tasks like RAG or interactive inference. This allows for flexible and reusable end-to-end solutions. While some elements operate standalone and don't require connections, others are incompatible and will cause deployment errors if linked. If you are building a custom flow outside of the featured templates, please refer to each element's documentation for compatible connections.
+
+### Element Settings
+
+Each element includes settings that you can customize to suit your project's specific needs. While every element has its own unique configuration options, there are several shared settings that apply across all elements. These shared settings allow you to control naming, versioning, and the execution environment.
+
+- **Element Name:** Yes, you can rename your element! Giving elements clear, descriptive names makes your project easier to manage.
+- **Version:** Select which version of the element you'd like to use. This helps ensure compatibility and lets you take advantage of updates or improvements.
+- **Running On:** Choose the device or environment where this element should run. This controls where the processing happens; locally or on a specific server.
+
+<Note>
+Note: While all our elements come with default settings optimized for immediate use, many also offer custom settings that allow you to fine-tune them to your specific needs. You can adjust the element's settings in the right hand section after clicking into your element on your Canvas.
+</Note>
+
+### Input Elements
+
+The following are elements that provide data to a flow.
+
+<AccordionGroup>
+  <Accordion title="Camera">
+    **Description:** The Camera element gives you the tools to connect a range of cameras to your models and solutions.
+
+    **Functionality:** This element allows you to connect and configure computer and network cameras. With the Camera element, you can select the desired camera, rename it, and configure specific settings for both computer and network cameras (e.g., associated computer, camera ID, or URL). Additionally, you can add Multiple Cameras. This element facilitates the addition of multiple cameras through a dedicated "Devices Menu," including the necessary step of registering the connected computer if it's new.
+
+    **Purpose:** Once connected, the Camera element serves as the conduit for streaming video feeds from these cameras into Navigator, making the footage available for processing and analysis by other elements in your workflow.
+
+    **Requirements:**
+
+    - For connecting Computer Cameras, you can connect built-in computer cameras or those connected via USB ports.
+    - For connecting Network Cameras, you can connect cameras accessible via a URL, such as IP or RTSP cameras.
+
+    **Element Settings:**
+
+    For Computer Cameras:
+
+    - Rename the camera
+    - Select the computer its attached to
+    - Input the ID linked with the camera.
+
+    For Network Cameras:
+
+    - Rename the camera
+    - Add the URL where the camera is located
+    - Select the computer that should be analyzing the video.
+
+    To add an additional camera:
+
+    - Open the Devices Menu. If you have not added the computer where the camera is connected to the Device Registry yet, you will need to connect it before adding the camera.
+    - Select 'Input Devices' and 'Add Input Device'
+    - Select which type of camera you're connecting and click next.
+
+    **Approved Element Connections**
+
+    This element requires a connection to an Output element to complete a successful flow.
+
+    The following ouput elements are supported with the Camera element:
+
+    - Object Detector
+    - Object Detection Inference
+    - Object Detection Lite Inference
+    - Output Preview
+    - Image Regions
+    - Detection Counter
+    - Image Inference Saver
+  </Accordion>
+
+  <Accordion title="Media Loader">
+    **Description:** The Media Loader element allows you to upload images and videos into Navigator for processing and inference.
+
+    **Functionality:** Import images or videos into your pipeline for inference and to test how well a trained model performs on new, unseen data.
+
+    **Purpose:** Use this element to upload your test set, not training data. This is different from the Image Classification or Object Detection Trainers, where you upload data directly for training.
+
+    **Requirements:** You will need to add images or videos in the following support file formats:
+
+    - .jpg
+    - .png
+    - .jpeg
+    - .npy
+    - .raw
+    - .mp4
+    - .avi
+    - .mov
+
+    **Element Settings:**
+
+    - **Video file:** The path to the video file to be loaded. Default: An empty string
+    - **Image Directory:** The path to the image directory to be loaded. Default: An empty string
+    - **Frame Rate:** Number of frames to emit per second. Affects delay between frame outputs. Default: 0<br/>
+      Found in the Advanced Settings dropdown<br/>
+      For images: 1 frame per second<br/>
+      For video: uses the FPS defined in the video file
+    - **Stay Alive:** When enabled, the element remains active and continuously loops over uploaded images or video frames. When disabled, the element processes the input once and then stops. Default: True
+
+    **Approved Element Connections:** This element requires an Output element to complete a flow. The following output elements are supported with the Media Loader element:
+
+    - Image Classification Inference
+    - Object Detection Inference
+    - Deep Detection Lite Inference
+    - Object Detector
+  </Accordion>
+
+  <Accordion title="OCR">
+    **Description:** The Optical Character Recognition (OCR) element is the first step in your RAG Ingestion Pipeline. It transforms documents—like PDFs, Word files, scanned pages, and images—into clean, structured text that can be understood by downstream elements.
+
+    **Functionality:**
+
+    - Extracts text from documents while preserving structure (headings, paragraphs, etc.)
+    - Separates out visual elements (images, tables) for specialized handling
+    - Produces clean .md files ready for chunking
+
+    **Purpose:** OCR unlocks the content inside static documents so it can be processed by AI. Without this step, your data stays locked in formats that can't be searched or understood.
+
+    **Requirements:** In order to successfully use the OCR element you will need to upload either documents or images. The supported input formats are as follows:
+
+    Documentation formats
+
+    - PDF files (.pdf)
+    - Microsoft Office (.docx, .pptx, .xlsx)
+    - Web formats (.html, .xml, .nxml)
+    - Text formats (.md, .csv, .asciidoc)
+
+    Image formats
+
+    - PNG (.png)
+    - JPEG (.jpeg)
+    - TIFF (.tiff)
+    - BMP (.bmp)
+
+    **Element Settings:**
+
+    - **Execution Name:** A user-defined name for this OCR run. Helps you track and organize multiple executions.
+    - **Data Path:** The folder on your system that contains the documents to process (PDF, Word, images, etc.).
+    - **Output path:** Where the processed, structured text files will be saved. These outputs will be used in the next step of the RAG pipeline.
+
+    **Approved Element Connections:** This element requires an Output element to complete a flow. The following output elements are supported with the OCR element:
+
+    - Image Captioning
+  </Accordion>
+</AccordionGroup>
+
+### Output Elements:
+
+The following are elements that display or export the results from the flow.
+
+<AccordionGroup>
+  <Accordion title="API">
+    **Description:** The API Element is to facilitate communication between your custom project and a language model (LLM).
+
+    **Functionality:** The API Element lets you connect to a language model and send it prompts such as questions or tasks. It passes the response back to your project. Just link it to your LLM elements to make the conversation flow. Linking the API Element to your LLM elements makes the conversation flow! Under the hood, it uses OpenAI-compatible endpoints, so it works seamlessly with models that follow that standard.
+
+    **Purpose:** The API Element acts as a bridge between your project and an LLM.
+
+    - **Sends prompts:** Allows your project to send questions, tasks, or other inputs to a connected language model.
+    - **Receives responses:** Captures and passes the language model's generated responses back into your project.
+    - **Enables conversation flow:** By linking it with other LLM elements, it helps maintain and manage the conversational interaction with the language model.
+    - **Ensures compatibility:** It leverages OpenAI-compatible endpoints, ensuring broad compatibility with various language models that adhere to this standard.
+
+    **Element Settings:**
+
+    - **API Key (Optional):** You can provide an API key to help prevent unwanted access to the network. A default key is already included, so this is optional for most users.
+    - **Endpoint Timeout (Seconds 0-100):** timeout for SSE endpoint, default is 0 (no timeout).
+    - **Maximum Concurrent Requests:** Limits how many requests can be processed at the same time. Use this to control system load and performance.
+    - **Maximum Queued Requests:** Sets the number of requests that can wait in line when the system is busy. If the queue is full, new requests will be rejected with a 429 Too Many Requests error.
+
+    **Approved Element Connections:** For both input and output, the API Element will need to use one of the following to complete the flow:
+
+    - Large Language Model Chat
+    - LLM (webFrame)
+  </Accordion>
+
+  <Accordion title="Image Inference Saver">
+    **Description:** The Image Inference Saver element captures and stores the results of computer vision inference processes. It supports exporting detection and classification outputs, including bounding boxes, class labels, and confidence scores. This element can save processed images with or without visual annotations, and it exports annotation data in a structured format.
+
+    **Purpose:** This element acts as an output and data management component for computer vision workflows, ensuring that valuable inference results are systematically captured and made available for downstream applications.
+
+    **Requirements:** When saving images or data, you will need to make sure to follow the File Format Requirements:
+
+    - **JPG:** Suitable for lightweight visualization
+    - **PNG:** Recommended for training data (lossless)
+    - **NPY:** Used for numerical data storage and analysis
+
+    If enabling the Save Annotation's setting, you will need to have a structured output (JSON or CSV, depending on platform setup).
+
+    **Element Settings:**
+
+    - **Output Folder Path:** Directory where all saved files will be written. Must be a valid, writable location. Data is stored inside this root directory.
+    - **Partition Name:** Subdirectory name for organizing saved content. Helps group results by date, experiment name, or purpose. Examples: 2024-01-15-experiment, training-batch-1, audit-logs
+    - **Save Images:** Enable to save processed image files. If disabled, only annotation data will be stored. Default Setting: disabled
+    - **Save Annotations:** Enable to export inference metadata such as labels, bounding boxes, and confidence scores. Default Setting: disabled
+    - **Save Masks:** If enabled, detection masks are drawn directly on saved images. Default Setting: enabled. Disable this setting if saving clean images for training purposes.
+    - **Save Bounding Boxes:** Draws bounding boxes directly on saved images. Default Setting: enabled. Disable for clean images in dataset creation.
+    - **Save Labels:** Draws class labels (object names) on the saved images. Default Setting: enabled. Disable to save unlabeled visuals.
+    - **Confidence Threshold:** Minimum confidence score required to save a detection result. Range: 0.0 – 1.0. 0.0: Save all detections, regardless of confidence. 0.5 – 0.7: Recommended range for filtering out low-confidence predictions. This helps ensure quality in saved annotations.
+
+    **Approved Element Connections:** The Image Inference Saver element requires an input element to complete a successful flow. The following elements are supported with this element:
+
+    - Object Detector
+    - Image Classification Inference
+    - Deep Detection Lite Inference
+    - Object Detection Inference
+    - SAM
+  </Accordion>
+
+  <Accordion title="Image Regions">
+    **Description:** The Image Regions element allows you to define regions of interest (ROIs) in incoming images or video streams.
+
+    **Functionality:** By focusing processing on specific areas, you can reduce false positives and improve performance, especially useful in noisy or complex scenes with the Image Regions element. It is important to note that this element must be placed before any detection elements in your flow. See the Approved Element Connections section below for more details.
+
+    **Purpose:** Using the Image Region element is helpful in scenarios like:
+
+    - Security monitoring, where only entry points or restricted zones matter
+    - Manufacturing or quality control, where the focus is on specific parts of a product or assembly line
+
+    You can define multiple ROIs per frame, and any image area not covered by a region will be ignored by downstream detection elements.
+
+    **Element Settings:**
+
+    - **Regions of Interest:** Specifies the areas within the image or video where detection should be focused. Each region is defined using normalized coordinates in the format: x1, y1, x2, y2
+      - [x1, y1] is the top-left corner of the region
+      - [x2, y2] is the bottom-right corner
+      - Coordinates must be between 0.0 and 1.0, representing a percentage of the image's width and height (i.e., 0.5 = 50%). This makes the configuration resolution-independent.
+      - To specify multiple regions, separate them with a semicolon (;). The following example defines two rectangular regions: 0.25, 0.3, 0.5, 0.6; 0.6, 0.75, 0.8, 0.9
+
+    **Requirements to Define Regions Using Navigator:**
+
+    <Steps>
+      <Step title="Add Required Elements">
+        Add all required elements to your flow. (See Approved Element Connection section)
+      </Step>
+      <Step title="Configure Element Settings">
+        Configure settings for all elements EXCEPT the Image Regions element.
+      </Step>
+      <Step title="Add and Run Image Regions">
+        Add the Image Regions element, then click Run.
+      </Step>
+      <Step title="Open Element Preview">
+        Once the element is active, click Open on the element.
+      </Step>
+      <Step title="Draw Regions">
+        In the preview window:
+
+        - Click and drag to draw bounding boxes over your areas of interest.
+        - To remove a region, click inside it.
+        - Once you're satisfied, copy the generated coordinates.
+      </Step>
+      <Step title="Save Coordinates">
+        Click Stop and paste the coordinates into the Regions of Interest field.
+      </Step>
+    </Steps>
+
+    **Approved Element Connections:** The Image Regions element requires a connection to an input element to complete a successful flow. The following input elements are supported:
+
+    - Camera
+    - Media Loader
+
+    The Image Regions element requires a connection to an output element to complete a successful flow. The following output elements are supported:
+
+    - Object Detector
+    - SAM
+    - Object Detection Inference
+    - Deep Detection Lite Inference
+
+    **Best Practices:**
+
+    - Make sure regions are large enough to contain full objects of interest.
+    - Avoid excessive overlap between ROIs unless intentional.
+    - Keep documentation of your region setup, especially in collaborative projects.
+
+    **Troubleshooting Help:**
+
+    If you are having no detections,
+
+    - Make sure your regions aren't too small or are missing the objects entirely.
+    - Double check that your using normalized coordinates (not pixel values)
+    - Confirm that the object(s) actually appear within the defined regions
+
+    If you are having performance issues,
+
+    - Try reducing the number of ROIs
+    - Use tighter regions to exclude irrelevant parts of the frame
+    - Check if downstream elements support ROI-based processing
+
+    If you are having issues with coordinates,
+
+    - Always use normalized values (0.0-1.0) for resolution independence
+    - Use known test images to verify your region setup
+    - Use the Output Preview element to visually inspect selected regions
+  </Accordion>
+
+  <Accordion title="Output Preview">
+    **Description:** The Output Preview element is used to visualize the results of a computer vision pipeline. It provides a native preview window within Navigator that displays inference results in real time or after processing.
+
+    **Functionality:** This element is typically placed at the end of a vision workflow to help users inspect the output, including bounding boxes, labels, confidence scores, and other visual annotations applied to input frames.
+
+    **Purpose:** The Output Preview element enables you to visually inspect and review the final output of a computer vision workflow. More specifically, it serves as a visualization and quality control tool that allows users to:
+
+    - **Examine visual annotations:** See bounding boxes, labels, and other visual overlays that have been applied to the input frames by the preceding vision processes.
+    - **Verify inference results:** Check the accuracy and quality of the detection, classification, or other computer vision tasks by visually confirming the output.
+    - **Review confidence scores:** Understand the model's certainty for each identified object or characteristic.
+    - **Provide a conclusive visual summary:** Offer a clear and comprehensive visual representation of the processed frames with all relevant annotations, making it easy to understand the workflow's outcome.
+
+    **Element Settings:**
+
+    - **Confidence Threshold:** Sets the minimum confidence score required for a prediction to be displayed in the preview. Range: 0.0 – 1.0. Lower values display more results (even low-confidence detections). Higher values restrict the view to only high-confidence predictions. Use this setting to filter out uncertain or noisy predictions and focus on the most reliable detections.
+
+    **Approved Element Connections:** The Output Preview element required an Input Element to complete a successful flow. The following elements are supported with this element:
+
+    - Object Detector
+    - Object Tracker
+    - Object Detection Inference
+    - Deep Detection Lite Inference
+    - Detection Counter
+    - Camera
+    - Image Regions
+    - SAM
+  </Accordion>
+
+  <Accordion title="Vector Indexing">
+    **Description:** The Vector Indexing element stores all embeddings from the Embedding element in the RAG Ingestion Pipeline in a fast, searchable vector database (ChromaDB). It organizes your content into a structure that enables quick, meaningful retrieval based on semantic similarity.
+
+    **Functionality:** The Vector Indexing element,
+
+    - Collects embeddings from processed content
+    - Stores them in an optimized vector database
+    - Includes useful metadata (document source, page, type)
+    - Saves final database to your specified location for use during inference
+
+    **Purpose:** This element is the foundation of fast, intelligent retrieval in any retrieval-augmented generation (RAG) system.
+
+    - **Before indexing:** Embeddings are stored as loose files, which are slow and inefficient to search.
+    - **After indexing:** Embeddings are structured in a high-performance database, allowing for near-instant lookup of relevant content.
+
+    With a complete vector index, your system can respond to queries using semantic similarity—not just keyword matching—and do it in milliseconds.
+
+    **Pro Tip:** Your RAG-powered system will query this database via the Vector Retrieval element during live question answering in the RAG Inference Pipeline.
+
+    **Approved Element Connections:** In order to utilize the Vector Indexing in a flow, the element needs to connect to the following Input elements:
+
+    - Embedding Element
+  </Accordion>
+</AccordionGroup>
+
+### Inference Elements
+
+The following are elements that are used in a flow to process the input by using AI models.
+
+<AccordionGroup>
+  <Accordion title="Deep Detection Lite Inference">
+    Deep Detection Lite Inference uses a trained model (from the Deep Detection Lite Trainer) to detect and classify objects in new, unseen images or video streams.
+
+    **Purpose:**
+
+    This element is designed for real-time inference on low-resource devices such as edge systems or mobile hardware. It offers fast and efficient processing, returning:
+
+    - Bounding boxes around detected objects
+    - Predicted labels (super category and category)
+    - Confidence scores for each prediction
+
+    Use this element after training your model with the Deep Detection Lite Trainer. You can connect it to a Camera or Media Loader as input and visualize results with Output Preview or send outputs to other elements for further processing.
+
+    **Requirements:**
+
+    You will need a trained model artifact that was created using the Deep Detection Lite Trainer
+
+    **Element Settings:**
+
+    - Trained Artifact: Select the model you trained using the Deep Detection Lite Trainer. This model will be used for detection and classification.
+    - Model Artifact Path: Optional path to the model file on your system. If left blank, the system uses the current working directory.
+    - Confidence Threshold: Sets the minimum confidence score required for a detection to be accepted.
+      - Lower values: More detections, but may include false positives
+      - Higher values: Fewer, more confident detections
+      - Default: 0.4
+      - Range: 0.0 – 1.0
+    - Respect Bounding Box: Use this option when working with the Image Regions element. When enabled, detection is limited to specific Regions of Interest (ROIs) defined by bounding boxes from the Image Regions element. This helps the model focus on relevant parts of the image, improving speed and accuracy. Turn this on if your workflow includes Image Regions and you only want detection within those areas.
+
+    **Approved Element Connections:**
+
+    To use this element in a working flow you will need to connect an input and output element. The Deep Detection Lite Inference element works with the following:
+
+    - Receives input from: Camera, Media Loader, Image Regions
+    - Sends output to: Output Preview, Image Inference Saver, Object Tracker, Detection Counter, Class Filter
+  </Accordion>
+
+  <Accordion title="Detection Counter">
+    **Description:** The Detection Counter element provides real-time object counting from computer vision inference results.
+
+    **Functionality:** The Detection Counter element uses object IDs to track and count unique objects, avoiding double-counting across frames. Counts are updated continuously and can be categorized by object type.
+
+    **Visual Output Options:** The Detection Counter provides live visual feedback to help monitor and verify object detection and counting in real time. When the element is running, you can view output by clicking "Open" on the element. Just click "Open" on the element when it is running and a display window will open showing the following:
+
+    - Live video stream with bounding boxes around detected objects
+    - Count display box showing current object totals by category
+    - Confidence scores shown alongside each detection
+    - Region overlays highlighting defined monitoring zones
+
+    **Purpose:** This element is ideal for tasks such as people counting, vehicle flow monitoring, or inventory tracking. Optional region-based counting allows users to focus on specific areas within the frame.
+
+    **Requirements:** The Detection Counter can operate independently when frame-by-frame counting is sufficient. However, for more advanced use cases, pairing with the Object Tracker is highly recommended:
+
+    - **Tracking Movement:** Needed to follow object paths across multiple frames.
+    - **Unique Object Counting:** Prevents double-counting as objects persist between frames.
+    - **Complex Analytics:** Required for speed calculations, zone-based entry/exit detection, and object interaction monitoring.
+    - **Reducing Redundancy:** Eliminates repeated counts of the same object across sequential frames.
+
+    **Element Settings:**
+
+    - **Regions of Interest (Optional):** Specifies the areas within the image or video where detection should be focused. Each region is defined using normalized coordinates in the format: x1, y1, x2, y2
+      - [x1, y1]: Top-left corner of the region
+      - [x2, y2]: Bottom-right corner
+      - Values must be between 0.0 and 1.0, representing a percentage of the image's width and height (e.g., 0.5 = 50%)
+      - Multiple regions can be specified by separating them with a semicolon (;). Example: 0.25, 0.3, 0.5, 0.6; 0.6, 0.75, 0.8, 0.9 (Defines two rectangular regions)
+      - By default, the entire image is used. Use this setting when monitoring specific zones (e.g., doorways, product shelves)
+      - If you need help determining coordinates, use the Image Regions element to draw regions interactively and export the normalized coordinates. See the Image Regions Element element documentation for more details.
+    - **Save Images:** Toggle to save video frames with detection visualizations. Default: Disabled. Enable to archive visual results or review detections later
+    - **Save Annotations:** Toggle to export structured metadata (e.g., object counts per frame). Default: Disabled. Enable to record frame-by-frame count data and analytics
+    - **Save Every Frame:** Controls whether data is saved for all frames or only those with detections. Default: Disabled. Enable for continuous monitoring (higher storage use). Disable to save only relevant events
+    - **Output Folder Path:** Directory where all outputs (images, annotations) are saved. Must be an existing and writable path.
+
+    **Approved Element Connections:** In order to utilize the Detection Counter Element in a flow, the element can connect to one of the following Input elements:
+
+    - Object Detector
+    - Class Filter
+    - Object Tracker
+    - Object Detection Inference
+    - Deep Detection Lite Inference
+  </Accordion>
+
+  <Accordion title="Image Classification Inference">
+    **Description:** The Image Classification Inference element uses a trained model to classify new images or video frames.
+
+    **Functionality:** The Image Classification Inference element predicts the most likely label for each image, along with a confidence score indicating how certain the model is that the predicted label belongs to that class.
+
+    **Purpose:** With this element, you can understand and categorize images under a specific label.
+
+    **Requirements:** In order to successfully use the Image Classification Inference element, you will need:
+
+    - A trained artifact that has been created with the Image Classification Trainer (see the Image Classification Trainer Element section for more information)
+    - A test dataset folder needs to structured in the following format:
+
+    ```
+    train/ (ex: 'train-cat-rabbit')
+    |—— class1 (ex: 'cat')
+    |—— class2 (ex: 'rabbit')
+    |—— classN
+    ```
+
+    **Element Settings:**
+
+    - **Trained Artifact:** Select the model artifact produced by the Image Classification Trainer. This is the trained model used to make predictions during inference.
+    - **Model Artifact Path:** File path to the trained model. If not specified, the system will look in the current working directory.
+    - **Confidence Threshold:** Minimum confidence score required for a prediction to be accepted and returned. Lower values allow more predictions (including less certain ones). Higher values return only highly confident predictions. Default: 0.4. Minimum value: 0. Maximum value: 1.0
+
+    **Approved Element Connections:** This element requires a connection to an Output and Input element to complete a successful flow.
+
+    The following Output elements are supported with the Image Classification Inference element:
+
+    - Camera
+    - Media Loader
+
+    The following Input elements are supported with the Image Classification Inference element:
+
+    - Output Preview
+    - Image Inference Saver
+  </Accordion>
+
+  <Accordion title="Large Language Model Chat">
+    **Description:** The Large Language Model Chat element provides an interactive chat interface for talking to AI language models. It supports both Standard Chat and Retrieval-Augmented Generation (RAG) workflows.
+
+    **Functionality:** This element supports real-time streaming responses and maintains conversational context by tracking chat history, enabling the model to reference earlier parts of the dialogue for more coherent and context-aware interactions. Visit the Requirements section here for more information.
+
+    **Purpose:** The Large Language Model Chat element gives you a live chat interface where you can interact with the selected LLM and receive contextually relevant, real-time responses.
+
+    **Requirements:** You can interact with the chat interface produced by this element by either uploading a trained artifact from the LLM Trainer (for more information on creating a custom trained artifact visit the LLM Trainer element section) or by selecting a pre-trained base model. Requires:
+
+    - **Standard Chat:** Base model OR a trained artifact
+      - For a Base model, select from available options in the element's settings
+      - For a Trained artifact: Use a custom-trained model artifact from the LLM Trainer to chat about domain-specific subjects.
+    - **RAG:** Base model: (selected from available options)
+
+    **Element Settings:**
+
+    - **Trained Artifact (Optional):** Use a custom-trained model artifact from the LLM Trainer to enable chat on specialized subjects. This replaces the base model and brings domain-specific knowledge to the chat interface.
+    - **Base Model Architecture:** Choose a general-purpose pre-trained model for chat. This is required for both Standard Chat and RAG workflows if no trained artifact is used.
+    - **Chat History:** Enable or disable tracking of previous messages in the conversation. When enabled, the model can refer back to earlier interactions for more coherent, context-aware responses. Default: Enabled
+    - **Model System Prompt*:** This is the default prompt that sets the model's base role, tone, and instructions. Useful for customizing how the model responds to users.
+    - **Temperature*:** Controls the creativity or randomness of responses. Lower values (e.g. 0.1): More focused and predictable. Higher values (e.g. 0.9): More open-ended and varied. Default: 0.7. Range: 0.01 – 1.0
+    - **Max Tokens*:** Limits the length of model responses. Useful for managing verbosity and API usage. Default: 512
+    - **Quantization Rank*:** Adjusts the numerical precision of the model to optimize for size and performance. Lower ranks = smaller, faster, less accurate. Valid values: 2, 3, 4, 6, 8, 16. Default: 4
+    - **Model Storage Path (Optional)*:** Path on your system to store the downloaded base model. Useful for local model management and reducing repeated downloads.
+    - **Model Adapter Folder Path (Optional)*:** Path to a folder containing adapter files that modify or fine-tune the base model for specific tasks. Use this if you're working with custom adapters alongside the base model.
+
+    *Identifies settings that can be found by clicking on the Advanced Settings tab in the Element Settings section.
+
+    **Approved Element Connections:**
+
+    - For a Standard chat option, the element requires a connection to an API element to complete a successful flow.
+    - For a RAG chat option, the element requires an input from the Prompt Templating element and sends output to the API element.
+  </Accordion>
+
+  <Accordion title="Object Detection Inference">
+    **Description:** The Object Detection Inference element runs a trained object detection model on new images or video frames to detect and localize objects.
+
+    **Functionality:** The Object Detection Inference element accepts visual input (via the Media Loader or Camera elements) and performs inference using a trained artifact produced by the Object Detection Trainer.
+
+    **Purpose:** This element applies the model's learned patterns to unseen data, enabling you to evaluate real-world performance, measure generalization, and test practical effectiveness.
+
+    **Pro Tip:** Use the Image Inference Saver element to save detection results, including predicted bounding boxes, class labels, and confidence scores.
+
+    **Requirements:** In order to use the Object Detection Inference element you must have an artifact that has been generated by the Object Detection Trainer element.
+
+    **Element Settings:**
+
+    - **Trained Artifact:** Select a trained artifact that was created with the Object Detection Trainer element
+    - **Model Artifact Path (Optional):** Provide a custom file path to a saved trained artifact.
+    - **Confidence Threshold:** Minimum confidence score required for a prediction to be considered. Default: 0.6. Min value: 0.0. Max value: 1.0
+    - **Respect Bounding Boxes:** Enable this setting when using this element with the Image Regions Input element. (Visit the Image Regions Element section for details). When Respect Bounding Boxes are turned on, the Object Detection Inference element limits its analysis to specific areas of the image defined by the Image Regions element. These areas, called Regions of Interest (ROIs), are represented as bounding boxes. By focusing only on the defined ROIs, the model avoids analyzing irrelevant parts of the image. This can lead to faster processing and more accurate detection results. Turn this on if your workflow includes the Image Regions element and you want the Object Detection model to operate only within those predefined areas.
+
+    **Approved Element Connections:** This element requires a connection to an Output and Input element to complete a flow.
+
+    The following Input elements are supported with the Object Detection Inference element:
+
+    - Camera
+    - Media Loader
+    - Image Regions
+
+    The following Output elements are supported with the Object Detection Inference element:
+
+    - Output Preview
+    - Object Tracker
+    - Detection Counter
+    - Image Inference Saver
+    - Class Filter
+    - SAM
+  </Accordion>
+
+  <Accordion title="Object Detector">
+    **Description:** The Object Detector element uses a YOLOv8 neural network to automatically detect and classify objects in images or video streams.
+
+    **Functionality:** The Object Detector element connects to an input such as a Camera and can recognize over 80 common object types in real-time, including people, vehicles, animals, and everyday items like phones, cups, and backpacks. For more information on the objects that can be detected you can find that here.
+
+    **Purpose:** Object detection allows machines to "see" and understand the visual world with a much higher level of detail and context. This Object Detector element allows you to create flows that can,
+
+    - **Automate tasks:** From quality control in manufacturing to automated inventory tracking in retail.
+    - **Improve safety:** In self-driving cars (detecting pedestrians, vehicles, traffic signs), security systems (identifying suspicious objects or intruders), and medical imaging (detecting anomalies like tumors).
+    - **Gain insights:** By analyzing patterns in customer behavior, crop health, or animal movements.
+    - **Enable real-time decision-making:** Crucial for dynamic environments like autonomous vehicles and surveillance.
+
+    **Requirements:** You will need to connect an Input element in order to use Object Detection.
+
+    - If you want to use a camera that is not your webcam, you can add a custom camera to your setup.
+    - If you prefer to analyze pictures or a video, you can use Media Loader instead of Camera for your image input.
+
+    **Element Settings:**
+
+    - **Model size:** Controls the size and complexity of the YOLOv8 model used. Larger models are more accurate but require more resources.
+      - n – Nano: Fastest, lowest accuracy
+      - s – Small: Lightweight, slightly better accuracy
+      - m – Medium: Balanced in speed and performance
+      - l – Large: Slower, more accurate
+      - x – Extra Large: Most accurate, highest resource use
+    - **Confidence Threshold:** The lowest confidence score required for a prediction to be considered valid. Lower values = More detections (including false positives). Higher values = Fewer, more confident detections. Typical range: 0.3–0.7 depending on use case
+    - **Object tracking:** enables tracking of detected objects across video frames, preserving object identity over time. Toggle on: Maintains consistent IDs (e.g., same car = ID #1 in all frames). Toggle off: Each frame is processed independently with no object continuity
+
+    **Approved Element Connections:** This element requires a connection to an Output and Input element to complete a successful flow.
+
+    The following Input elements are supported with the Object Detector element:
+
+    - Media Loader
+    - Camera
+
+    The following Output elements are supported with the Object Detector element:
+
+    - Object Tracker
+    - Output Preview
+    - Class Filter
+  </Accordion>
+
+  <Accordion title="SAM">
+    **Description:**
+
+    The SAM element uses Meta's Segment Anything Model (SAM) to automatically detect and segment objects in images. Traditionally, segmentation requires a lot of manual work—drawing outlines around objects for training or evaluation. SAM makes this process faster and easier by generating pixel-precise masks based on simple prompts like points or bounding boxes. It's powerful because it doesn't need to be trained on your specific images—it already understands the concept of "objects" from being trained on over 1 billion examples. That means you can use it right away, on almost any image, without providing extra data or doing any training.
+
+    **What Is a "Prompt" in SAM?**
+
+    A prompt is just a hint SAM gets from input elements that tells it what to look at in an image. SAM supports two types:
+    Bounding Boxes – Drawn rectangles around the object(s) you want to segment.
+    Points – Clicked spots that show where an object is (positive point) or isn't (negative point).
+    These prompts help SAM focus on the right parts of the image when creating masks.
+
+    **Why use SAM's masks?**
+    SAM doesn't just guess where an object is—it generates precise object outlines using the prompts it's given. Here's why that matters:
+
+    - No training required – Works out of the box on almost any object.
+    - Smart automation – Uses Regions of Interest (ROIs) from input elements and adds masks automatically.
+    - Handles complexity – Works even when objects overlap or scenes are cluttered.
+    - Multiple objects – Can segment several objects in a single image at once.
+
+    **Why Masks Instead of Bounding Boxes?**
+    Bounding boxes are quick, but they're often not precise enough. Masks give you much more precision by outlining the exact shape of an object, down to the pixel. For example, if you're trying to measure the area of a crescent moon:
+
+    - A bounding box would include the whole rectangular area around the moon — most of which is empty space.
+    - A mask would trace the actual curved shape, giving you an accurate result.
+
+    This level of detail is especially useful when dealing with irregular shapes, holes, or fine boundaries that boxes can't capture.
+
+    **When Bounding Boxes Still Make Sense**
+    While masks are more precise, boxes are still useful when:
+
+    - You need a quick object count
+    - Doing real-time processing where speed matters more than detail
+    - In the early stages of processing, to find general object areas before refining with masks
+    - You're tracking objects roughly across frames
+
+    **Element Settings:**
+
+    Model Name: Choose from available base SAM models depending on your needs (for example, speed vs accuracy)
+
+    **Approved Element Connections:**
+
+    Receives input from: Object Detector, Object Detection Inference
+
+    Sends output to: Output Preview, Image Inference Saver
+  </Accordion>
+</AccordionGroup>
+
+### Training
+
+The following are elements that teach a machine learning model to make predictions or decisions based on your data.
+
+<AccordionGroup>
+  <Accordion title="Deep Detection Lite Trainer">
+    The Deep Detection Lite elements are unique to WebAI's Navigator platform. They are designed for real-time object detection in environments with limited computing power, such as mobile devices, edge hardware, or systems where fast response is critical.
+
+    **Functionality:**
+
+    Deep Detection Lite uses hierarchical classification, which means it organizes detected objects into two levels:
+
+    - A super category (broad group)
+    - A category (specific type within that group)
+
+    For example:
+
+    | **Super Category** | **Category** |
+    | --- | --- |
+    | Vehicle | Car, Truck |
+    | Animal | Dog, Cat |
+
+    **Purpose:**
+
+    These models are optimized to use minimal computational resources while maintaining a strong balance between accuracy and speed.
+
+    **Requirements:**
+
+    You'll need:
+
+    - A folder of images in one of the following formats:
+      - BMP
+      - DNG
+      - JPEG
+      - MPO
+      - PNG
+      - TIFF
+      - WebP
+      - PFM
+    - Annotations in COCO JSON format.
+    - The folder structure follows the same as the **Object Detection Trainer** element.
+
+    **Annotation Notes**
+    Deep Detection Lite supports exactly two levels of classification:
+
+    - Super category
+    - Category
+
+    It does **not** support:
+
+    - More than two levels of nesting
+    - Flat object detection with no super categories
+
+    Each object in your dataset must include both a super category and a category in the annotation file.
+
+    **Element Settings:**
+
+    - Model Name: A descriptive name for your trained model
+      - Default: WebAI Deep Detection Lite Object Detection Model
+    - Training Execution Name: Name for this training run
+      - Default: Run 1
+    - Training Data Path: Path to the dataset on your system
+    - Model Backbone: The model architecture used for training
+      - Default: DDLiteV1n
+      - Valid values: DDLiteV1n, DDLiteV1s, DDLiteV1m, DDLiteV1l, DDLiteV1x
+    - Random Seed: A fixed number to ensure repeatable results
+      - Default: 42
+    - Epochs: Number of times the model trains on the full dataset
+      - Default: 10
+    - Batch Size: Number of images processed at once during training
+      - Default: 16
+    - Validation Split: Portion of the dataset used to check model accuracy during training
+      - Default: 0.2 (or 20%)
+    - Learning Rate: How quickly the model updates while learning
+      - Default: 0.001
+
+    **Approved Element Connections:**
+
+    This is a stand-alone element and does not work with other elements as part of a flow.
+  </Accordion>
+
+  <Accordion title="Image Classification Trainer">
+    **Description:** Trains a computer vision model to classify (categorize) entire images into predefined classes based on visual patterns in the dataset.
+
+    **Functionality:** The Image Classification Trainer uses your dataset to train a model to identify and classify specific objects within images or video streams.
+
+    **Purpose:** The Image Classification Trainer is a computer vision model that determines whether an object is present in a frame or not (think Hot Dog, No Hot Dog).
+
+    **Requirements:**
+
+    - You must select an existing model from the Model Backbone dropdown.
+    - training data: images must be stored in folders according to this structure:
+
+    ```
+    train/ 
+    |—— class1
+    |—— class2
+    |—— classN
+    ```
+
+    **Element Settings:**
+
+    - **Training Run Name:** Identifier for your training session.
+    - **Training Data Path:** The folder on your device where your training dataset is stored.
+    - **Model Backbone:** A pre-trained portion of a deep neural network architecture used to extract features from input images. It forms the foundation of the model, typically excluding the final task-specific layers.
+
+    **Advanced Settings:**
+
+    - **Validation Split:** the proportion of the training data reserved to evaluate the model during training. Default: 0.2. Range: 0.05 to 0.95
+    - **Number of Head Layers:** The number of layers in the final part (head) of the model that makes the actual predictions, often added on top of a backbone.
+    - **Head Layer Units:** The number of neurons or nodes in each layer of the model's head, controlling the layer's complexity.
+    - **Epochs:** A full pass through the entire training dataset. More epochs allow the model to learn more, but too many can lead to overfitting.
+    - **Batch Size:** The number of training samples the model processes at once before updating its weights. During an epoch, the model will take your training data and splits it into batches of N samples. Note: A sample refers to a single data point (e.g., one image and one label) while a batch refers to a group of samples processed together. Tip: Larger batches train faster (in terms of hardware efficiency), but may use more memory and smooth out learning too much. Smaller batches can lead to more precise updates but slower training.
+    - **Learning Rate 0.000001-1:** A value that controls how quickly the model updates its internal parameters during training. Small values (e.g., 0.0001) lead to slower, steadier learning; larger values (e.g., 0.1) make faster but potentially less stable updates.
+    - **Freeze Backbone Model:** Prevents the backbone model from being updated during training. Default: True
+    - **Model Artifact Save Path (Optional):** The location on your system to save a backup artifact of the trained model.
+    - **Early Stopping Patience (Optional):** The number of epochs to wait before stopping training if the model's performance doesn't improve. Default: 3. Range: 1 to 500
+    - **Random Seed:** A fixed starting point for random number generation to ensure reproducibility. Default: 42. Range: 1 to 10000
+    - **Model Optimizer:** An algorithm that adjusts the model's parameters during training to minimize errors. Default: "adam". Valid Values: "adam", "rmsprop", "sgd"
+
+    **Approved Element Connections:** This element operates independently and is not part of a flow.
+  </Accordion>
+
+  <Accordion title="LLM Trainer">
+    **Description:** The LLM Trainer enables you to fine-tune a pre-trained LLM with your own domain-specific data, enhancing its performance on tasks specific to your subject of interest.
+
+    **Functionality:**
+
+    **Purpose:** The LLM Trainer produces a trained model artifact that can be deployed with an LLM Inference element (such as the Large Language Model Chat) for more accurate and context-aware responses.
+
+    **Requirements:** In order to use the LLM Trainer, you will need:
+
+    - To select a model from the available options in the Base Model field of your element's settings
+    - A custom dataset that was produced by the LLM Dataset Generator to teach the model specialized knowledge in a specific subject (for more information on generating your custom dataset, visit the LLM Dataset Generator Element Section). By fine-tuning the base model with expert-level data, the LLM Trainer helps produce models that generate more relevant and reliable outputs within your specific subject
+
+    **Element Settings:**
+
+    - **Trained Artifact (Optional):** Use a previously trained model artifact to continue fine-tuning. This is useful if you:
+      - Have new training data to add
+      - Need to adapt the model to a domain shift (e.g. change in use case)
+      - Want to further optimize performance or accuracy
+    - **Base Model Architecture:** Select the base model you want to fine-tune. This is typically a general-purpose pre-trained LLM.
+    - **Training Data Path:** Path to the folder containing your training dataset, usually created by the LLM Dataset Generator.
+    - **Enable Metrics for Trained Model:** Turn this on to track training performance using key metrics:
+      - Loss: Measures error during training
+      - Training Loss: Error on the training data
+      - Validation Loss: Error on unseen validation data
+      - Progress: Tracks completion percentage of the training process
+      - Evaluation Scores: If enabled (via Evaluator API Key), additional metrics such as accuracy, precision, or recall are calculated
+    - **Evaluator API Key (Optional):** Enables external evaluation tools or models for more detailed performance scoring. Used only if Enable Metrics is turned on.
+
+    **Advanced Settings:**
+
+    - **Base Model Assets Path (Optional):** Specify a local folder to store the base model if it needs to be downloaded or quantized locally. This can be used instead of selecting a base model from the list.
+    - **Batch Size:** The number of samples processed in each training step. Default: 4
+    - **Learning Rate:** Controls how quickly the model learns. Higher values may speed up training but risk overshooting optimal settings. Accepted range: 0.0000000001 (1e-10) to 1. Default = 0.0001
+    - **Quantization Rank:** Determines how much the model's precision is reduced to save memory and increase speed. Lower values result in smaller, faster models with lower accuracy. Default: 4
+    - **Save Every N Iterations:** Specifies how often to save the model's adapter weights during training. Default: 1
+    - **Random Seed:** Creates a fixed starting point to ensure training results are reproducible. Default: 42
+    - **Artifact Backup Save Path:** Folder where a backup of the trained model artifact will be saved.
+
+    **Approved Element Connections:** The LLM Trainer is a standalone element and does not operate as part of a flow.
+  </Accordion>
+
+  <Accordion title="LLM Dataset Generator">
+    **Description:** The LLM Dataset Generator is the first step to creating a custom LLM. The LLM Dataset Generator creates a ready-to-use dataset for the LLM Trainer element.
+
+    **Functionality:** The LLM Dataset Generator processes a collection of documents and converts them into question-answer pairs and other training formats suitable for fine-tuning language models. It intelligently extracts key information from your documents and creates diverse, high-quality training examples that help the model learn your domain-specific knowledge.
+
+    **Purpose:** This element bridges the gap between raw documentation and machine-readable training data. By automatically generating training datasets from your existing documents, it enables you to create specialized AI models without manual dataset creation - saving significant time and ensuring comprehensive coverage of your source material.
+
+    **Requirements:** Before you can generate your dataset, make sure you have your documents you want to use ready. Gather all relevant documents you want your model to be built off of. These documents must be in one folder and in the following formats:
+
+    - PDFs (.pdf)
+    - Text files (.txt)
+    - Word documents (.docx)
+
+    **Element Settings:**
+
+    - **Dataset Generation Name:** A descriptive name for this dataset generation run to help you organize multiple training datasets.
+    - **Enable Expert to Generate QnA From Document** toggle: Toggle this on to have the element generate QnA from your provided document.
+    - **Topic:** The central theme or topic the dataset will be focused on.
+    - **Output Folder Path:** The location where the generated training dataset will be saved. This dataset will be used by the LLM Trainer element.
+    - **Dataset Folder Path:** The path to the folder containing source data to use for dataset creation.
+    - Grok Inference API Key (Optional)
+    - OpenAI API Key (Optional)
+    - Claude API Key (Optional)
+    - Gemini API Key (Optional)
+      - These API keys allow the LLM Dataset Generator to use powerful pre-trained language models. You must use at least two of the API Keys, unless using Grok. Then you can use just that API Key.
+    - Dataset Size: The number of question-and-answer pairs to generate. Set to 100 to remove the limit and create a more comprehensive dataset. Default is 25.
+
+    **Approved Element Connections:** The LLM Dataset Generator is a standalone element and does not operate as part of a flow. The generated dataset output is used as input for the LLM Trainer element.
+  </Accordion>
+
+  <Accordion title="Object Detection Trainer">
+    **Description:** The Object Detection Trainer element trains an object detection model to identify specific objects within images or video streams.
+
+    **Functionality:** The Object Detection Trainer element trains a YOLOv8 (You Only Look Once) architecture, known for speed and accuracy in detecting objects in real-time.
+
+    **Purpose:** The Object Detection Trainer produces a fine tuned object detection model (i.e. trained artifact) that can be used to detect and locate objects of interest in images or videos.
+
+    **Requirements:**
+
+    Before you begin training,
+
+    - Images must be annotated using an annotation tool that supports bounding boxes (we recommend RectLabel Pro)
+    - Images must be split into two folders - one for training and the other for testing/inference.
+    - Recommended split is 80% training and 20% for testing
+    - The training folder must contain a folder of images and annotations in the COCO JSON file format. The folder structure must be setup in the following structure:
+      - Training Folder (no naming requirements), for example, 'train' folder
+      - "Images" folder - the folder inside 'train' must be titled "images"
+      - "annotations.json" file - the file must be named "annotations" and be in the COCO JSON format
+
+    <Note>
+    Failure to set up the folder structure as above will result in an error.
+    </Note>
+
+    When you add the element to your canvas you will notice a Setup Required tag. This element's setup requires a,
+
+    - **Base Model:** The Model Backbone dropdown that manages this field is automatically set to the YOLOv8n. You can choose from available YOLO models, but one must be selected.
+    - **Dataset:** The dataset is laid out in the correct folder format as described in the "Before you begin" requirement section. You'll point your element to your dataset in the Training Data Path setting.
+
+    **Element Settings:**
+
+    - **Model Name:** A descriptive name for the trained artifact. Used to distinguish between different experiments. Default: webAI YOLOv8 Object Detection Model
+    - **Training Execution Name:** The user-provided name of this training run. Default: "Run 1"
+    - **Training Data Path:** The location on your system where the dataset used for training is located.
+    - **Model Backbone:** The core structure of a model that extracts features from data. Select from available options
+    - **Model Architecture:** The fundamental structure or design of a machine learning model. Default: CoreML. Valid values: PyTorch, CoreML
+    - **Early Stopping Patience:** The number of epochs to wait before stopping training if the model's performance doesn't improve. Default: 3
+    - **Random Seed:** A fixed starting point for random number generation to ensure reproducibility. Default: 42
+    - **Epochs:** One complete pass through the entire training dataset. Default: 10
+    - **Batch Size:** The number of samples processed before the model updates parameters. Default 16.
+    - **User Pre-trained Model:** Determines whether to start training from a pre-trained model. Default: True
+    - **Validation Split:** The portion of data set aside to evaluate the model during training. Default: 0.2
+    - **Model Optimizer:** An algorithm that adjusts the model's parameters during training to minimize errors. Default: auto. Valid values: auto, SGD, Adam, AdamW, RMSProp
+    - **Learning Rate:** Controls how quickly the model adjusts its parameters during learning. Default: 0.01
+    - **Output Folder Path:** The folder path where the dataset will be saved.
+
+    **Approved Element Connections:** This is a stand-alone element and does not work as part of a flow.
+  </Accordion>
+</AccordionGroup>
+
+### Other Elements
+
+The following are miscellaneous elements, such as Class Filter, or elements that are used in the RAG Ingestion Pipeline template.
+
+<AccordionGroup>
+  <Accordion title="Chunking">
+    **Description:** In the RAG Ingestion Pipeline, the Chunking element breaks large documents into smaller, meaningful pieces—called "chunks"—optimized for search and retrieval.
+
+    **Functionality:** The Chunking element,
+
+    - Splits long documents into ~256-word sections
+    - Preserves context and structure (won't cut mid-sentence or mid-paragraph)
+    - Keeps track of original page numbers for citation and traceability
+    - Stores processed chunks for the next step (Embedding)
+
+    **Purpose:** This element creates smaller, focused chunks that make it easier for the AI to find exactly the right passage—faster and more accurately than searching entire documents.
+
+    **Element Settings:**
+
+    - **Chunk Size:** Defines the maximum number of tokens (usually words) allowed in each chunk. Smaller chunk sizes create more granular segments, while larger sizes preserve broader context. Default: 256. Minimum Value: 1
+    - **Chunk Overlap:** Controls how much of the previous chunk is repeated in the next. This overlap helps preserve context across chunks—especially useful for models that rely on surrounding text. Default: 64. Minimum Value: 1
+    - **Minimum Characters per Sentence:** Filters out short or noisy sentences that may not be meaningful. Only sentences with at least this many characters will be considered when building chunks. Default: 64. Minimum Value: 1
+    - **Minimum Sentences per Chunk:** Ensures each chunk contains a meaningful amount of content by setting a lower bound on how many sentences it must include. Helps avoid fragmented or low-context chunks. Default: 1. Minimum Value: 1
+
+    **Approved Element Connections:** This element requires a connection from the Input element, Image Captioning and the Output element, Embedding to complete a successful flow.
+  </Accordion>
+
+  <Accordion title="Class Filter">
+    **Description:** The Class Filter element refines the results from object detection by filtering out any detected object classes that aren't on the allow list. Only the specified object types will continue through the pipeline.
+
+    **Functionality:** Labels (also called "classes") come directly from the object detection model you're using—either a pretrained base model or a custom model you've trained yourself. The Class Filter element doesn't create or modify these labels. It simply acts as a gatekeeper: it receives the labels from upstream detection elements and filters them based on your allow list.
+
+    - **If you're using a pretrained model:** The labels are built into the base model, typically trained on standard datasets like COCO (as in YOLOv8). These include commonly recognized object categories such as person, car, bicycle, etc.
+    - **If you're using a custom-trained model:** Your labels come from the dataset you used to train the model—usually formatted in COCO JSON (e.g., annotations.json). These labels are defined by you during dataset creation and training setup, often using a labeling tool.
+
+    **Purpose:** The Class Filter element is especially useful when you're only interested in tracking or acting on certain object types (for example, filtering for only "person" or "vehicle" detections).
+
+    **Element Settings:**
+
+    - **Class allow list:** A comma-separated list of object class names you want to keep. Any detected objects with labels not in this list will be filtered out. Example: person, bike, car
+
+    **Approved Element Connections:** This element requires a connection to an Output and Input element to complete a successful flow.
+
+    The following Input elements are supported with the Class Filter element:
+
+    - Object Detector
+    - Object Detection Inference
+    - Object Tracker
+
+    The following Output elements are supported with the Class Filter element:
+
+    - Output Preview
+    - Detection Counter
+    - Image Inference Saver
+    - Object Tracker
+  </Accordion>
+
+  <Accordion title="Embedding">
+    **Description:** The Embedding element converts each text chunk into a numerical representation called an embedding (or vector) that captures its meaning. The core challenge of natural language processing (NLP), a subfield of AI, is that human language is unstructured, nuanced, and symbolic while machines operate using structured, mathematical representations (i.e., numbers). Bridging that gap is what using the Embedding element helps solve.
+
+    **Functionality:** The Embedding Element makes the above possible by supporting two modes:
+
+    - **Document Mode:** In the RAG Ingestion Pipeline all content is pre-processed at once.
+    - **Query Mode:** In the RAG Inference Pipeline, embeddings are generated for incoming user questions in real-time.
+
+    **Purpose:** Using the embedding element in your flow is more effective than traditional search because only exact words are found while an embedding based search understands meaning and retrieves relevant content regardless of wording. Additionally, embeddings enable "smart search." The system can find content that means the same thing, even if it uses different words—like "fix my vehicle" → "car repair" → "auto troubleshooting."
+
+    **Requirements:** Certain requirements for this element are noted within the relevant element setting in the following section.
+
+    **Element Settings:**
+
+    - **Is Ingestion:** Enables ingestion mode. When turned on, the element processes and embeds input chunks of text (and optionally image captions or table data) to prepare them for search and retrieval. When off, the element switches to inference mode and instead generates embeddings from user queries (like a search question) to compare against pre-embedded content. Default: True. Use case: True → for preparing documents during the RAG ingestion pipeline. False → for running queries during the RAG inference phase
+    - **Embedding Model:** Specifies the language model used to convert content into vector embeddings. Choose from a list of supported models based on your needs for speed, accuracy, language support, or resource size. Tip: Larger models usually yield better semantic understanding but require more compute.
+    - **Trained Artifact Path (only applies when Is Ingestion = False):** Path to the trained model artifact used for inference. This setting is required when the embedding element is operating in query mode (not ingestion). It loads the model used during ingestion so that query embeddings are generated consistently with the preprocessed document embeddings.
+
+    **Approved Element Connections:**
+
+    - If you are using the Embed element in a RAG Ingestion Pipeline, your flow will need to be connected to the input element, Chunking, and will need to be connected to the Output element, Vector Indexing.
+    - If you are using the Embed element in a RAG Inference flow, your flow will need to receive input from the API element and will need to be connected to send to the Output element, Vector Retrieval.
+  </Accordion>
+
+  <Accordion title="Image Captioning">
+    **Description:** The Image Captioning element is the second step in the RAG Ingestion Pipeline. It turns visual content into searchable text. It uses AI vision-language models to describe figures, charts, graphs, and tables found in your documents.
+
+    **Functionality:** The Image Captioning element,
+
+    - Captions all images extracted during OCR
+    - Makes diagrams, charts, and visuals discoverable by AI
+    - Uses selected vision-language models to generate accurate and detailed descriptions
+
+    **Purpose:** Without captions, the AI only sees "half" your document. Using the Image Captioning element ensures your RAG system can answer questions based on visuals—not just text.
+
+    **Note:** The Embedding Element in your RAG Ingestion Pipeline requires text to generate search-ready embeddings. If images aren't captioned, they won't be searchable.
+
+    **Element Settings:**
+
+    - **Trained Artifact (Optional)**
+    - **Image Captioning Model:** Specifies the vision-language model used to generate image captions.
+    - **Quantization Rank:** Adjusts the numerical precision of the model to optimize for size and performance. Lower ranks = smaller, faster, less accurate. Default: 4, Valid values: 4, 8
+    - **Temperature:** Controls the creativity or randomness of responses. Lower values (e.g. 0.1): More focused and predictable. Higher values (e.g. 0.9): More open-ended and varied. Default: 0.7. Range: 0.01 – 1.0
+    - **Max Token:** Sets the maximum number of tokens the model can generate in a response. Limits the length of model responses. Useful for managing verbosity and API usage. Default: 128
+
+    **Approved Element Connections:** The Image Captioning element receives input from the OCR element and sends output to the Chunking element.
+  </Accordion>
+
+  <Accordion title="LLM">
+    **Description:** LLM (webFrame) is a performance-optimized execution element designed for running LLMs in both resource-constrained and distributed computing environments.
+
+    **Functionality:** The LLM element is purpose-built for text generation and chat applications, adapting automatically to the underlying hardware and compute infrastructure. When deployed, LLM WebFrame analyzes the available compute environment—whether a single machine or a multi-node cluster—and dynamically adjusts its execution strategy. It can detect the number of available nodes and devices, determine an optimal compute plan, and distribute workloads as needed, eliminating the need for manual configuration by the user.
+
+    **Purpose:** This LLM element produces a live chat interface where users can interact with their selected LLM and receive contextually relevant, real-time responses.
+
+    **Requirements:**
+
+    - Base model (selected from available options)
+    - Hugging Face API Key (optional)
+
+    **Approved Element Connections:** Connect the API element for both the input and output.
+  </Accordion>
+
+  <Accordion title="Object Tracker">
+    **Description:** The Object Tracker element follows the same object across multiple frames in a video stream—like tracking a person or car as it moves through a scene.
+
+    **Functionality:** The Object Tracker element starts with a detected object in one frame and maintains its identity over time, even as it changes position, scale, or appearance.
+
+    **Purpose:** This element is essential for tasks that require motion analysis, behavior tracking, or event detection across time.
+
+    **Element Settings:**
+
+    - **Distance Function:** Defines how the tracker compares new detections to existing tracked objects. Options: IoU (Intersection over Union) - Default, Euclidean, Cosine, Minkowski
+    - **Distance Threshold:** Sets the maximum allowable distance between a new detection and an existing track. Lower values = stricter matching. Default: 0.7
+    - **Hit Counter Max:** The number of consecutive frames an object must appear in before it's confirmed as valid. Helps reduce false positives from brief or noisy detections. Default: 15
+    - **Initialization Delay:** Specifies a delay before tracking begins, allowing the system to stabilize before object tracking starts. Default: 3
+    - **Past Detections Length:** Number of previous frames to consider when evaluating object consistency. A longer history can improve tracking accuracy but may increase processing time. Default: 4
+    - **Use ReID (Re-identification):** Enables re-identification using visual features, allowing the tracker to maintain object identity even if the object temporarily disappears (e.g., due to occlusion). Useful in crowded scenes or multi-camera setups. Default = True
+
+    **Approved Element Connections:** This element requires a connection to an Output and Input element to complete a successful flow.
+
+    The following Input elements are supported with the Object Tracker element:
+
+    - Object Detector
+    - Object Detection Inference
+    - Deep Detection Lite Inference
+
+    The following Output elements are supported with the Object Tracker element:
+
+    - Output Preview
+  </Accordion>
+
+  <Accordion title="Prompt Templating">
+    **Description:** The Prompt Templating element transforms your question and the retrieved document chunks into a well-structured, human-readable input that the LLM can understand and respond to accurately in the RAG Inference Pipeline. It's the crucial bridge between retrieved information (from vector search) and the LLM's response generation.
+
+    **Element Connections in the RAG Inference Pipeline:**
+
+    - Receives input from: Vector Retrieval
+    - Sends output to: Large Language Model Chat
+  </Accordion>
+
+  <Accordion title="Safe Guard">
+    **Description:** The Safe Guard element filters incoming user input to detect inappropriate, harmful, or restricted content.
+
+    **Functionality:** The Safe Guard element ensures that only "safe" content is passed along the AI pipeline, helping to protect both your users and the system from "unsafe" interactions. When unsafe content is detected, it can be blocked or redirected according to your pipeline design while safe input continues through as normal.
+
+    **Purpose:** This element ensure that AI systems are developed, deployed, and used in a way that is safe, ethical, fair, transparent, and ultimately beneficial to humanity, while mitigating potential risks and harms.
+
+    **Element Settings:**
+
+    - **Topics to exclude:** A comma-separated list of user defined topics or keywords the model should avoid in its output. This is used in combination with the safeguard prompt to determine whether content should be blocked or allowed. Example: violence, politics, adult content
+    - **Threshold for excluded topics (Optional):** Controls how sensitive the model is when detecting restricted topics. Higher values make the filter stricter. Default: 0.9. Minimum: 0.01. Maximum: 1.0. A threshold of 1.0 means only content that is almost certainly unsafe will be blocked, while a lower threshold will block more aggressively.
+
+    **Approved Element Connections:** This element requires a connection to an Output and Input element to complete a successful flow.
+
+    The following Input elements are supported with the Safe Guard element:
+
+    - API
+    - Topic Classification
+
+    The following Output elements are supported with Safe Guard element:
+
+    - Large Language Model Chat
+    - LLM (webFrame)
+    - Topic Classification
+  </Accordion>
+
+  <Accordion title="Topic Classification">
+    **Description:** The Topic Classification element categorizes input text into topics or themes defined by the user. It uses the GLiClass model for zero-shot classification, meaning it can categorize text into labels it wasn't explicitly trained on. This allows for dynamic, domain-specific categorization without any retraining.
+
+    **Functionality:** The key features of the Topic Classification element are,
+
+    - **Zero-shot classification:** No training required — simply define the labels and start classifying.
+    - **Multi-label support:** The same piece of text can belong to multiple topics.
+    - **Confidence scores:** Each classification includes a confidence score to indicate how likely the model believes the label fits the text.
+    - **Real-time adaptability:** Easily update or change topic labels without retraining.
+
+    **Purpose:** The Topic Classification element is important because of the following:
+
+    - **Tailors LLM behavior:** Enables downstream components (e.g., LLM Chat) to adapt responses based on the detected topic
+    - **Tracks topic trends:** Understand which themes are common in your documents or user queries
+    - **Measures coverage:** Analyze which categories are well-represented or underrepresented
+    - **Zero retraining required:** Quickly change or expand topic categories on the fly
+
+    **Element Settings:**
+
+    - **Labels:** A comma-separated list of categories or topics you want the model to classify text into. Example: "customer support, billing, technical issue, feedback"
+    - **Number of Labels (Optional):** The number of top-matching labels to return per prompt. The model ranks labels based on similarity and confidence score and returns the top N. This ranking is determined by the semantic similarity between the input and each label using the model's learned representation of meaning. This helps narrow down the classification to the most likely topics. Default: 3
+
+    **Approved Element Connections:**
+  </Accordion>
+
+  <Accordion title="Vector Retrieval">
+    **Description:** In the RAG Inference Pipeline the Vector Retrieval element performs intelligent, meaning-based search when a user submits a question. It compares the vector embedding (numerical representation) of the user's query to the embeddings of all document chunks stored in the vector database — returning the most semantically relevant matches. This is where AI-powered search happens!
+
+    **Functionality:** The Vector Retrieval in the RAG Inference Pipeline works by:
+
+    - Embedding the user's question into a vector using the same model used during ingestion.
+    - Loading the vector database created by the Vector Index element.
+    - Comparing the question vector to all stored chunk vectors.
+    - Calculating similarity scores between the query and each document chunk.
+    - Returning the top K most relevant chunks for use in RAG-based response generation.
+
+    **Element Settings:**
+
+    - **Top K:** Specifies the maximum number of results to return from the vector database. This setting determines how many of the top matching results are retrieved based on the query embeddings. Default: 3. Minimum: 1. For more information on webAI's Top K visit our article here.
+
+    **Approved Element Connections:** In the RAG Ingestion Pipeline, the Vector Retrieval element receives input from the Embedding element and sends output to the Prompt Templating element.
+  </Accordion>
+</AccordionGroup>
+
+If you don't see any of the elements listed above in your Navigator experience, it's likely due to your current Navigator version. Be sure to check your installer and apply any available app updates.
+
+If you have any questions about the elements or need help building flows, don't hesitate to reach out to our [Support Team](https://support.webai.com/hc/en-us/requests/new). Our team is always happy to provide guidance and expertise!
+

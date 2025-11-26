@@ -1,0 +1,81 @@
+---
+title: "Create Text Completion"
+description: "Creates a completion for the provided prompt using the legacy completions format"
+openapi: "POST /v1/completions"
+---
+
+## Overview
+
+The completions endpoint generates text completions based on a provided prompt. This is the legacy text completions format that predates the chat-based format.
+
+<Info>
+  This endpoint follows the [OpenAI Completions API](https://platform.openai.com/docs/api-reference/completions) format for compatibility with existing tools and libraries.
+</Info>
+
+## Usage
+
+Send a text prompt to generate completions:
+
+```json
+{
+  "model": "webai-llm",
+  "prompt": "write a tagline for a taco shop.",
+  "max_tokens": 150
+}
+```
+
+## Parameters
+
+- **model** (required) - The ID of the model to use (e.g., "webai-llm")
+- **prompt** (required) - The prompt to generate completions for (string or array of strings)
+- **max_tokens** - The maximum number of tokens to generate in the completion
+
+## Response Format
+
+The API returns a structured response with the completion:
+
+```json
+{
+  "choices": [
+    {
+      "citations": [],
+      "finish_reason": "stop",
+      "index": 0,
+      "logprobs": null,
+      "text": "Here are a few tagline options for a taco shop:\n\n1. \"Wrap yourself in flavor\"\n2. \"Tacos that taste like home\"\n3. \"Fold, fill, repeat: the taco life\"\n4. \"Taste the culture, one bite at a time\"\n5. \"Tacos made with love, served with pride\"\n6. \"The perfect fold, every time\"\n7. \"Your taco, your way\"\n8. \"Flavors that fold you over\"\n9. \"Taco 'bout great food\"\n10. \"Get wrapped up in the flavor\""
+    }
+  ],
+  "citations": [],
+  "created": 1677664795,
+  "id": "webaichat-6ee7cdbd9fb0",
+  "metrics": {
+    "tps": 59.0,
+    "ttft": 0.204737
+  },
+  "model": "nav",
+  "object": "text_completion",
+  "usage": {}
+}
+```
+
+## Performance Metrics
+
+The response includes performance metrics:
+- **tps** - Tokens per second generated
+- **ttft** - Time to first token in seconds
+
+## Multiple Prompts
+
+You can send multiple prompts in a single request by providing an array:
+
+```json
+{
+  "model": "webai-llm",
+  "prompt": [
+    "write a tagline for a taco shop.",
+    "write a tagline for a pizza shop."
+  ],
+  "max_tokens": 150
+}
+```
+

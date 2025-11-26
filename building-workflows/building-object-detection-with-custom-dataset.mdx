@@ -1,0 +1,256 @@
+---
+title: "Building an Object Detection Flow with your Custom Dataset"
+sidebarTitle: "Object Detection Custom Dataset"
+---
+
+This article walks you through creating a custom object detection system using your own dataset. You'll first train a model by uploading your images and annotations in a specific folder structure (images folder + annotations.json file), then use the trained model to detect objects in new images or video streams.
+
+The process involves two main steps: using the Object Detection Trainer element to fine-tune a model on your data, then setting up an Object Detection Inference element to actually detect objects in real-time. Once set up, you can connect input sources (like cameras or uploaded media) and output displays to create a complete workflow that identifies and highlights specific objects in your images or videos.
+
+<Warning>
+  **Distribution Notice**
+
+  The Object Detection element cannot be distributed across devices. Use only within the same environment.
+</Warning>
+
+---
+
+## Use Cases
+
+The following are industry examples on how you can utilize an object detection flow!
+
+- **Security & Surveillance** → Detect intruders, weapons, or suspicious activities
+- **Traffic Management** → Count vehicles, monitor traffic violations, parking enforcement
+- **Manufacturing** → Quality control, defect detection, assembly line monitoring
+- **Retail** → Inventory management, theft prevention, customer behavior analysis
+- **Healthcare** → Medical imaging, patient monitoring, equipment tracking
+- **Agriculture** → Crop monitoring, pest detection, livestock management
+- **Sports Analytics** → Player tracking, performance analysis, game statistics
+- **Warehouse Operations** → Package sorting, inventory tracking, safety monitoring
+- **Environmental Monitoring** → Wildlife tracking, pollution detection, conservation efforts
+- **Construction** → Safety compliance, equipment tracking, progress monitoring
+
+---
+
+## Dataset Structure
+
+<Note>
+  **Important:** In order to use a custom model with your existing data, your dataset must follow this specific structure. Failure to do so will result in errors and your Object Detection Flow will not work as expected.
+</Note>
+
+- **Training Folder:** The folder that will contain the Images Folder and Annotations file. The name of this folder on your desktop doesn't matter, for this example we will name it "train"
+- **Images Folder:** This is the folder with all training images that are referenced in the annotation file. This folder must be named images and be inside your training folder.
+- **Annotation File:** This file must be named annotations.json and be in COCO JSON format continuing object locations and class labels. For detailed COCO format guides, visit the official COCO dataset documentation website here: https://cocodataset.org/#format-data
+
+<Note>
+  If you don't have one yet, you can download our sample dataset:
+
+  [Plane Detector Dataset](https://downloads.webai.com/marketing/Plane_Detector_Dataset.zip)
+</Note>
+
+Example of the Folder/File format on your computer:
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_object_detection_with_dataset_images/image_1.png"
+    width="918"
+    height="435"
+    alt="Folder structure example"
+  />
+</Frame>
+
+---
+
+## Quick Start
+
+### Step 1: Open a Blank Canvas
+
+<Steps>
+  <Step title="Create New Project">
+    Inside Navigator, from the **Projects** page click <kbd>Create</kbd>
+  </Step>
+  <Step title="Name Your Project">
+    Choose either **Blank Canvas** or **Blank Project** and name your project.
+  </Step>
+</Steps>
+
+### Step 2: Fine Tune Your Custom Model with the Object Detection Trainer Element
+
+<Steps>
+  <Step title="Add Object Detection Trainer Element">
+    Drag and drop the Object Detection Trainer element into your blank canvas.
+  </Step>
+  <Step title="Open Element Settings">
+    Click on the element to open its settings.
+  </Step>
+  <Step title="Select Training Data Path">
+    In the Training Data Path section, click <kbd>Select Directory</kbd>
+
+     to upload your dataset.
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_object_detection_with_dataset_images/image_2.png"
+        width="1100"
+        height="689"
+        alt="Training data path selection"
+      />
+    </Frame>
+  </Step>
+  <Step title="Select Model Backbone (Optional)">
+    **(Optional)** Select a Model Backbone from the dropdown menu. The default is YOLOv8N, which is the fastest and smallest model. Other options offer a balance between speed and accuracy:
+
+    - **YOLOv8s:** A good balance of speed and accuracy.
+    - **YOLOv8m:** Medium accuracy with moderate computational resource use.
+    - **YOLOv8l:** High accuracy, but requires more computational power.
+    - **YOLOv8x:** Highest accuracy, requiring the most computational resources
+  </Step>
+  <Step title="Set Training Execution Name (Optional)">
+    **(Optional)** Use the Training Execution Name to give your training run a custom name.
+
+    <Frame>
+      <img
+        style={{ borderRadius:"0.5rem" }}
+        src="/images/build_object_detection_with_dataset_images/image_3.png"
+        width="652"
+        height="689"
+        alt="Training execution name"
+      />
+    </Frame>
+  </Step>
+  <Step title="Review Settings">
+    You can use the default settings for the remaining options, or adjust them as needed.
+  </Step>
+  <Step title="Run Training">
+    Click <kbd>Run</kbd>
+
+     in the upper right hand corner, and the system will fine tune a model for your objects, which you can use for inference (next step) once complete! It will be saved as the name you have in the Training Execution Name setting.
+  </Step>
+</Steps>
+
+<Note>
+  If this is your first time training an element, the process might take a while to finish. You can view your progress by clicking on the arrow by the View Progress button and clicking on Run History.
+</Note>
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_object_detection_with_dataset_images/image_4.png"
+    width="383"
+    height="323"
+    alt="View progress"
+  />
+</Frame>
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_object_detection_with_dataset_images/image_5.png"
+    width="949"
+    height="663"
+    alt="Run history"
+  />
+</Frame>
+
+### Step 3: Setup your Object Detection Inference Element
+
+<Steps>
+  <Step title="Open New Canvas">
+    Once you have a fine tuned model/artifact from the Object Detection Trainer, we can start setting up our Object Detection flow.
+  </Step>
+  <Step title="Create Blank Canvas">
+    Open up a new blank canvas.
+  </Step>
+  <Step title="Add Object Detection Inference Element">
+    Drag and Drop the Object Detection Inference element into the Canvas
+  </Step>
+  <Step title="Open Element Settings">
+    Click on the Object Detection Inference element to view the element's settings.
+  </Step>
+  <Step title="Upload Trained Artifact">
+    Use the Trained Artifact setting to upload your Trained Artifact from the previous step.
+  </Step>
+</Steps>
+
+### Step 4: Create your flow
+
+Now that we have our Object Detection Inference Element setup, you need to connect an Input and Output element to create a complete workflow to begin detecting objects.
+
+#### Input Elements
+
+This element will provide the media for the detector to analyze. For the most basic setup, we recommend one of the following:
+
+- **Camera:** live webcam or video feed
+- **Media Loader:** Upload static images or video files
+
+#### Output Elements
+
+This element will display or save the results of the detection. For the most basic setup, we recommend one of the following:
+
+- **Output Preview:** View live detections with bounding boxes directly inside Navigator
+- **Image Inference Saver:** Save the processed images or video frames to your computer
+
+Attach the three elements to create a flow and then click on the <kbd>Run</kbd>
+
+ button!
+
+<Frame>
+  <img
+    style={{ borderRadius:"0.5rem" }}
+    src="/images/build_object_detection_with_dataset_images/image_6.png"
+    width="624"
+    height="233"
+    alt="Complete flow"
+  />
+</Frame>
+
+---
+
+## Different Object Elements
+
+- **Object Detection Inference** - Leverages a trained image dataset to analyse new images or video streams and generate predictions
+- **Object Detector** - Leverages a pre-trained model (YOLOv8) to identify objects within new images or video streams
+- **Object Detection Trainer** - Trains an object detection model by utilizing a packaged image dataset to detect specific objects in a set of images or video streams.
+- **Object Tracker** - Tracks an object (or multiple objects) through a video stream
+
+---
+
+## Example Workflows
+
+### Basic Setup
+
+**Camera → Object Detector → Output Preview**
+
+If you don't have a dataset, you can still use object detection, using the Object Detector element!
+
+Check out [**Building an Object Detection Flow without a Dataset**](/building-workflows/building-object-detection-flow-without-dataset).
+
+### Custom Objects - what we did here!
+
+**Media Loader → Object Detection Inference (fine tuned) → Image Inference Saver**
+
+### Advanced Tracking
+
+**Camera → Object Detector → Object Tracker → Detection Counter**
+
+This flow can be used to count how many times an object appears within a camera.
+
+### Filtered Detection
+
+**Camera → Object Detector → Class Filter → Output Preview**
+
+This flow can be created to filter out images defined by certain classes such as cars, bicycles, etc.
+
+---
+
+## Quick Tips
+
+- If you don't have a dataset, use the Object Detector element with pre-trained YOLO (You Only Look Once). For more information on creating an object tracking flow without a dataset visit our [**Building an Object Detection Flow without a Dataset**](/building-workflows/building-object-detection-flow-without-dataset) article!
+- If you'd like to add tracking to your flow, use the Object Tracker element after detection.
+- If you are wanting to detect only specific objects, add the Class Filter element to your flow.
+- If you need to save your results, add in the Image Inference Saver to your flow.
+- If you want to see a live view, use the Output Preview element in your flow.
+- If you need to count the number of times an object appears, use the Object Detection Counter element in your flow.
+- For more information on the different elements discussed in this document, visit our [**Element Registry**](/fundamentals/element-registry)!

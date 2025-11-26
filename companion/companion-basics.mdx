@@ -1,0 +1,269 @@
+---
+title: "Implementation"
+description: "Learn how to use Companion, your local and private AI chat interface"
+---
+
+Companion is your local and private AI chat interface. It allows you to interact directly with models running on your device or within your organization's compute environment. This document will walk through the different settings and areas within your Companion application.
+
+<Note>
+**Companion** is webAI's private AI Chat interface that runs the models you build inside Navigator. All interactions are processed locally, ensuring your conversations remain private and secure.
+</Note>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_1.png" width="1182" height="878" alt="Screenshot 2025-11-07 at 3.58.00 PM.png" />
+</Frame>
+
+---
+
+### Getting Started with Companion
+
+If this is your first time using Companion, you'll be prompted to go through a brief onboarding flow to create your account.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_2.png" width="746" height="814" alt="Screenshot 2025-11-07 at 3.39.47 PM.png" />
+</Frame>
+
+#### Setting Up Your Companion Account
+
+To set up your Companion account:
+
+<Steps>
+  <Step title="Open the Companion application" />
+  <Step title="Enter your email and password" />
+  <Step title="Complete the onboarding steps to finish account creation" />
+</Steps>
+
+Once setup is complete, you'll be directed to the main Companion interface.
+
+<Note>
+You must use the same credentials as your Navigator account to ensure proper synchronization between applications. This allows models deployed in Navigator to automatically appear in Companion.
+</Note>
+
+---
+
+### Companion Models
+
+The left-hand panel in Companion displays all chat models available to you. This panel serves as your model library, showing every AI assistant you have access to through your local device or organizational deployments.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_3.png" width="1192" height="858" alt="Screenshot 2025-11-07 at 3.47.21 PM.png" />
+</Frame>
+
+By default, Companion automatically selects the model that best fits your device's compute power. 
+
+You can switch models at any time using the model dropdown menu.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_4.png" width="362" height="134" alt="Screenshot 2025-11-07 at 3.59.28 PM.png" />
+</Frame>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_5.png" width="1550" height="648" alt="Screenshot 2025-11-07 at 2.11.44 PM.png" />
+</Frame>
+
+#### Available Models
+
+If this is your first time using Companion, you'll most likely only see the default local model. However:
+
+- Any models you've deployed to Companion through Navigator will appear here
+- If you're part of clusters or organizations that have deployed models, those will also be listed
+- Custom LLM chatbots created from Featured Templates will be accessible
+- Document QnA and RAG-based assistants you've configured will show up as separate models
+
+<Note>
+**Model Status Indicators:** Models that are active and ready for chat display a green icon. This indicates the model is fully loaded and ready to process your requests. Models that are loading or unavailable will show a grey offline status.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_6.png" width="46" height="100" alt="Screenshot 2025-11-07 at 4.00.59 PM.png" />
+</Frame>
+</Note>
+
+For additional information on deploying models, see the [Deployments Overview](https://support.webai.com/hc/en-us/articles/45647521605779-Deployments-Overview) article.
+
+### Interacting with Your Models
+
+To chat with a model:
+
+<Steps>
+  <Step title="Select a model from the left-hand column" />
+  <Step title="Type your question or prompt in the chat" />
+  <Step title="Click the blue arrow to send your message" />
+</Steps>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_7.png" width="1510" height="162" alt="Screenshot 2025-11-07 at 4.02.43 PM.png" />
+</Frame>
+
+Your model will generate a response directly in the chat window. Responses appear in real-time as the model processes your input. 
+
+### Starting a New Conversation
+
+To start a new chat thread with the selected model:
+
+<Steps>
+  <Step title="Click the Chat icon in the interface" />
+  <Step title="A new blank chat will appear, keeping your previous conversations saved and organized" />
+</Steps>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_8.png" width="400" height="110" alt="Screenshot 2025-11-07 at 4.03.40 PM.png" />
+</Frame>
+
+<Note>
+**Conversation Management:** Each model maintains its own conversation history, allowing you to have multiple ongoing conversations with different models. Your previous conversations are automatically saved and can be accessed at any time from the left panel. You can also search for a previous conversation by using the **Search** bar.
+</Note>
+
+---
+
+### Chat Features
+
+At the bottom of the chat, you'll see three icons that enhance your chat experience:
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_9.png" width="576" height="280" alt="Screenshot 2025-11-07 at 4.07.29 PM.png" />
+</Frame>
+
+#### 1. Web Search Toggle
+
+Enables your model to search the internet for additional information.
+
+- Requires an active internet connection
+- Useful for questions about recent events, current data, or real-time information
+- Can be toggled on or off for each conversation
+
+#### 2. Reasoning Mode
+
+Displays the reasoning path or logic your model used to arrive at its response.
+
+- Shows step-by-step thought process
+- Helps understand how the model reached its conclusions
+- Useful for debugging complex queries or verifying logic
+- Provides transparency into the AI's decision-making
+
+#### 3. Speech-to-Text
+
+Converts spoken input into text, allowing you to chat hands-free.
+
+- Click the microphone icon to activate
+- Speak your question or prompt naturally
+- Text appears in the chat as you speak
+- Ideal for longer prompts or accessibility needs
+
+---
+
+### Generating Files
+
+Companion can generate interactive, code-based files, such as HTML, Python, or JavaScript, directly within the application. This powerful feature allows you to create functional code, web pages, scripts, and more through natural conversation.
+
+#### Creating a File
+
+To generate a file:
+
+<Steps>
+  <Step title="Type a request describing what you'd like created (Example: 'Create a file with HTML text formatting options')" />
+  <Step title="Companion will create the file and display it in the interface" />
+  <Step title="You can interact with, edit, save, or share the generated file as needed" />
+</Steps>
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_10.png" width="1328" height="552" alt="Screenshot 2025-11-07 at 4.11.58 PM.png" />
+</Frame>
+
+<Note>
+Your file will appear within the chat. **Your generated file will automatically be named after the conversation title, which is based on the first question or prompt you send to your model.**
+</Note>
+
+#### Working with Generated Files
+
+Once a file is generated, you have several options:
+
+- **Preview:** View the file directly in Companion's built-in viewer
+- **Edit:** Request modifications or improvements through natural language
+- **Save:** Export the file to your local system for use in other applications
+- **Iterate:** Continue refining the file through follow-up prompts
+
+#### Accessing Saved Files
+
+All files created in Companion are automatically saved and can be accessed by clicking the Files icon in the top-right corner of the interface.
+
+The Files panel provides:
+
+- A complete history of all generated files
+- Quick access to previously created content
+- Options to re-open, edit, or share files
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/companion_basics_images/image_11.png" width="1368" height="526" alt="Screenshot 2025-11-07 at 4.16.22 PM.png" />
+</Frame>
+
+---
+
+### Deploying Custom Models to Companion (Quick Start)
+
+To deploy your own custom models from Navigator to Companion:
+
+<Steps>
+  <Step title="Once you've created and tested your LLM flow in Navigator, click the menu by your Run/Active button on your canvas, select 'Save for Deployment', and fill out the required steps" />
+  <Step title="Open Companion, your custom model will automatically appear in the left sidebar" />
+</Steps>
+
+Note: It may take a few minutes to see your model appear in Companion. 
+
+---
+
+### Tips for Getting the Most from Companion
+
+<Tabs>
+  <Tab title="Conversation Best Practices">
+  
+- Be specific and clear in your prompts for better results
+- Use follow-up questions to refine and improve responses
+- Create separate threads for different topics or projects
+- Enable Reasoning Mode to understand complex answers
+- Use Web Search for questions requiring current information
+
+</Tab>
+  <Tab title="Performance Optimization" icon="flash">
+  
+- For optimal performance, match model size to your available hardware resources
+- Consider using webFrame for larger models to distribute processing across multiple devices
+- Close unused applications to free up memory for your AI models
+- Keep your device charged or plugged in during extended AI sessions
+
+</Tab>
+</Tabs>
+
+---
+
+### Troubleshooting Common Issues
+
+<Accordion title="Model Not Appearing in Companion">
+  <ul>
+    <li>Check that the deployment status shows as "Active" in Navigator</li>
+    <li>Restart Companion to refresh the model list</li>
+    <li>Ensure your cluster and nodes are properly configured</li>
+  </ul>
+</Accordion>
+
+<Accordion title="Slow Response Times">
+  <ul>
+    <li>Check that other resource-intensive applications are closed</li>
+    <li>Verify your device meets the minimum hardware requirements</li>
+    <li>Consider using a smaller, more efficient model</li>
+    <li>For large models, consider using webFrame with distributed processing</li>
+  </ul>
+</Accordion>
+
+<Accordion title="Files Not Generating Properly">
+  <ul>
+    <li>Be more specific about the file type and requirements in your prompt</li>
+    <li>Check the Files panel to ensure the file was created</li>
+    <li>Try regenerating with additional context or examples</li>
+    <li>Review the generated code in the attachment panel for errors</li>
+  </ul>
+</Accordion>
+
+<Note>
+For additional support and troubleshooting resources, visit the webAI Support Center or refer to the comprehensive Troubleshooting Guide in the documentation.
+</Note>
+

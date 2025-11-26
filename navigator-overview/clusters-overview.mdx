@@ -1,0 +1,163 @@
+---
+title: "Clusters Overview"
+description: "Deploy and manage AI Flows across multiple devices"
+sidebarTitle: "Clusters Tab"
+---
+
+Navigator's Canvas is ideal for designing and testing AI Flows, but these flows only run when Navigator is open on your machine. For production-ready, persistent deployments that continue running regardless of Navigator's status, you'll need to use Clusters.
+
+Clusters enable you to:
+
+- Run AI Flows continuously without keeping Navigator open
+- Distribute processing across multiple computers for better performance
+- Connect to and manage remote devices from a central interface
+- Scale your AI solutions from development to production
+
+---
+
+## Overview
+
+### Clusters Tab
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_1.png" width="624" height="192" alt="Clusters Tab" />
+</Frame>
+
+### Cluster Details
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_2.png" width="4294" height="1615" alt="Cluster Details" />
+</Frame>
+
+#### 1. Cluster Card
+
+All created Clusters are initially displayed in a Cluster Card when viewing the Clusters tab. This Cluster Card gives you a quick overview of the Status, Organization, Controller, Devices, and Deployments running on this particular Cluster. You can click into this card to view the Cluster Details in more depth.
+
+#### 2. Cluster Details
+
+An overview of the Cluster Details are displayed on the Cluster Card initially when you view the Clusters tab. Once you click into the Cluster Card you will be able to view a more in depth look at the specific Devices and Deployments associated with this specific Cluster as shown in the second image above. You also have the ability to add and delete Devices from this specific Cluster.
+
+#### 3. Total Hardware Utilization
+
+This is the total amount of hardware utilization across the entire Cluster. So if you have multiple Nodes/Workers associated with one Cluster you will be able to see the total hardware utilization in the Clusters Tab as well as the Cluster Details.
+
+#### 4. View Filter
+
+The view filter allows you to filter by certain Organizations your Clusters belong to. If you are a Member of several Organizations you should see all of those displayed in this dropdown and can select one to quickly filter to the Cluster Cards associated with that specific Organization.
+
+#### 5. Add Cluster Button
+
+Click the Add Cluster Button to begin building a new Cluster. You should see the below modal appear. We will go into more detail on hosting and joining a new cluster in this article.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_3.png" width="228" height="227" alt="Add Cluster Modal" />
+</Frame>
+
+#### 6. Devices & Deployments Toggle
+
+This toggle allows you to see which Nodes, Input Devices, and Deployments are currently being utilized by a specific Cluster. 
+
+---
+
+## Host or Join a New Cluster
+
+There are two ways to gain access to a new Cluster. You can either host a new Cluster or join an existing Cluster. Below we will go through each of the options and what the process looks for both!
+
+### Host a New Cluster
+
+<Steps>
+  <Step title="Open Add Cluster">
+    On the Clusters tab click **Add Cluster**
+  </Step>
+  <Step title="Select Host a New Cluster">
+    You will see the below modal appear. Click **Host a New Cluster** → **Next**
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_4.png" width="263" height="256" alt="Host a New Cluster" />
+</Frame>
+
+<Warning>
+  If you have only one device connected (your MacBook for example) you will not be able to create a new Cluster as you can only host one Cluster per device
+</Warning>
+  </Step>
+  <Step title="Name Your Cluster">
+    This is where you will be able to Name your Cluster as well as provide a Description of this Cluster.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_5.png" width="251" height="279" alt="Name Your Cluster" />
+</Frame>
+  </Step>
+  <Step title="Create the Cluster">
+    Provide a Name and a Description (optional) for this Cluster and click **Create**.
+  </Step>
+  <Step title="View Cluster Card">
+    You should now see a Cluster Card created on the Clusters tab.
+  </Step>
+  <Step title="Open Cluster Details">
+    Click into the Cluster Card to view the Cluster Details.
+  </Step>
+  <Step title="Add a Node">
+    Under the Devices Nodes tab click **Add Node** and you should see the below modal appear.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_6.png" width="250" height="180" alt="Add Node" />
+</Frame>
+  </Step>
+  <Step title="Select Your Node">
+    Choose the Node you would like to add to this Cluster.
+
+<Note>
+  If you don't see your device or need to add a new device as mentioned above, verify that Worker Mode is enabled in the device's copy of Navigator, then try again. For more information see our My Devices Overview.
+</Note>
+  </Step>
+  <Step title="Confirm Node Selection">
+    Once you select the Node you would like to add to this Cluster click **Next**.
+  </Step>
+  <Step title="Add Computer Nickname">
+    You will see the below modal. Enter a Computer Nickname → click **Add**.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_7.png" width="184" height="150" alt="Computer Nickname" />
+</Frame>
+
+<Note>
+  This Computer Nickname is different from a Device Name. Adding a Computer Nickname here on the Clusters tab will not change the Device Name in the My Devices tab. One Device can have multiple Nicknames per Cluster.
+</Note>
+  </Step>
+  <Step title="Add Additional Nodes (Optional)">
+    If you need to add more than one Node to your Cluster repeat steps 6-10. Click the **New** button in the top right of the Cluster Details page to add a new Node.
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_8.png" width="624" height="123" alt="Add Additional Nodes" />
+</Frame>
+  </Step>
+</Steps>
+
+You have now created a Cluster to send your Deployments to! Review the Next Steps at the bottom of this article for information on creating Flows and how to Deploy those flows. 
+
+### Join an Existing Cluster
+
+<Steps>
+  <Step title="Open Add Cluster">
+    On the Clusters tab click **Add Cluster**
+  </Step>
+  <Step title="Select Join an Existing Cluster">
+    You will see the below modal appear. Click **Join an Existing Cluster** → **Next**
+
+<Frame>
+  <img style={{ borderRadius:"0.5rem" }} src="/images/clusters_overview_images/image_9.png" width="1336" height="1300" alt="Join an Existing Cluster" />
+</Frame>
+  </Step>
+  <Step title="Send Request">
+    If a Cluster is hosted by an Organization you are a Member of you will see those Clusters appear. Select the Cluster you would like access to → **Send Request**
+  </Step>
+</Steps>
+
+---
+
+## Next Steps
+
+- To learn how to deploy to a Cluster, see our [Deployments Overview](/navigator-overview/deployments-overview) guide
+- For information on creating and managing devices, see our [My Devices Overview](/navigator-overview/my-devices-overview) guide
+- For step by step processes in creating Flows, see our [Building Workflows](/building-workflows/build-custom-llm-chatbot) guides
+
